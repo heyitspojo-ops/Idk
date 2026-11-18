@@ -9,6 +9,9 @@ Chatterbox: set "engine": "chatterbox" (top level). Each line is spoken in one t
   "temperature" (default 0.8), "seed", optional "ref" (wav to clone) and "pitch" (semitones, resampled).
   Parts may override "exaggeration", "whisper" (0..1, removes pitch -> breathy) and "gain" (dB); consecutive
   parts with the same settings are spoken in one take.
+ElevenLabs: "engine": "elevenlabs", "voice_id", "model" (default eleven_v3, which reads audio tags such as
+  [whispers] [shouting] [laughs] inside the text), "stability" (0 creative .. 1 robust, default 0.5), "seed".
+  The API key is injected by the network proxy for api.elevenlabs.io (never stored in code).
 Takes cache: "cache": "audio/takes/<name>" keeps each line's audio, keyed by its settings (not its "at"),
   so verified takes are reused exactly; delete a line's file (or change its "seed") to re-take it.
 
@@ -85,16 +88,34 @@ class Chatterbox:
         a = resample(a, 2 ** (pitch / 12)) if pitch else a
         return whisperize(a, o.get("whisper", 0)) * 10 ** (o.get("gain", 0) / 20)
 
+class ElevenLabs:
+    def line(self, text, line, cfg, o=None):
+        import subprocess, urllib.request
+        voice = line.get("voice_id", cfg.get("voice_id"))
+        body = {"text": text, "model_id": line.get("model", cfg.get("model", "eleven_v3")),
+                "seed": line.get("seed", cfg.get("seed", 7)) + line["id"],
+                "voice_settings": {"stability": line.get("stability", cfg.get("stability", 0.5)), "similarity_boost": 0.8}}
+        req = urllib.request.Request(f"https://api.elevenlabs.io/v1/text-to-speech/{voice}?output_format=mp3_44100_128",
+                                     data=json.dumps(body).encode(), method="POST",
+                                     headers={"xi-api-key": "proxy-injected", "content-type": "application/json"})
+        mp3 = urllib.request.urlopen(req, timeout=120).read()
+        raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", "-", "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
+                             input=mp3, capture_output=True, check=True).stdout
+        a = trim(np.frombuffer(raw, np.float32).copy())
+        pitch = line.get("pitch", 0)
+        a = resample(a, 2 ** (pitch / 12)) if pitch else a
+        return whisperize(a, (o or {}).get("whisper", 0)) * 10 ** ((o or {}).get("gain", 0) / 20)
+
 def main(script_path, out_path, only=None):
     cfg = json.load(open(script_path))
-    cb = cfg.get("engine") == "chatterbox"
+    cb = cfg.get("engine") in ("chatterbox", "elevenlabs")
     model = []
     def k_():
-        if not model: model.append(Chatterbox() if cb else load_kokoro())
+        if not model: model.append(ElevenLabs() if cfg.get("engine") == "elevenlabs" else Chatterbox() if cb else load_kokoro())
         return model[0]
     cache = cfg.get("cache")
     if cache: os.makedirs(cache, exist_ok=True)
-    glob = {g: cfg.get(g) for g in ("engine", "voice", "speed", "exaggeration", "cfg", "temperature", "seed", "ref")}
+    glob = {g: cfg.get(g) for g in ("engine", "voice", "speed", "exaggeration", "cfg", "temperature", "seed", "ref", "voice_id", "model", "stability")}
     clips, cursor = [], 0.0
     for line in cfg["lines"]:
         if only and line["id"] != only: continue
