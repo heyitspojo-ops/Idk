@@ -10,7 +10,7 @@ export const { toStory, toReel, duration: DURATION } = voWarp(placed, STORY);
 
 // cam: [from, to] { p, l } in the shot's world; 'bath' = bathroom, 'sea' = ocean (offset in scene.js)
 export const SHOTS = [
-  { id: 1, from: 0, to: 3, world: 'bath', fov: 28, cam: [{ p: [2.8, 4.4, 8.0], l: [0.1, 2.5, -2.6] }, { p: [2.4, 4.2, 7.0], l: [0.1, 2.5, -2.6] }] },
+  { id: 1, from: 0, to: 3, world: 'bath', fov: 28, cam: [{ p: [-2.6, 4.4, 8.0], l: [0.2, 2.5, -2.6] }, { p: [-2.2, 4.2, 7.0], l: [0.2, 2.5, -2.6] }] },
   { id: 2, from: 3, to: 6, world: 'bath', fov: 30, cam: [{ p: [2.8, 3.6, 3.8], l: [0.1, 2.6, -3.0] }, { p: [2.5, 3.4, 3.2], l: [0.1, 2.6, -3.0] }] },
   { id: 3, from: 6, to: 8.3, world: 'bath', fov: 32, cam: [{ p: [5.6, 2.8, 4.6], l: [0.2, 1.6, -1.0] }, { p: [5.2, 2.6, 4.2], l: [0.2, 1.5, -1.0] }] },
   { id: 4, from: 8.3, to: 9.5, world: 'bath', fov: 58, cam: [{ p: [1.3, 0.7, -2.2], l: [0.2, 1.4, 0.4] }, { p: [1.25, 0.7, -2.15], l: [0.2, 1.4, 0.4] }] },
