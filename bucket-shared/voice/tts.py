@@ -9,6 +9,8 @@ Chatterbox: set "engine": "chatterbox" (top level). Each line is spoken in one t
   "temperature" (default 0.8), "seed", optional "ref" (wav to clone) and "pitch" (semitones, resampled).
   Parts may override "exaggeration", "whisper" (0..1, removes pitch -> breathy) and "gain" (dB); consecutive
   parts with the same settings are spoken in one take.
+Takes cache: "cache": "audio/takes/<name>" keeps each line's audio, keyed by its settings (not its "at"),
+  so verified takes are reused exactly; delete a line's file (or change its "seed") to re-take it.
 
 Script JSON:
   { "voice": "af_bella", "speed": 1.1, "gap": 0.25,
@@ -19,7 +21,7 @@ A part may also be a plain string. Each line starts at max(at, end of previous l
 Pitch shifts keep the timing: the phrase is spoken slower, then resampled up.
 Writes <out>.wav (mono 24 kHz) and <out>.lines.json with where each line landed.
 """
-import json, sys, os
+import hashlib, json, sys, os
 import numpy as np, soundfile as sf
 
 SR = 24000
@@ -86,13 +88,22 @@ class Chatterbox:
 def main(script_path, out_path, only=None):
     cfg = json.load(open(script_path))
     cb = cfg.get("engine") == "chatterbox"
-    k = Chatterbox() if cb else load_kokoro()
+    model = []
+    def k_():
+        if not model: model.append(Chatterbox() if cb else load_kokoro())
+        return model[0]
+    cache = cfg.get("cache")
+    if cache: os.makedirs(cache, exist_ok=True)
+    glob = {g: cfg.get(g) for g in ("engine", "voice", "speed", "exaggeration", "cfg", "temperature", "seed", "ref")}
     clips, cursor = [], 0.0
     for line in cfg["lines"]:
         if only and line["id"] != only: continue
         voice = line.get("voice", cfg.get("voice", "af_bella"))
-        chunks = []
-        if cb:  # group consecutive parts with equal overrides; one take per group
+        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a != "at"}], sort_keys=True).encode()).hexdigest()[:10]
+        cpath = os.path.join(cache, f"line{line['id']:02d}-{key}.wav") if cache else None
+        chunks = [sf.read(cpath, dtype="float32")[0], None] if cpath and os.path.exists(cpath) else []
+        if chunks: pass
+        elif cb:  # group consecutive parts with equal overrides; one take per group
             groups = []
             for p in line["parts"]:
                 p = {"t": p} if isinstance(p, str) else p
@@ -100,13 +111,14 @@ def main(script_path, out_path, only=None):
                 if groups and groups[-1][0] == o: groups[-1][1].append(p)
                 else: groups.append((o, [p]))
             for o, ps in groups:
-                chunks += [k.line(" ".join(p["t"] for p in ps), line, cfg, o), np.zeros(int(ps[-1].get("pause", 0.25) * SR), np.float32)]
-        for p in ([] if cb else line["parts"]):
+                chunks += [k_().line(" ".join(p["t"] for p in ps), line, cfg, o), np.zeros(int(ps[-1].get("pause", 0.25) * SR), np.float32)]
+        for p in ([] if cb or chunks else line["parts"]):
             p = {"t": p} if isinstance(p, str) else p
-            chunks.append(speak(k, p["t"], voice, p.get("speed", line.get("speed", cfg.get("speed", 1.0))),
+            chunks.append(speak(k_(), p["t"], voice, p.get("speed", line.get("speed", cfg.get("speed", 1.0))),
                                 p.get("pitch", line.get("pitch", 0))))
             chunks.append(np.zeros(int(p.get("pause", 0.08) * SR), np.float32))
         audio = np.concatenate(chunks[:-1])
+        if cpath and not os.path.exists(cpath): sf.write(cpath, audio, SR, subtype="FLOAT")
         start = 0.1 if only else max(line.get("at", 0.0), cursor)
         clips.append((start, audio, line))
         cursor = start + len(audio) / SR + cfg.get("gap", 0.25)
