@@ -1,0 +1,24 @@
+{
+  "name": "idk",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heyitspojo-ops/Idk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/heyitspojo-ops/Idk/issues"
+  },
+  "homepage": "https://github.com/heyitspojo-ops/Idk#readme",
+  "dependencies": {
+    "puppeteer-core": "^25.18.1",
+    "three": "^0.187.0"
+  }
+}
