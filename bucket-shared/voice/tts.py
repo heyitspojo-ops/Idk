@@ -12,6 +12,7 @@ Chatterbox: set "engine": "chatterbox" (top level). Each line is spoken in one t
 ElevenLabs: "engine": "elevenlabs", "voice_id", "model" (default eleven_v3, which reads audio tags such as
   [whispers] [shouting] [laughs] inside the text), "stability" (0 creative .. 1 robust, default 0.5), "seed".
   The API key is injected by the network proxy for api.elevenlabs.io (never stored in code).
+"tempo" (per line, e.g. 1.06): speeds a line up without changing pitch (ffmpeg atempo), after the cache.
 Takes cache: "cache": "audio/takes/<name>" keeps each line's audio, keyed by its settings (not its "at"),
   so verified takes are reused exactly; delete a line's file (or change its "seed") to re-take it.
 
@@ -24,7 +25,7 @@ A part may also be a plain string. Each line starts at max(at, end of previous l
 Pitch shifts keep the timing: the phrase is spoken slower, then resampled up.
 Writes <out>.wav (mono 24 kHz) and <out>.lines.json with where each line landed.
 """
-import hashlib, json, sys, os
+import hashlib, json, re, sys, os
 import numpy as np, soundfile as sf
 
 SR = 24000
@@ -60,6 +61,12 @@ def whisperize(x, amount=1.0, n=1024, hop=256, seed=3):
     wet = (out / np.maximum(norm, 1e-3))[n:n + len(x)]
     wet *= np.abs(x).max() / max(1e-6, np.abs(wet).max())
     return amount * wet + (1 - amount) * x
+
+def tempo(x, r):
+    import subprocess
+    raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "-",
+                          "-af", f"atempo={r}", "-f", "f32le", "-"], input=x.astype(np.float32).tobytes(), capture_output=True, check=True).stdout
+    return np.frombuffer(raw, np.float32).copy()
 
 def speak(k, text, voice, speed, pitch):
     r = 2 ** (pitch / 12)
@@ -120,7 +127,7 @@ def main(script_path, out_path, only=None):
     for line in cfg["lines"]:
         if only and line["id"] != only: continue
         voice = line.get("voice", cfg.get("voice", "af_bella"))
-        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a != "at"}], sort_keys=True).encode()).hexdigest()[:10]
+        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a not in ("at", "tempo")}], sort_keys=True).encode()).hexdigest()[:10]
         cpath = os.path.join(cache, f"line{line['id']:02d}-{key}.wav") if cache else None
         chunks = [sf.read(cpath, dtype="float32")[0], None] if cpath and os.path.exists(cpath) else []
         if chunks: pass
@@ -140,6 +147,7 @@ def main(script_path, out_path, only=None):
             chunks.append(np.zeros(int(p.get("pause", 0.08) * SR), np.float32))
         audio = np.concatenate(chunks[:-1])
         if cpath and not os.path.exists(cpath): sf.write(cpath, audio, SR, subtype="FLOAT")
+        if line.get("tempo", 1) != 1: audio = tempo(audio, line["tempo"])
         start = 0.1 if only else max(line.get("at", 0.0), cursor)
         clips.append((start, audio, line))
         cursor = start + len(audio) / SR + cfg.get("gap", 0.25)
@@ -153,7 +161,7 @@ def main(script_path, out_path, only=None):
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     sf.write(out_path, mix, SR, subtype="PCM_16")
     placed = [{"id": l["id"], "start": round(s, 3), "end": round(s + len(a) / SR, 3),
-               "text": " ".join(p if isinstance(p, str) else p["t"] for p in l["parts"])} for s, a, l in clips]
+               "text": re.sub(r"\[[^\]]*\]\s*", "", " ".join(p if isinstance(p, str) else p["t"] for p in l["parts"]))} for s, a, l in clips]
     json.dump(placed, open(os.path.splitext(out_path)[0] + ".lines.json", "w"), indent=1)
     print(f"Wrote {out_path} ({total/SR:.2f}s)")
 

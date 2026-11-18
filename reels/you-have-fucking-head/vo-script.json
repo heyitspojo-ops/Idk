@@ -1,235 +1,93 @@
 {
- "cache": "audio/takes/you-have-fucking-head",
- "engine": "chatterbox",
- "exaggeration": 1.3,
- "cfg": 0.3,
- "temperature": 0.85,
- "voice": "af_bella",
- "speed": 1.12,
- "gap": 0.2,
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.1,
+ "cache": "audio/takes/you-have-fucking-head-elevenlabs",
  "lines": [
   {
    "id": 1,
-   "at": 0.15,
+   "at": 0.05,
    "parts": [
-    {
-     "t": "Oh, fuck.",
-     "speed": 0.95,
-     "pitch": 1,
-     "pause": 0.2
-    },
-    {
-     "t": "You have fucking head lice!",
-     "speed": 1.2,
-     "pitch": 2
-    }
+    "[shocked] Oh, fuck. [shouting] You have fucking head lice!"
    ],
-   "exaggeration": 1.4,
-   "seed": 50
+   "seed": 26
   },
   {
    "id": 2,
    "at": 3.1,
    "parts": [
-    {
-     "t": "So you scratch.",
-     "speed": 1.05,
-     "pause": 0.12
-    },
-    {
-     "t": "And scratch.",
-     "speed": 1.15,
-     "pitch": 1,
-     "pause": 0.1
-    },
-    {
-     "t": "And scratch, god damn it!",
-     "speed": 1.3,
-     "pitch": 3
-    }
-   ],
-   "exaggeration": 1.6
+    "So you scratch. And scratch. [frustrated] And scratch, god damn it!"
+   ]
   },
   {
    "id": 3,
    "at": 8.1,
    "parts": [
-    {
-     "t": "But these little shits?",
-     "speed": 1.1,
-     "pitch": -1,
-     "pause": 0.15
-    },
-    {
-     "t": "They think it's a fucking theme park!",
-     "speed": 1.25,
-     "pitch": 2
-    }
-   ],
-   "exaggeration": 1.4
+    "[exasperated] But these little shits? They think it's a fucking theme park!"
+   ]
   },
   {
    "id": 4,
    "at": 13.2,
    "parts": [
-    {
-     "t": "Shampoo?",
-     "speed": 1.0,
-     "pitch": 2,
-     "pause": 0.15
-    },
-    {
-     "t": "Ha ha!",
-     "speed": 1.0,
-     "pitch": 3,
-     "pause": 0.15
-    },
-    {
-     "t": "That's their god damn pool party!",
-     "speed": 1.15,
-     "pitch": 0
-    }
-   ],
-   "exaggeration": 1.3,
-   "seed": 13
+    "[sarcastic] Shampoo? Ha ha! That's their god damn pool party!"
+   ]
   },
   {
    "id": 5,
    "at": 19.2,
    "parts": [
-    {
-     "t": "The comb?",
-     "speed": 1.05,
-     "pitch": 1,
-     "pause": 0.2
-    },
-    {
-     "t": "Those motherfuckers built a town.",
-     "speed": 1.2,
-     "pitch": 1,
-     "pause": 0.15
-    },
-    {
-     "t": "With a flag!",
-     "speed": 1.15,
-     "pitch": 4
-    }
-   ],
-   "exaggeration": 1.6,
-   "seed": 6
+    "[incredulous] The comb? [shouting] Those motherfuckers built a town. With a flag!"
+   ]
   },
   {
    "id": 6,
    "at": 25.4,
-   "voice": "am_puck",
    "parts": [
-    {
-     "t": "We live here now, bitch!",
-     "speed": 1.15,
-     "pitch": 7,
-     "pause": 0.15
-    },
-    {
-     "t": "Fuck you!",
-     "speed": 1.15,
-     "pitch": 8
-    }
+    "[mischievously] We live here now, bitch! Fuck you!"
    ],
-   "exaggeration": 1.7,
-   "pitch": 6,
-   "seed": 17
+   "pitch": 6
   },
   {
    "id": 7,
-   "at": 30.1,
+   "at": 30.0,
    "parts": [
     {
-     "t": "You're fucked.",
-     "speed": 0.95,
-     "pitch": -2,
-     "pause": 0.2,
-     "whisper": 0.9,
-     "gain": -7
+     "t": "[whispers] You're fucked. Totally fucked.",
+     "gain": -3,
+     "pause": 0.6
     },
     {
-     "t": "Totally fucked.",
-     "speed": 0.85,
-     "pitch": -3,
-     "pause": 0.6,
-     "whisper": 0.9,
-     "gain": -7
-    },
-    {
-     "t": "Unless.",
-     "speed": 0.9,
-     "pitch": 2,
-     "exaggeration": 0.6
+     "t": "[curious] Unless...",
+     "gain": 0
     }
-   ],
-   "exaggeration": 0.3
+   ]
   },
   {
    "id": 8,
-   "at": 34.1,
+   "at": 34.4,
    "parts": [
-    {
-     "t": "Luxury real estate, baby!",
-     "speed": 1.2,
-     "pitch": 2,
-     "pause": 0.15
-    },
-    {
-     "t": "Free wig.",
-     "speed": 1.1,
-     "pitch": 1,
-     "pause": 0.1
-    },
-    {
-     "t": "Zero fucking scratching.",
-     "speed": 1.15,
-     "pitch": 3
-    }
-   ],
-   "exaggeration": 1.4,
-   "seed": 3
+    "[excited] Luxury real estate, baby! Free wig. Zero fucking scratching."
+   ]
   },
   {
    "id": 9,
-   "at": 39.1,
+   "at": 39.15,
    "parts": [
-    {
-     "t": "And the little bastards just...",
-     "speed": 1.2,
-     "pitch": 0,
-     "pause": 0.2
-    },
-    {
-     "t": "moved the fuck out.",
-     "speed": 1.1,
-     "pitch": 2
-    }
+    "And the little bastards just... [relieved] moved the fuck out."
    ],
-   "exaggeration": 1.2
+   "seed": 39
   },
   {
    "id": 10,
-   "at": 42.15,
+   "at": 41.95,
    "parts": [
-    {
-     "t": "Lice free!",
-     "pause": 0.1
-    },
-    {
-     "t": "Rent free!",
-     "pause": 0.15
-    },
-    {
-     "t": "Fuck, yes!"
-    }
+    "[triumphant] Lice free! Rent free! [shouting] Fuck, yes!"
    ],
-   "exaggeration": 1.5,
-   "seed": 87,
-   "cfg": 0.5
+   "seed": 26,
+   "tempo": 1.06
   }
  ]
 }
