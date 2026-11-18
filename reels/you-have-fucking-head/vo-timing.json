@@ -2,496 +2,486 @@
  {
   "id": 1,
   "start": 0.0,
-  "end": 2.1,
+  "end": 2.54,
   "text": "Oh, fuck. You have fucking head lice!",
   "words": [
    {
     "w": "Oh,",
     "start": 0.0,
-    "end": 0.42
+    "end": 0.5
    },
    {
-    "w": "fuck.",
-    "start": 0.44,
-    "end": 0.76
+    "w": "fuck!",
+    "start": 0.74,
+    "end": 1.06
    },
    {
     "w": "You",
-    "start": 1.1,
-    "end": 1.22
+    "start": 1.42,
+    "end": 1.56
    },
    {
     "w": "have",
-    "start": 1.22,
-    "end": 1.36
+    "start": 1.56,
+    "end": 1.78
    },
    {
     "w": "fucking",
-    "start": 1.36,
-    "end": 1.68
-   },
-   {
-    "w": "head",
-    "start": 1.68,
-    "end": 1.9
-   },
-   {
-    "w": "lice.",
-    "start": 1.9,
+    "start": 1.78,
     "end": 2.1
+   },
+   {
+    "w": "headlights!",
+    "start": 2.1,
+    "end": 2.54
    }
   ],
-  "heard": "Oh, fuck. You have fucking head lice."
+  "heard": "Oh, fuck! You have fucking headlights!"
  },
  {
   "id": 2,
-  "start": 3.1,
-  "end": 6.06,
+  "start": 3.08,
+  "end": 6.16,
   "text": "So you scratch. And scratch. And scratch, god damn it!",
   "words": [
    {
-    "w": "So",
-    "start": 3.1,
-    "end": 3.22
+    "w": "So,",
+    "start": 3.08,
+    "end": 3.3
    },
    {
     "w": "you",
-    "start": 3.22,
-    "end": 3.38
+    "start": 3.5,
+    "end": 3.64
    },
    {
     "w": "scratch,",
-    "start": 3.38,
-    "end": 3.68
+    "start": 3.64,
+    "end": 3.9
    },
    {
     "w": "and",
-    "start": 4.04,
-    "end": 4.18
+    "start": 4.2,
+    "end": 4.34
    },
    {
     "w": "scratch,",
-    "start": 4.18,
-    "end": 4.48
+    "start": 4.34,
+    "end": 4.58
    },
    {
     "w": "and",
-    "start": 4.84,
-    "end": 4.94
+    "start": 4.88,
+    "end": 4.98
    },
    {
-    "w": "scratch.",
-    "start": 4.94,
-    "end": 5.24
+    "w": "scratch!",
+    "start": 4.98,
+    "end": 5.26
    },
    {
     "w": "God",
-    "start": 5.44,
-    "end": 5.58
+    "start": 5.56,
+    "end": 5.64
    },
    {
     "w": "damn",
-    "start": 5.58,
-    "end": 5.82
+    "start": 5.64,
+    "end": 5.96
    },
    {
-    "w": "it.",
-    "start": 5.82,
-    "end": 6.06
+    "w": "it!",
+    "start": 5.96,
+    "end": 6.16
    }
   ],
-  "heard": "So you scratch, and scratch, and scratch. God damn it."
+  "heard": "So, you scratch, and scratch, and scratch! God damn it!"
  },
  {
   "id": 3,
-  "start": 7.96,
-  "end": 10.58,
+  "start": 7.72,
+  "end": 11.04,
   "text": "But these little shits? They think it's a fucking theme park!",
   "words": [
    {
     "w": "But",
-    "start": 7.96,
-    "end": 8.2
+    "start": 7.72,
+    "end": 8.26
    },
    {
     "w": "these",
-    "start": 8.2,
-    "end": 8.42
+    "start": 8.26,
+    "end": 8.64
    },
    {
     "w": "little",
-    "start": 8.42,
-    "end": 8.62
+    "start": 8.64,
+    "end": 8.96
    },
    {
-    "w": "shits...",
-    "start": 8.62,
-    "end": 9.24
-   },
-   {
-    "w": "They",
-    "start": 9.24,
+    "w": "shits,",
+    "start": 8.96,
     "end": 9.36
    },
    {
+    "w": "they",
+    "start": 9.66,
+    "end": 9.72
+   },
+   {
     "w": "think",
-    "start": 9.36,
-    "end": 9.52
+    "start": 9.72,
+    "end": 9.92
    },
    {
     "w": "it's",
-    "start": 9.52,
-    "end": 9.64
+    "start": 9.92,
+    "end": 10.04
    },
    {
     "w": "a",
-    "start": 9.64,
-    "end": 9.78
+    "start": 10.04,
+    "end": 10.22
    },
    {
     "w": "fucking",
-    "start": 9.78,
-    "end": 9.98
+    "start": 10.22,
+    "end": 10.42
    },
    {
     "w": "theme",
-    "start": 9.98,
-    "end": 10.26
+    "start": 10.42,
+    "end": 10.72
    },
    {
-    "w": "park.",
-    "start": 10.26,
-    "end": 10.58
+    "w": "park!",
+    "start": 10.72,
+    "end": 11.04
    }
   ],
-  "heard": "But these little shits... They think it's a fucking theme park."
+  "heard": "But these little shits, they think it's a fucking theme park!"
  },
  {
   "id": 4,
-  "start": 13.14,
-  "end": 16.22,
+  "start": 13.18,
+  "end": 16.5,
   "text": "Shampoo? Ha ha! That's their god damn pool party!",
   "words": [
    {
-    "w": "Shampoo.",
-    "start": 13.14,
-    "end": 13.58
+    "w": "Shampoo?",
+    "start": 13.18,
+    "end": 13.64
    },
    {
-    "w": "Haha.",
-    "start": 14.08,
-    "end": 14.26
+    "w": "Ha",
+    "start": 14.1,
+    "end": 14.2
+   },
+   {
+    "w": "ha!",
+    "start": 14.2,
+    "end": 14.56
    },
    {
     "w": "That's",
-    "start": 14.6,
-    "end": 14.9
+    "start": 14.84,
+    "end": 15.18
    },
    {
     "w": "their",
-    "start": 14.9,
-    "end": 15.06
+    "start": 15.18,
+    "end": 15.32
    },
    {
     "w": "goddamn",
-    "start": 15.06,
-    "end": 15.52
+    "start": 15.32,
+    "end": 15.78
    },
    {
     "w": "pool",
-    "start": 15.52,
-    "end": 15.8
+    "start": 15.78,
+    "end": 16.1
    },
    {
-    "w": "party.",
-    "start": 15.8,
-    "end": 16.22
+    "w": "party!",
+    "start": 16.1,
+    "end": 16.5
    }
   ],
-  "heard": "Shampoo. Haha. That's their goddamn pool party."
+  "heard": "Shampoo? Ha ha! That's their goddamn pool party!"
  },
  {
   "id": 5,
-  "start": 19.1,
-  "end": 22.12,
+  "start": 19.2,
+  "end": 22.1,
   "text": "The comb? Those motherfuckers built a town. With a flag!",
   "words": [
    {
-    "w": "The",
-    "start": 19.1,
-    "end": 19.32
+    "w": "Gollum,",
+    "start": 19.2,
+    "end": 19.56
    },
    {
-    "w": "comb.",
-    "start": 19.32,
-    "end": 19.54
-   },
-   {
-    "w": "Those",
-    "start": 20.04,
-    "end": 20.18
+    "w": "those",
+    "start": 19.7,
+    "end": 19.92
    },
    {
     "w": "motherfuckers",
-    "start": 20.18,
-    "end": 20.74
+    "start": 19.92,
+    "end": 20.46
    },
    {
     "w": "built",
-    "start": 20.74,
-    "end": 20.92
+    "start": 20.46,
+    "end": 20.62
    },
    {
     "w": "a",
-    "start": 20.92,
-    "end": 21.06
+    "start": 20.62,
+    "end": 20.8
    },
    {
-    "w": "town.",
-    "start": 21.06,
-    "end": 21.32
+    "w": "town",
+    "start": 20.8,
+    "end": 21.08
    },
    {
-    "w": "With",
-    "start": 21.62,
-    "end": 21.72
+    "w": "with",
+    "start": 21.08,
+    "end": 21.54
    },
    {
     "w": "a",
-    "start": 21.72,
-    "end": 21.82
+    "start": 21.54,
+    "end": 21.7
    },
    {
-    "w": "flag.",
-    "start": 21.82,
-    "end": 22.12
+    "w": "flag!",
+    "start": 21.7,
+    "end": 22.1
    }
   ],
-  "heard": "The comb. Those motherfuckers built a town. With a flag."
+  "heard": "Gollum, those motherfuckers built a town with a flag!"
  },
  {
   "id": 6,
-  "start": 25.08,
-  "end": 27.02,
+  "start": 25.02,
+  "end": 26.86,
   "text": "We live here now, bitch! Fuck you!",
   "words": [
    {
-    "w": "We",
-    "start": 25.08,
-    "end": 25.52
+    "w": "We'll",
+    "start": 25.02,
+    "end": 25.62
    },
    {
-    "w": "live",
-    "start": 25.52,
-    "end": 25.68
-   },
-   {
-    "w": "here",
-    "start": 25.68,
-    "end": 25.82
+    "w": "appear",
+    "start": 25.62,
+    "end": 25.76
    },
    {
     "w": "now,",
-    "start": 25.82,
-    "end": 26.02
+    "start": 25.76,
+    "end": 25.98
    },
    {
-    "w": "bitch.",
+    "w": "bitch!",
     "start": 26.06,
-    "end": 26.22
+    "end": 26.2
    },
    {
     "w": "Fuck",
-    "start": 26.6,
-    "end": 26.72
+    "start": 26.44,
+    "end": 26.56
    },
    {
-    "w": "you.",
-    "start": 26.72,
-    "end": 27.02
+    "w": "you!",
+    "start": 26.56,
+    "end": 26.86
    }
   ],
-  "heard": "We live here now, bitch. Fuck you."
+  "heard": "We'll appear now, bitch! Fuck you!"
  },
  {
   "id": 7,
   "start": 30.0,
-  "end": 34.22,
-  "text": "You're fucked. Totally fucked. Unless...",
+  "end": 34.48,
+  "text": "You're fucked. Totally fucked. Unless.",
   "words": [
    {
     "w": "You're",
     "start": 30.0,
-    "end": 30.42
+    "end": 30.36
    },
    {
     "w": "fucked.",
-    "start": 30.42,
-    "end": 30.62
+    "start": 30.36,
+    "end": 30.58
    },
    {
     "w": "Totally",
-    "start": 31.38,
-    "end": 31.38
+    "start": 31.28,
+    "end": 31.28
    },
    {
     "w": "fucked.",
-    "start": 31.38,
-    "end": 31.86
+    "start": 31.28,
+    "end": 31.72
    },
    {
     "w": "Unless...",
-    "start": 33.58,
-    "end": 34.22
+    "start": 33.74,
+    "end": 34.48
    }
   ],
   "heard": "You're fucked. Totally fucked. Unless..."
  },
  {
   "id": 8,
-  "start": 34.22,
-  "end": 37.5,
+  "start": 34.48,
+  "end": 37.58,
   "text": "Luxury real estate, baby! Free wig. Zero fucking scratching.",
   "words": [
    {
     "w": "Luxury",
-    "start": 34.22,
-    "end": 34.48
+    "start": 34.48,
+    "end": 34.72
    },
    {
     "w": "real",
-    "start": 34.48,
-    "end": 34.7
+    "start": 34.72,
+    "end": 34.94
    },
    {
     "w": "estate,",
-    "start": 34.7,
-    "end": 35.02
+    "start": 34.94,
+    "end": 35.18
    },
    {
-    "w": "baby.",
-    "start": 35.4,
-    "end": 35.4
+    "w": "baby!",
+    "start": 35.3,
+    "end": 35.44
    },
    {
-    "w": "Free",
-    "start": 35.74,
-    "end": 35.92
-   },
-   {
-    "w": "wig.",
-    "start": 35.92,
-    "end": 36.16
+    "w": "Freewig!",
+    "start": 35.86,
+    "end": 36.26
    },
    {
     "w": "Zero",
-    "start": 36.54,
-    "end": 36.74
+    "start": 36.64,
+    "end": 36.88
    },
    {
     "w": "fucking",
-    "start": 36.74,
-    "end": 37.08
+    "start": 36.88,
+    "end": 37.32
    },
    {
-    "w": "scratching.",
-    "start": 37.08,
-    "end": 37.5
+    "w": "scre",
+    "start": 37.32,
+    "end": 37.58
+   },
+   {
+    "w": "-",
+    "start": 37.58,
+    "end": 37.58
    }
   ],
-  "heard": "Luxury real estate, baby. Free wig. Zero fucking scratching."
+  "heard": "Luxury real estate, baby! Freewig! Zero fucking scre -"
  },
  {
   "id": 9,
-  "start": 38.86,
-  "end": 41.36,
+  "start": 37.58,
+  "end": 41.34,
   "text": "And the little bastards just... moved the fuck out.",
   "words": [
    {
     "w": "And",
-    "start": 38.86,
-    "end": 39.18
+    "start": 37.58,
+    "end": 38.18
    },
    {
     "w": "the",
-    "start": 39.18,
-    "end": 39.28
+    "start": 38.18,
+    "end": 39.32
    },
    {
     "w": "little",
-    "start": 39.28,
-    "end": 39.42
+    "start": 39.32,
+    "end": 39.5
    },
    {
     "w": "bastards",
-    "start": 39.42,
-    "end": 39.88
+    "start": 39.5,
+    "end": 39.94
    },
    {
-    "w": "just...",
-    "start": 39.88,
-    "end": 40.62
+    "w": "just",
+    "start": 39.94,
+    "end": 40.16
    },
    {
-    "w": "Move",
-    "start": 40.62,
-    "end": 40.74
+    "w": "moved",
+    "start": 40.16,
+    "end": 40.54
    },
    {
     "w": "the",
-    "start": 40.74,
-    "end": 40.92
+    "start": 40.54,
+    "end": 40.72
    },
    {
     "w": "fuck",
-    "start": 40.92,
-    "end": 41.06
+    "start": 40.72,
+    "end": 41.0
    },
    {
-    "w": "out.",
-    "start": 41.06,
-    "end": 41.36
+    "w": "out!",
+    "start": 41.0,
+    "end": 41.34
    }
   ],
-  "heard": "And the little bastards just... Move the fuck out."
+  "heard": "And the little bastards just moved the fuck out!"
  },
  {
   "id": 10,
-  "start": 42.54,
-  "end": 44.5,
+  "start": 42.64,
+  "end": 45.1,
   "text": "Lice free. Rent free. Fuck yes!",
   "words": [
    {
-    "w": "Lice",
-    "start": 42.54,
-    "end": 42.66
+    "w": "Lights",
+    "start": 42.64,
+    "end": 42.78
    },
    {
-    "w": "free.",
-    "start": 42.66,
-    "end": 42.94
+    "w": "free!",
+    "start": 42.78,
+    "end": 43.24
    },
    {
     "w": "Rent",
-    "start": 43.38,
-    "end": 43.42
+    "start": 43.78,
+    "end": 43.82
    },
    {
-    "w": "free.",
-    "start": 43.42,
-    "end": 43.76
+    "w": "free!",
+    "start": 43.82,
+    "end": 44.24
    },
    {
     "w": "Fuck",
-    "start": 44.14,
-    "end": 44.26
+    "start": 44.72,
+    "end": 44.84
    },
    {
-    "w": "yes.",
-    "start": 44.26,
-    "end": 44.5
+    "w": "yes!",
+    "start": 44.84,
+    "end": 45.1
    }
   ],
-  "heard": "Lice free. Rent free. Fuck yes."
+  "heard": "Lights free! Rent free! Fuck yes!"
  }
 ]
