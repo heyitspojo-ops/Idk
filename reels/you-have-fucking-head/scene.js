@@ -72,7 +72,7 @@ const HEAD_TOP = new THREE.Vector3(3.6, 3.05, -1.6), WIG = new THREE.Vector3(4.2
 const bridge = at(comb({ length: HEAD_TOP.distanceTo(WIG) + 0.3, teeth: 16, toothH: 0.22, toothW: 0.05, spineH: 0.1, depth: 0.3 }), 0, 0, 0, B);
 bridge.position.lerpVectors(HEAD_TOP, WIG, 0.5);
 bridge.quaternion.setFromUnitVectors(new THREE.Vector3(1, 0, 0), WIG.clone().sub(HEAD_TOP).normalize());
-const marchers = Array.from({ length: 6 }, (_, i) => louse({ seed: 60 + i, suitcase: i < 5, hat: i === 5 }, B, 0, 0, 0, 0.3));
+const marchers = Array.from({ length: 5 }, (_, i) => louse({ seed: 60 + i, suitcase: i < 4, hat: i === 4 }, B, 0, 0, 0, 0.36));
 const peeker = louse({ seed: 1 }, manq.anchors.wig, 0.05, 0.05, 0.4, 0.34);
 const sparks = Array.from({ length: 5 }, (_, i) => at(sparkle(0.22 + (i % 2) * 0.1), 0, 0, 0, B));
 
@@ -142,13 +142,14 @@ function stage(t) {
   show(bridge, t >= 38.6 && t < 42.5);
   const dir = WIG.clone().sub(HEAD_TOP).normalize();
   marchers.forEach((m, i) => {
-    let s = seg(t, T.march[0] + i * 0.32, T.march[0] + i * 0.32 + 1.7);
-    if (i === 5) s = Math.min(s, 0.7) + (t > T.hatTip + 0.5 ? seg(t, T.hatTip + 0.5, T.hatTip + 0.9) * 0.3 : 0);
+    let s = seg(t, T.march[0] + i * 0.42, T.march[0] + i * 0.42 + 1.8);
+    if (i === 4) s = Math.min(s, 0.7) + (t > T.hatTip + 0.5 ? seg(t, T.hatTip + 0.5, T.hatTip + 0.9) * 0.3 : 0);
     show(m.group, t >= 38.6 && t < 42.5 && s < 0.98);
     m.group.position.lerpVectors(HEAD_TOP, WIG, s).y += 0.1;
-    m.group.rotation.y = Math.atan2(dir.x, dir.z) + (i === 5 && t > T.hatTip - 0.3 && t < T.hatTip + 0.5 ? 1.8 : 0);
-    m.pose({ t: t + i, walk: i === 5 && Math.abs(t - T.hatTip) < 0.5 ? 0 : 1, wave: i === 5 && Math.abs(t - T.hatTip) < 0.5 ? 1 : 0 });
-    if (i === 5) m.anchors.hatTop.rotation.z = Math.abs(t - T.hatTip) < 0.4 ? Math.sin(seg(t, T.hatTip - 0.4, T.hatTip + 0.4) * Math.PI) * 0.9 : 0;
+    m.group.rotation.y = Math.atan2(dir.x, dir.z) + (i === 4 && t > T.hatTip - 0.3 && t < T.hatTip + 0.5 ? -1.57 : 0);
+    const tip = i === 4 && Math.abs(t - T.hatTip) < 0.5;
+    m.pose({ t: t + i, walk: tip ? 0 : 1, wave: tip ? 1 : 0, look: tip ? 0 : -1.1 });
+    if (i === 4) m.anchors.hatTop.rotation.z = Math.abs(t - T.hatTip) < 0.4 ? Math.sin(seg(t, T.hatTip - 0.4, T.hatTip + 0.4) * Math.PI) * 0.9 : 0;
   });
   show(peeker.group, t >= T.peek);
   peeker.group.position.y = lerp(-0.3, 0.12, easeOut(seg(t, T.peek, T.peek + 0.2)));

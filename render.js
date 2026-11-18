@@ -193,13 +193,38 @@ function findAudio(reelDir) {
   return null;
 }
 
+// If reels/<name>/audio.js exists: synthesize (bucket-shared/synth-toy.js) and master to -14 LUFS / -1 dBTP
+// into build/<name>-mix.wav, but only when audio.js, timeline.js, the synth or the voice file is newer.
+async function buildAudio(reelDir, name) {
+  const spec = path.join(reelDir, 'audio.js');
+  if (!fs.existsSync(spec)) return null;
+  const out = path.join(BUILD, `${name}-mix.wav`), pre = path.join(BUILD, `${name}-premaster.wav`);
+  const synth = path.join(ROOT, 'bucket-shared', 'synth-toy.js');
+  const src = fs.readFileSync(spec, 'utf8');
+  const deps = [spec, synth, path.join(reelDir, 'timeline.js'),
+    ...[...src.matchAll(/file:\s*'([^']+)'/g)].map(m => path.join(ROOT, m[1]))].filter(f => fs.existsSync(f));
+  const mtime = f => fs.statSync(f).mtimeMs;
+  if (fs.existsSync(out) && deps.every(d => mtime(d) <= mtime(out))) return out;
+  console.log('Building audio (stale)...');
+  execFileSync(process.execPath, ['--no-warnings', synth, spec, pre], { cwd: ROOT, stdio: 'inherit' });
+  const chain = 'loudnorm=I=-14:TP=-1:LRA=9';
+  const meas = spawnSyncText('ffmpeg', ['-hide_banner', '-i', pre, '-af', `${chain}:print_format=json`, '-f', 'null', '-']);
+  const m = JSON.parse(meas.match(/\{[^{}]*"input_i"[^{}]*\}/)[0]);
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', pre, '-af',
+    `${chain}:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true,alimiter=limit=0.89:level=false`,
+    '-ar', '48000', '-c:a', 'pcm_s16le', out]);
+  console.log(`Mastered ${path.relative(process.cwd(), out)} (from ${m.input_i} LUFS to -14 LUFS)`);
+  return out;
+}
+const spawnSyncText = (cmd, args) => require('child_process').spawnSync(cmd, args, { encoding: 'utf8' }).stderr;
+
 async function renderVideo(ctx, opts) {
   const { page, duration, name, reelDir } = ctx;
   const fps = opts.fps ?? 30;
   const { from, to } = resolveRange(opts, duration);
   const total = Math.round((to - from) * fps);
   const out = path.join(BUILD, opts.draft ? `${name}-draft.mp4` : `${name}.mp4`);
-  const audio = findAudio(reelDir);
+  const audio = (await buildAudio(reelDir, name)) ?? findAudio(reelDir);
 
   const args = ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'png', '-i', '-'];
   if (audio) args.push('-ss', String(from), '-t', String(to - from), '-i', audio);
