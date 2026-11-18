@@ -1,7 +1,16 @@
 // Beat times (from briefs/you-have-fucking-head.md, fitted to vo-timing.json) and camera per shot.
 // cam: [from, to] each { p: position, l: look-at } in the shot's world coordinates; fov in degrees.
 // world 'bath' = bathroom diorama; 'scalp' = hair forest (offset in scene.js).
-export const DURATION = 45;
+// All times below are STORY time (the beats as first written, 0–45 s). The reel is tightened to the VO:
+// each beat starts LEAD before its line (audio/…-vo.lines.json); toStory/toReel map between the two.
+import placed from '../../audio/you-have-fucking-head-vo.lines.json' with { type: 'json' };
+const STORY = [0, 3, 8, 13, 19, 25, 30, 34.3, 39, 42.5, 45];
+const LEAD = 0.15, last = placed[placed.length - 1];
+const REEL = [0, ...placed.slice(1).map(l => l.start - LEAD), Math.max(last.end + 0.5, last.start - LEAD + last.min)];
+const map = (x, A, B) => { let i = 0; while (i < A.length - 2 && x > A[i + 1]) i++; return B[i] + ((x - A[i]) * (B[i + 1] - B[i])) / (A[i + 1] - A[i]); };
+export const toStory = t => map(t, REEL, STORY);
+export const toReel = s => map(s, STORY, REEL);
+export const DURATION = Math.round(REEL[REEL.length - 1] * 30) / 30;
 
 export const SHOTS = [
   { id: 1, beat: 1, from: 0.0, to: 3.0, world: 'scalp', fov: 30,

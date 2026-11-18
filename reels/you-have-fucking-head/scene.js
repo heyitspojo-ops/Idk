@@ -6,7 +6,7 @@ import { buildScalp } from '../../bucket-shared/world-scalp.js';
 import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { buildLouse } from '../../bucket-shared/rig-louse.js';
 import { finger, comb, mannequinWig, bulb, flakeHouse, flag, sign, bubble, sparkle } from '../../bucket-shared/props.js';
-import { DURATION, SHOTS, T } from './timeline.js';
+import { DURATION, SHOTS, T, toStory } from './timeline.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -187,6 +187,7 @@ function shoot(t) {
 }
 
 window.renderFrame = t => {
+  t = toStory(t); // reel time -> story time
   stage(t);
   shoot(t);
   view.render(scene, camera, { focus: 0.5, blur: 1 });

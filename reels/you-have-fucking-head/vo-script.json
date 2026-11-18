@@ -3,56 +3,69 @@
  "voice_id": "iP95p4xoKVk53GoZ742B",
  "model": "eleven_v3",
  "stability": 0.0,
- "gap": 0.1,
+ "gap": 0.25,
  "cache": "audio/takes/you-have-fucking-head-elevenlabs",
  "lines": [
   {
    "id": 1,
-   "at": 0.05,
+   "at": 0.15,
    "parts": [
     "[shocked] Oh, fuck. [shouting] You have fucking head lice!"
    ],
-   "seed": 26
+   "seed": 26,
+   "min": 2.6
   },
   {
    "id": 2,
-   "at": 3.1,
+   "at": 0,
    "parts": [
-    "So you scratch. And scratch. [frustrated] And scratch, god damn it!"
-   ]
+    {
+     "t": "So you scratch. And scratch. [frustrated] And scratch!",
+     "pause": 0.6
+    },
+    {
+     "t": "[whispers] God damn it.",
+     "gain": -2
+    }
+   ],
+   "min": 2.2
   },
   {
    "id": 3,
-   "at": 8.1,
+   "at": 0,
    "parts": [
     "[exasperated] But these little shits? They think it's a fucking theme park!"
-   ]
+   ],
+   "min": 2.4
   },
   {
    "id": 4,
-   "at": 13.2,
+   "at": 0,
    "parts": [
     "[sarcastic] Shampoo? Ha ha! That's their god damn pool party!"
-   ]
+   ],
+   "min": 3.4
   },
   {
    "id": 5,
-   "at": 19.2,
+   "at": 0,
    "parts": [
     "[incredulous] The comb? [shouting] Those motherfuckers built a town. With a flag!"
-   ]
+   ],
+   "min": 3.8
   },
   {
    "id": 6,
-   "at": 25.4,
+   "at": 0,
    "parts": [
     "[mischievously] We live here now, bitch! Fuck you!"
    ],
-   "pitch": 6
+   "pitch": 6,
+   "min": 2.2
   },
   {
    "id": 7,
-   "at": 30.0,
+   "at": 0,
    "parts": [
     {
      "t": "[whispers] You're fucked. Totally fucked.",
@@ -63,31 +76,34 @@
      "t": "[curious] Unless...",
      "gain": 0
     }
-   ]
+   ],
+   "min": 3.0
   },
   {
    "id": 8,
-   "at": 34.4,
+   "at": 0,
    "parts": [
     "[excited] Luxury real estate, baby! Free wig. Zero fucking scratching."
-   ]
+   ],
+   "min": 3.0
   },
   {
    "id": 9,
-   "at": 39.15,
+   "at": 0,
    "parts": [
     "And the little bastards just... [relieved] moved the fuck out."
    ],
-   "seed": 39
+   "seed": 39,
+   "min": 2.8
   },
   {
    "id": 10,
-   "at": 41.95,
+   "at": 0,
    "parts": [
     "[triumphant] Lice free! Rent free! [shouting] Fuck, yes!"
    ],
    "seed": 26,
-   "tempo": 1.06
+   "min": 2.8
   }
  ]
 }

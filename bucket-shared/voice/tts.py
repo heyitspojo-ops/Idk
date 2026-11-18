@@ -21,7 +21,8 @@ Script JSON:
     "lines": [ { "id": 1, "at": 0.2, "voice": "...",            # optional per-line voice
                  "parts": [ { "t": "text", "speed": 1.2,        # per-phrase speed
                               "pitch": 2, "pause": 0.15 } ] } ] }  # semitones up, silence after
-A part may also be a plain string. Each line starts at max(at, end of previous line + gap).
+A part may also be a plain string. Each line starts at max(at, end of previous line + gap,
+previous line's start + its "min") -- "min" reserves a minimum slot (e.g. a scene's shortest length).
 Pitch shifts keep the timing: the phrase is spoken slower, then resampled up.
 Writes <out>.wav (mono 24 kHz) and <out>.lines.json with where each line landed.
 """
@@ -42,10 +43,10 @@ def resample(x, ratio):
     n = int(len(x) / ratio)
     return np.interp(np.arange(n) * ratio, np.arange(len(x)), x).astype(np.float32)
 
-def trim(x, thresh=0.01):
+def trim(x, thresh=0.01, tail=0.06):
     idx = np.where(np.abs(x) > thresh)[0]
     if not len(idx): return x
-    a, b = max(0, idx[0] - int(0.02 * SR)), min(len(x), idx[-1] + int(0.06 * SR))
+    a, b = max(0, idx[0] - int(0.02 * SR)), min(len(x), idx[-1] + int(tail * SR))
     return x[a:b]
 
 def whisperize(x, amount=1.0, n=1024, hop=256, seed=3):
@@ -108,7 +109,7 @@ class ElevenLabs:
         mp3 = urllib.request.urlopen(req, timeout=120).read()
         raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", "-", "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"],
                              input=mp3, capture_output=True, check=True).stdout
-        a = trim(np.frombuffer(raw, np.float32).copy())
+        a = trim(np.frombuffer(raw, np.float32).copy(), thresh=0.003, tail=0.25)  # keep natural word tails
         pitch = line.get("pitch", 0)
         a = resample(a, 2 ** (pitch / 12)) if pitch else a
         return whisperize(a, (o or {}).get("whisper", 0)) * 10 ** ((o or {}).get("gain", 0) / 20)
@@ -127,7 +128,7 @@ def main(script_path, out_path, only=None):
     for line in cfg["lines"]:
         if only and line["id"] != only: continue
         voice = line.get("voice", cfg.get("voice", "af_bella"))
-        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a not in ("at", "tempo")}], sort_keys=True).encode()).hexdigest()[:10]
+        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a not in ("at", "tempo", "min")}], sort_keys=True).encode()).hexdigest()[:10]
         cpath = os.path.join(cache, f"line{line['id']:02d}-{key}.wav") if cache else None
         chunks = [sf.read(cpath, dtype="float32")[0], None] if cpath and os.path.exists(cpath) else []
         if chunks: pass
@@ -148,10 +149,11 @@ def main(script_path, out_path, only=None):
         audio = np.concatenate(chunks[:-1])
         if cpath and not os.path.exists(cpath): sf.write(cpath, audio, SR, subtype="FLOAT")
         if line.get("tempo", 1) != 1: audio = tempo(audio, line["tempo"])
+        f = min(len(audio), int(0.04 * SR)); audio = audio.copy(); audio[-f:] *= np.linspace(1, 0, f)  # soft end
         start = 0.1 if only else max(line.get("at", 0.0), cursor)
         clips.append((start, audio, line))
-        cursor = start + len(audio) / SR + cfg.get("gap", 0.25)
-        print(f"  line {line['id']:>2}  {start:6.2f}s  {len(audio)/SR:5.2f}s  {' '.join(p if isinstance(p,str) else p['t'] for p in line['parts'])}")
+        cursor = max(start + len(audio) / SR + cfg.get("gap", 0.25), start + line.get("min", 0))
+        print(f"  line {line['id']:>2}  {os.path.basename(cpath or '-'):<22} {start:6.2f}s  {len(audio)/SR:5.2f}s  {' '.join(p if isinstance(p,str) else p['t'] for p in line['parts'])}")
     total = int((cursor + 0.5) * SR)
     mix = np.zeros(total, np.float32)
     for start, audio, _ in clips:
@@ -160,7 +162,7 @@ def main(script_path, out_path, only=None):
     mix /= max(1e-6, np.abs(mix).max()) / 0.9
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     sf.write(out_path, mix, SR, subtype="PCM_16")
-    placed = [{"id": l["id"], "start": round(s, 3), "end": round(s + len(a) / SR, 3),
+    placed = [{"id": l["id"], "start": round(s, 3), "end": round(s + len(a) / SR, 3), "min": l.get("min", 0),
                "text": re.sub(r"\[[^\]]*\]\s*", "", " ".join(p if isinstance(p, str) else p["t"] for p in l["parts"]))} for s, a, l in clips]
     json.dump(placed, open(os.path.splitext(out_path)[0] + ".lines.json", "w"), indent=1)
     print(f"Wrote {out_path} ({total/SR:.2f}s)")

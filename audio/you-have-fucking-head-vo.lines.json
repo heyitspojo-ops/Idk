@@ -1,62 +1,72 @@
 [
  {
   "id": 1,
-  "start": 0.05,
-  "end": 2.984,
+  "start": 0.15,
+  "end": 3.084,
+  "min": 2.6,
   "text": "Oh, fuck. You have fucking head lice!"
  },
  {
   "id": 2,
-  "start": 3.1,
-  "end": 7.406,
-  "text": "So you scratch. And scratch. And scratch, god damn it!"
+  "start": 3.334,
+  "end": 8.894,
+  "min": 2.2,
+  "text": "So you scratch. And scratch. And scratch! God damn it."
  },
  {
   "id": 3,
-  "start": 8.1,
-  "end": 11.87,
+  "start": 9.144,
+  "end": 12.914,
+  "min": 2.4,
   "text": "But these little shits? They think it's a fucking theme park!"
  },
  {
   "id": 4,
-  "start": 13.2,
-  "end": 17.12,
+  "start": 13.164,
+  "end": 16.813,
+  "min": 3.4,
   "text": "Shampoo? Ha ha! That's their god damn pool party!"
  },
  {
   "id": 5,
-  "start": 19.2,
-  "end": 23.623,
+  "start": 17.063,
+  "end": 21.486,
+  "min": 3.8,
   "text": "The comb? Those motherfuckers built a town. With a flag!"
  },
  {
   "id": 6,
-  "start": 25.4,
-  "end": 26.73,
+  "start": 21.736,
+  "end": 23.065,
+  "min": 2.2,
   "text": "We live here now, bitch! Fuck you!"
  },
  {
   "id": 7,
-  "start": 30.0,
-  "end": 33.55,
+  "start": 23.936,
+  "end": 27.486,
+  "min": 3.0,
   "text": "You're fucked. Totally fucked. Unless..."
  },
  {
   "id": 8,
-  "start": 34.4,
-  "end": 39.031,
+  "start": 27.736,
+  "end": 32.367,
+  "min": 3.0,
   "text": "Luxury real estate, baby! Free wig. Zero fucking scratching."
  },
  {
   "id": 9,
-  "start": 39.15,
-  "end": 41.91,
+  "start": 32.617,
+  "end": 35.376,
+  "min": 2.8,
   "text": "And the little bastards just... moved the fuck out."
  },
  {
   "id": 10,
-  "start": 42.01,
-  "end": 44.955,
+  "start": 35.626,
+  "end": 38.73,
+  "min": 2.8,
   "text": "Lice free! Rent free! Fuck, yes!"
  }
 ]

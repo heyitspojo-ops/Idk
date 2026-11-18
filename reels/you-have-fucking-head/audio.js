@@ -1,10 +1,17 @@
 // Sound for You Have Fucking Head Lice: VO + original toy score + SFX on the story moments in timeline.js.
-import { DURATION, T } from './timeline.js';
+import { DURATION, T, toReel } from './timeline.js';
 
 const houses = Array.from({ length: 6 }, (_, i) => ['pop', T.houses[0] + (i / 5) * (T.houses[1] - T.houses[0]), { pitch: 1 + i * 0.12, gain: 0.35, pan: (i - 2.5) * 0.15 }]);
 const sparkles = Array.from({ length: 5 }, (_, i) => ['pop', T.sparkle + i * 0.12, { pitch: 2 + i * 0.2, gain: 0.15 }]);
 
-export default {
+// Cues below are in story time; reel() maps them (and their durations) onto the tightened reel.
+const reel = spec => ({
+  ...spec,
+  music: { ...spec.music, sections: spec.music.sections.map(s => ({ ...s, from: toReel(s.from), to: toReel(s.to) })) },
+  sfx: spec.sfx.map(([n, t, o = {}]) => [n, toReel(t), o.dur ? { ...o, dur: toReel(t + o.dur) - toReel(t) } : o]),
+});
+
+export default reel({
   duration: DURATION,
   vo: { file: 'audio/you-have-fucking-head-vo-leveled.wav', gain: 1.0 },
   music: {
@@ -47,4 +54,4 @@ export default {
     ['pop', T.peek, { gain: 0.3, pitch: 1.5 }],
     ['chirp', T.peek + 0.15, { gain: 0.15, pitch: 1.4 }],
   ],
-};
+});
