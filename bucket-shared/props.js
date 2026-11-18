@@ -135,7 +135,9 @@ export function handMirror({ frame = '#e2577a' } = {}) {
   const g = new THREE.Group();
   at(mesh(cyl(0.05, 0.06, 0.45, 6), frame), 0, -0.1, 0, g);
   const f = at(mesh(cyl(0.32, 0.32, 0.08, 14), frame), 0, 0.38, 0, g); f.rotation.x = Math.PI / 2;
-  const glass = at(mesh(cyl(0.27, 0.27, 0.02, 14), mat('#d8f1fb', { roughness: 0.1, metalness: 0.3 })), 0, 0.38, 0.045, g); glass.rotation.x = Math.PI / 2;
+  const gm = mat('#d8f1fb', { roughness: 0.1, metalness: 0.3 });
+  const glass = at(mesh(cyl(0.27, 0.27, 0.02, 14), gm), 0, 0.38, 0.045, g); glass.rotation.x = Math.PI / 2;
+  at(mesh(cyl(0.27, 0.27, 0.02, 14), gm), 0, 0.38, -0.045, g).rotation.x = Math.PI / 2; // glass on both faces
   g.anchors = { glass };
   return g;
 }
