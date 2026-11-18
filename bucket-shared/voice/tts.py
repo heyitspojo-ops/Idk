@@ -1,6 +1,12 @@
-"""Offline voice-over builder (Kokoro ONNX).
+"""Offline voice-over builder. Engines: Kokoro ONNX (fast) or Chatterbox (realistic, expressive).
 
-  .venv/bin/python bucket-shared/voice/tts.py reels/<name>/vo-script.json audio/<name>-vo.wav
+  .venv/bin/python    bucket-shared/voice/tts.py reels/<name>/vo-script.json audio/<name>-vo.wav   # kokoro
+  .venv-cb/bin/python bucket-shared/voice/tts.py reels/<name>/vo-script.json audio/<name>-vo.wav   # chatterbox
+  add `--only 3` to render just line 3 (a sample) to <out>.
+
+Chatterbox: set "engine": "chatterbox" (top level). Each line is spoken in one take (parts joined), with
+  "exaggeration" (0.25 calm .. 1.0+ wild, default 0.7), "cfg" (pace/adherence, default 0.4),
+  "temperature" (default 0.8), "seed", optional "ref" (wav to clone) and "pitch" (semitones, resampled).
 
 Script JSON:
   { "voice": "af_bella", "speed": 1.1, "gap": 0.25,
@@ -13,12 +19,12 @@ Writes <out>.wav (mono 24 kHz) and <out>.lines.json with where each line landed.
 """
 import json, sys, os
 import numpy as np, soundfile as sf
-from huggingface_hub import hf_hub_download
-from kokoro_onnx import Kokoro
 
 SR = 24000
 
 def load_kokoro():
+    from huggingface_hub import hf_hub_download
+    from kokoro_onnx import Kokoro
     model = hf_hub_download("fastrtc/kokoro-onnx", "kokoro-v1.0.onnx")
     voices = hf_hub_download("fastrtc/kokoro-onnx", "voices-v1.0.bin")
     return Kokoro(model, voices)
@@ -42,20 +48,41 @@ def speak(k, text, voice, speed, pitch):
     audio = trim(np.asarray(audio, dtype=np.float32))
     return resample(audio, r) if pitch else audio
 
-def main(script_path, out_path):
+class Chatterbox:
+    def __init__(self):
+        import torch
+        from chatterbox.tts import ChatterboxTTS
+        self.torch, self.m = torch, ChatterboxTTS.from_pretrained(device="cpu")
+
+    def line(self, text, line, cfg):
+        self.torch.manual_seed(line.get("seed", cfg.get("seed", 7)) + line["id"])
+        wav = self.m.generate(text, audio_prompt_path=line.get("ref", cfg.get("ref")),
+                              exaggeration=line.get("exaggeration", cfg.get("exaggeration", 0.7)),
+                              cfg_weight=line.get("cfg", cfg.get("cfg", 0.4)), temperature=line.get("temperature", cfg.get("temperature", 0.8)))
+        a = wav.squeeze().cpu().numpy().astype(np.float32)
+        if self.m.sr != SR: a = resample(a, self.m.sr / SR)
+        a = trim(a / max(1e-6, np.abs(a).max()))
+        pitch = line.get("pitch", 0)
+        return resample(a, 2 ** (pitch / 12)) if pitch else a
+
+def main(script_path, out_path, only=None):
     cfg = json.load(open(script_path))
-    k = load_kokoro()
+    cb = cfg.get("engine") == "chatterbox"
+    k = Chatterbox() if cb else load_kokoro()
     clips, cursor = [], 0.0
     for line in cfg["lines"]:
+        if only and line["id"] != only: continue
         voice = line.get("voice", cfg.get("voice", "af_bella"))
         chunks = []
-        for p in line["parts"]:
+        if cb:
+            chunks = [k.line(" ".join(p if isinstance(p, str) else p["t"] for p in line["parts"]), line, cfg), None]
+        for p in ([] if cb else line["parts"]):
             p = {"t": p} if isinstance(p, str) else p
             chunks.append(speak(k, p["t"], voice, p.get("speed", line.get("speed", cfg.get("speed", 1.0))),
                                 p.get("pitch", line.get("pitch", 0))))
             chunks.append(np.zeros(int(p.get("pause", 0.08) * SR), np.float32))
         audio = np.concatenate(chunks[:-1])
-        start = max(line.get("at", 0.0), cursor)
+        start = 0.1 if only else max(line.get("at", 0.0), cursor)
         clips.append((start, audio, line))
         cursor = start + len(audio) / SR + cfg.get("gap", 0.25)
         print(f"  line {line['id']:>2}  {start:6.2f}s  {len(audio)/SR:5.2f}s  {' '.join(p if isinstance(p,str) else p['t'] for p in line['parts'])}")
@@ -73,4 +100,5 @@ def main(script_path, out_path):
     print(f"Wrote {out_path} ({total/SR:.2f}s)")
 
 if __name__ == "__main__":
-    main(*sys.argv[1:3])
+    a = sys.argv[1:]
+    main(a[0], a[1], int(a[a.index("--only") + 1]) if "--only" in a else None)
