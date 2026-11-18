@@ -1,14 +1,20 @@
 // Peg-doll toy person, ~3 units tall, faces +z.
-// buildToyPerson({ skin, shirt, pants, hair, seed })
-//   -> { group, anchors: { head, headTop, handL, handR }, foam, pose({...}) }
-// pose({ t, scratch, sit, slump, point, lather, look, tilt, mood }):
+// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored })
+//   mirrored: flips left/right (a reflection of the same person).
+//   -> { group, anchors: { head, headTop, handL, handR, hips }, foam, shades, pose({...}) }
+// pose({ t, scratch, sit, slump, point, lather, look, tilt, mood,
+//        wave, fold, kick, kickReach, double, swing, hold, laugh, smug, lean, shades }):
 //   scratch/sit/slump/point/lather are 0..1 weights; scratch speed rises with `scratchRate` (Hz).
 //   mood: -1 miserable .. 0 neutral .. 1 delighted (brows + mouth).
+//   wave: right arm up, waving · fold: arms folded · kick: right leg kicks forward; kickReach stretches it (cartoon)
+//   double: doubled over, hands at groin · swing: 0 = tool raised overhead .. 1 = struck forward (both hands)
+//   hold: right arm straight forward (holding something out) · laugh: head back, mouth wide, shaking
+//   smug: one brow up + side smirk · lean: lean back, relaxed · shades: sunglasses on (0/1)
 import * as THREE from 'three';
 import { mesh, ball, cyl, rbox, at, rng, mat } from './toy-kit.js';
 
 export function buildToyPerson(o = {}) {
-  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3 } = o;
+  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false } = o;
   const r = rng(seed);
   const g = new THREE.Group(), hips = at(new THREE.Group(), 0, 0.85, 0, g), torso = at(new THREE.Group(), 0, 0, 0, hips);
   const legs = [-1, 1].map(s => {
@@ -39,6 +45,9 @@ export function buildToyPerson(o = {}) {
   const brows = [-1, 1].map(s => at(mesh(rbox(0.22, 0.05, 0.05, 0.02), hair), s * 0.21, 0.19, 0.58, head));
   const mouth = at(mesh(ball(0.1, 1), '#8c3b4a'), 0, -0.24, 0.57, head);
   for (const s of [-1, 1]) at(mesh(ball(0.08, 0), '#f29a9a'), s * 0.36, -0.12, 0.5, head).scale.set(1, 0.6, 0.4);
+  const shades = at(new THREE.Group(), 0, 0.03, 0.6, head);
+  for (const s of [-1, 1]) at(mesh(rbox(0.3, 0.17, 0.05, 0.05), '#1d1d2b'), s * 0.2, 0, 0, shades);
+  at(mesh(rbox(0.16, 0.04, 0.04, 0.02), '#1d1d2b'), 0, 0.04, 0, shades);
   // foam (hidden unless lather > 0)
   const foam = at(new THREE.Group(), 0, 0.35, 0, head);
   for (let i = 0; i < 14; i++) {
@@ -53,7 +62,9 @@ export function buildToyPerson(o = {}) {
     return { sh, hand, s };
   });
 
-  function pose({ t = 0, scratch = 0, scratchRate = 4, sit = 0, slump = 0, point = 0, lather = 0, look = 0, tilt = 0, mood = 0 } = {}) {
+  if (mirrored) g.scale.x = -1;
+  function pose({ t = 0, scratch = 0, scratchRate = 4, sit = 0, slump = 0, point = 0, lather = 0, look = 0, tilt = 0, mood = 0,
+    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0 } = {}) {
     hips.position.y = 0.85 - sit * 0.18;
     legs.forEach(l => (l.rotation.x = -sit * 1.45));
     torso.rotation.x = slump * 0.35;
@@ -74,7 +85,26 @@ export function buildToyPerson(o = {}) {
     mouth.scale.set(mood >= 0 ? 1 + mood * 0.9 : 1 + -mood * 0.3, mood >= 0 ? 0.35 + mood * 0.2 : 0.25, 0.4);
     mouth.position.y = -0.24 - mood * 0.02;
     eyes.forEach(e => (e.scale.y = mood < -0.5 ? 0.5 : 1));
+    // --- extra poses (layered on top) ---
+    const [L, R] = arms, lerp = THREE.MathUtils.lerp;
+    if (wave) { R.sh.rotation.z = lerp(R.sh.rotation.z, 2.7 + Math.sin(t * 12) * 0.35, wave); R.sh.rotation.x = lerp(R.sh.rotation.x, -0.2, wave); }
+    if (fold) for (const a of arms) { a.sh.rotation.x = lerp(a.sh.rotation.x, -1.35, fold); a.sh.rotation.z = lerp(a.sh.rotation.z, -a.s * 0.75, fold); }
+    if (hold) { R.sh.rotation.x = lerp(R.sh.rotation.x, -1.5, hold); R.sh.rotation.z = lerp(R.sh.rotation.z, 0.05, hold); }
+    if (swing || swingUp) for (const a of arms) {  // both hands together on a handle
+      const x = lerp(-3.0, -1.1, swing) * Math.max(swingUp, swing > 0 ? 1 : 0);
+      a.sh.rotation.x = x; a.sh.rotation.z = -a.s * 0.28;
+    }
+    torso.rotation.x += double * 0.75 - lean * 0.35;
+    neck.rotation.x += double * 0.2 - laugh * 0.35 + lean * 0.15;
+    if (double) for (const a of arms) { a.sh.rotation.x = lerp(a.sh.rotation.x, -0.5, double); a.sh.rotation.z = lerp(a.sh.rotation.z, -a.s * 0.15, double); }
+    legs[1].rotation.x = lerp(legs[1].rotation.x, -1.5, kick); legs[1].scale.y = 1 + (kickReach - 1) * kick;
+    legs.forEach(l => (l.rotation.z = double * (l === legs[0] ? -0.15 : 0.15)));
+    head.position.y = Math.sin(t * 30) * 0.03 * laugh;
+    shades.visible = sh > 0.5;
+    if (smug) { brows[1].position.y += 0.08 * smug; brows[1].rotation.z = -0.25 * smug; brows[0].rotation.z = -0.15 * smug;
+      mouth.position.x = 0.1 * smug; mouth.rotation.z = 0.35 * smug; mouth.scale.set(1.6, 0.3, 0.4); }
+    if (laugh) { mouth.scale.set(1.5, 0.9 + Math.abs(Math.sin(t * 22)) * 0.4 * laugh, 0.5); eyes.forEach(e => (e.scale.y = 0.4)); }
   }
   pose();
-  return { group: g, anchors: { head, headTop: hairG, handL: arms[0].hand, handR: arms[1].hand }, foam, pose };
+  return { group: g, anchors: { head, headTop: hairG, handL: arms[0].hand, handR: arms[1].hand, hips }, foam, shades, pose };
 }

@@ -12,6 +12,7 @@ Chatterbox: set "engine": "chatterbox" (top level). Each line is spoken in one t
 ElevenLabs: "engine": "elevenlabs", "voice_id", "model" (default eleven_v3, which reads audio tags such as
   [whispers] [shouting] [laughs] inside the text), "stability" (0 creative .. 1 robust, default 0.5), "seed".
   The API key is injected by the network proxy for api.elevenlabs.io (never stored in code).
+"echo" (per line, 0..1): glassy slap-back echo, after the cache.
 "tempo" (per line, e.g. 1.06): speeds a line up without changing pitch (ffmpeg atempo), after the cache.
 Takes cache: "cache": "audio/takes/<name>" keeps each line's audio, keyed by its settings (not its "at"),
   so verified takes are reused exactly; delete a line's file (or change its "seed") to re-take it.
@@ -128,7 +129,7 @@ def main(script_path, out_path, only=None):
     for line in cfg["lines"]:
         if only and line["id"] != only: continue
         voice = line.get("voice", cfg.get("voice", "af_bella"))
-        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a not in ("at", "tempo", "min")}], sort_keys=True).encode()).hexdigest()[:10]
+        key = hashlib.sha1(json.dumps([glob, {a: b for a, b in line.items() if a not in ("at", "tempo", "min", "echo")}], sort_keys=True).encode()).hexdigest()[:10]
         cpath = os.path.join(cache, f"line{line['id']:02d}-{key}.wav") if cache else None
         chunks = [sf.read(cpath, dtype="float32")[0], None] if cpath and os.path.exists(cpath) else []
         if chunks: pass
@@ -149,6 +150,11 @@ def main(script_path, out_path, only=None):
         audio = np.concatenate(chunks[:-1])
         if cpath and not os.path.exists(cpath): sf.write(cpath, audio, SR, subtype="FLOAT")
         if line.get("tempo", 1) != 1: audio = tempo(audio, line["tempo"])
+        if line.get("echo"):
+            e, out = line["echo"], np.concatenate([audio, np.zeros(int(0.35 * SR), np.float32)])
+            for d, g in ((0.07, 0.45), (0.15, 0.3), (0.24, 0.18)):
+                i = int(d * SR); out[i:i + len(audio)] += audio * g * e
+            audio = out / max(1.0, np.abs(out).max() / max(1e-6, np.abs(audio).max()))
         f = min(len(audio), int(0.04 * SR)); audio = audio.copy(); audio[-f:] *= np.linspace(1, 0, f)  # soft end
         start = 0.1 if only else max(line.get("at", 0.0), cursor)
         clips.append((start, audio, line))

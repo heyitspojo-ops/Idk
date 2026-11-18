@@ -87,3 +87,91 @@ export function sparkle(size = 0.3) {
   for (const rz of [0, Math.PI / 2]) { const s = new THREE.Mesh(new THREE.OctahedronGeometry(size, 0), m); s.scale.set(0.22, 1, 0.22); s.rotation.z = rz; g.add(s); }
   return g;
 }
+
+// ---------- tools & gags (reflection reel) ----------
+/** Hammer: handle along -y from the grip (origin), head at the far end. anchors.head (bendable). */
+export function hammer({ len = 1.1, headW = 0.5, color = '#9aa3ad', handle = '#b5803e', sledge = false } = {}) {
+  const g = new THREE.Group(), L = sledge ? len * 1.6 : len, hw = sledge ? headW * 1.7 : headW;
+  at(mesh(cyl(0.05, 0.06, L, 6), handle), 0, -L / 2, 0, g);
+  const head = at(new THREE.Group(), 0, -L, 0, g);
+  at(mesh(rbox(hw, sledge ? 0.42 : 0.2, sledge ? 0.42 : 0.2, 0.05), color), 0, 0, 0, head);
+  g.anchors = { head };
+  return g;
+}
+/** Chainsaw held at the grip (origin); bar points -y. anchors.chain (pops off when it snaps). */
+export function chainsaw() {
+  const g = new THREE.Group();
+  at(mesh(rbox(0.45, 0.4, 0.3, 0.1), '#f4a340'), 0, 0, 0, g);
+  at(mesh(rbox(0.3, 0.08, 0.08, 0.03), '#2b2233'), 0, 0.26, 0, g);
+  const bar = at(mesh(rbox(0.12, 1.1, 0.04, 0.03), '#c9ced6'), 0, -0.75, 0, g);
+  const chain = at(new THREE.Group(), 0, -0.75, 0, g);
+  for (let i = 0; i < 10; i++) at(mesh(rbox(0.05, 0.08, 0.06, 0.01, 1), '#3b3b44'), i % 2 ? 0.08 : -0.08, -0.5 + i * 0.11, 0, chain);
+  g.anchors = { bar, chain };
+  return g;
+}
+/** Cartoon bomb with a fuse; anchors.spark at the fuse tip. */
+export function bomb(r = 0.45) {
+  const g = new THREE.Group();
+  at(mesh(ball(r, 1), '#2b2233'), 0, r, 0, g);
+  at(mesh(cyl(0.12, 0.12, 0.16, 8), '#55556a'), 0, r * 2 + 0.03, 0, g);
+  const fuse = at(mesh(cyl(0.03, 0.03, 0.35, 4), '#c9b38a'), 0.08, r * 2 + 0.22, 0, g); fuse.rotation.z = -0.4;
+  const spark = at(sparkle(0.18), 0.16, r * 2 + 0.4, 0, g);
+  g.anchors = { spark };
+  return g;
+}
+/** Smoke / explosion puff: cluster of balls; call puff.set(p 0..1) to grow, fade and drift. */
+export function smoke({ n = 16, size = 1.6, seed = 4, color = '#e9e4ef' } = {}) {
+  const r = rng(seed), g = new THREE.Group(), m = mat(color, { transparent: true, opacity: 1 });
+  const balls = Array.from({ length: n }, () => {
+    const b = at(mesh(ball(0.3 + r() * 0.3, 1), m), (r() - 0.5) * size, r() * size * 0.8, (r() - 0.5) * size * 0.6, g);
+    b.userData.d = b.position.clone(); return b;
+  });
+  g.set = p => { g.visible = p > 0 && p < 1; m.opacity = 1 - Math.max(0, p - 0.5) * 2;
+    balls.forEach(b => { b.position.copy(b.userData.d).multiplyScalar(0.3 + p * 1.2); b.scale.setScalar(0.2 + Math.min(1, p * 3)); }); };
+  return g;
+}
+/** Hand mirror: handle along -y from the grip, glass faces +z. anchors.glass */
+export function handMirror({ frame = '#e2577a' } = {}) {
+  const g = new THREE.Group();
+  at(mesh(cyl(0.05, 0.06, 0.45, 6), frame), 0, -0.1, 0, g);
+  const f = at(mesh(cyl(0.32, 0.32, 0.08, 14), frame), 0, 0.38, 0, g); f.rotation.x = Math.PI / 2;
+  const glass = at(mesh(cyl(0.27, 0.27, 0.02, 14), mat('#d8f1fb', { roughness: 0.1, metalness: 0.3 })), 0, 0.38, 0.045, g); glass.rotation.x = Math.PI / 2;
+  g.anchors = { glass };
+  return g;
+}
+/** Full-length magic mirror on feet: glass at z=0 facing +z, a box behind it holds the "reflection room".
+ *  Put the reflection inside at anchors.inside (z < 0). w x h glass, depth of the room. */
+export function mirrorBox({ w = 2.4, h = 4.4, depth = 1.8, frame = '#e0b25c', room = '#fbe3d6', floor = '#9fd8c3' } = {}) {
+  const g = new THREE.Group(), y0 = 0.35;
+  // frame
+  for (const s of [-1, 1]) at(mesh(rbox(0.22, h + 0.44, 0.3, 0.08), frame), s * (w / 2 + 0.11), y0 + h / 2, 0, g);
+  for (const y of [y0 - 0.11, y0 + h + 0.11]) at(mesh(rbox(w + 0.44, 0.22, 0.3, 0.08), frame), 0, y, 0, g);
+  for (const s of [-1, 1]) at(mesh(rbox(0.5, 0.2, 0.7, 0.08), frame), s * (w / 2), 0.1, 0, g);
+  // reflection room (seen through the glass)
+  const back = mat(room, { side: THREE.DoubleSide });
+  at(mesh(new THREE.BoxGeometry(w, h, 0.05), back), 0, y0 + h / 2, -depth, g);
+  for (const s of [-1, 1]) at(mesh(new THREE.BoxGeometry(0.05, h, depth), back), s * w / 2, y0 + h / 2, -depth / 2, g);
+  at(mesh(new THREE.BoxGeometry(w, 0.05, depth), floor), 0, y0, -depth / 2, g);
+  at(mesh(new THREE.BoxGeometry(w + 0.1, 0.05, depth), back), 0, y0 + h, -depth / 2, g);
+  // glass: faint cool sheen
+  const glass = at(new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshStandardMaterial({ color: '#cfefff', transparent: true, opacity: 0.16, roughness: 0.05, metalness: 0.2 })), 0, y0 + h / 2, 0.02, g);
+  const glint = at(new THREE.Mesh(new THREE.PlaneGeometry(0.35, h * 1.3), new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: 0.0, toneMapped: false })), 0, y0 + h / 2, 0.04, g);
+  glint.rotation.z = 0.5;
+  g.anchors = { inside: at(new THREE.Object3D(), 0, y0, -depth * 0.5, g), glass, glint, floorY: y0 };
+  g.glint = p => { glint.material.opacity = p > 0 && p < 1 ? Math.sin(p * Math.PI) * 0.6 : 0; glint.position.x = (p - 0.5) * w * 1.4; };
+  return g;
+}
+/** Toy sailboat: hull at y=0 waterline, faces +z (bow). anchors.seat, anchors.side (gunwale for peeking). */
+export function boat({ hull = '#ef7b6c', sail = '#fffaf0', stripe = '#5fa8d3' } = {}) {
+  const g = new THREE.Group();
+  const h = at(mesh(rbox(1.8, 0.7, 3.6, 0.3), hull), 0, 0.1, 0, g); h.scale.set(1, 1, 1);
+  at(mesh(rbox(1.5, 0.1, 3.2, 0.05), '#d9a873'), 0, 0.42, 0, g);
+  at(mesh(rbox(0.5, 0.5, 1.0, 0.2), hull), 0, 0.2, 1.75, g).scale.set(0.8, 1, 1);
+  at(mesh(cyl(0.06, 0.07, 4.0, 6), '#b5803e'), 0, 2.4, 0.6, g);
+  const sg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 3.4, 0), new THREE.Vector3(0, 0, -2.0)]);
+  sg.setIndex([0, 1, 2]); sg.computeVertexNormals();
+  const sl = at(mesh(sg, mat(sail, { side: THREE.DoubleSide })), 0.02, 0.8, 0.5, g);
+  const st = at(mesh(rbox(0.04, 0.25, 1.5, 0.01), mat(stripe, { side: THREE.DoubleSide })), 0.04, 1.6, -0.25, g); st.rotation.x = 0.0;
+  g.anchors = { seat: at(new THREE.Object3D(), 0, 0.45, -0.6, g), side: at(new THREE.Object3D(), 0.9, 0.5, -0.4, g), sail: sl };
+  return g;
+}
