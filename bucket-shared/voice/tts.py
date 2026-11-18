@@ -7,6 +7,8 @@
 Chatterbox: set "engine": "chatterbox" (top level). Each line is spoken in one take (parts joined), with
   "exaggeration" (0.25 calm .. 1.0+ wild, default 0.7), "cfg" (pace/adherence, default 0.4),
   "temperature" (default 0.8), "seed", optional "ref" (wav to clone) and "pitch" (semitones, resampled).
+  Parts may override "exaggeration", "whisper" (0..1, removes pitch -> breathy) and "gain" (dB); consecutive
+  parts with the same settings are spoken in one take.
 
 Script JSON:
   { "voice": "af_bella", "speed": 1.1, "gap": 0.25,
@@ -40,6 +42,20 @@ def trim(x, thresh=0.01):
     a, b = max(0, idx[0] - int(0.02 * SR)), min(len(x), idx[-1] + int(0.06 * SR))
     return x[a:b]
 
+def whisperize(x, amount=1.0, n=1024, hop=256, seed=3):
+    """Keep the spectral envelope, randomise phase: voiced speech becomes a breathy whisper."""
+    if amount <= 0: return x
+    w = np.hanning(n).astype(np.float32); rng = np.random.default_rng(seed)
+    pad = np.concatenate([np.zeros(n, np.float32), x, np.zeros(n, np.float32)])
+    out = np.zeros_like(pad); norm = np.zeros_like(pad)
+    for i in range(0, len(pad) - n, hop):
+        spec = np.fft.rfft(pad[i:i + n] * w)
+        spec = np.abs(spec) * np.exp(1j * rng.uniform(0, 2 * np.pi, spec.shape))
+        out[i:i + n] += np.fft.irfft(spec, n).astype(np.float32) * w; norm[i:i + n] += w * w
+    wet = (out / np.maximum(norm, 1e-3))[n:n + len(x)]
+    wet *= np.abs(x).max() / max(1e-6, np.abs(wet).max())
+    return amount * wet + (1 - amount) * x
+
 def speak(k, text, voice, speed, pitch):
     r = 2 ** (pitch / 12)
     s = max(0.5, min(2.0, speed / r))
@@ -54,16 +70,18 @@ class Chatterbox:
         from chatterbox.tts import ChatterboxTTS
         self.torch, self.m = torch, ChatterboxTTS.from_pretrained(device="cpu")
 
-    def line(self, text, line, cfg):
+    def line(self, text, line, cfg, o=None):
+        o = o or {}
         self.torch.manual_seed(line.get("seed", cfg.get("seed", 7)) + line["id"])
         wav = self.m.generate(text, audio_prompt_path=line.get("ref", cfg.get("ref")),
-                              exaggeration=line.get("exaggeration", cfg.get("exaggeration", 0.7)),
+                              exaggeration=o.get("exaggeration", line.get("exaggeration", cfg.get("exaggeration", 0.7))),
                               cfg_weight=line.get("cfg", cfg.get("cfg", 0.4)), temperature=line.get("temperature", cfg.get("temperature", 0.8)))
         a = wav.squeeze().cpu().numpy().astype(np.float32)
         if self.m.sr != SR: a = resample(a, self.m.sr / SR)
         a = trim(a / max(1e-6, np.abs(a).max()))
         pitch = line.get("pitch", 0)
-        return resample(a, 2 ** (pitch / 12)) if pitch else a
+        a = resample(a, 2 ** (pitch / 12)) if pitch else a
+        return whisperize(a, o.get("whisper", 0)) * 10 ** (o.get("gain", 0) / 20)
 
 def main(script_path, out_path, only=None):
     cfg = json.load(open(script_path))
@@ -74,8 +92,15 @@ def main(script_path, out_path, only=None):
         if only and line["id"] != only: continue
         voice = line.get("voice", cfg.get("voice", "af_bella"))
         chunks = []
-        if cb:
-            chunks = [k.line(" ".join(p if isinstance(p, str) else p["t"] for p in line["parts"]), line, cfg), None]
+        if cb:  # group consecutive parts with equal overrides; one take per group
+            groups = []
+            for p in line["parts"]:
+                p = {"t": p} if isinstance(p, str) else p
+                o = {k2: p[k2] for k2 in ("exaggeration", "whisper", "gain") if k2 in p}
+                if groups and groups[-1][0] == o: groups[-1][1].append(p)
+                else: groups.append((o, [p]))
+            for o, ps in groups:
+                chunks += [k.line(" ".join(p["t"] for p in ps), line, cfg, o), np.zeros(int(ps[-1].get("pause", 0.25) * SR), np.float32)]
         for p in ([] if cb else line["parts"]):
             p = {"t": p} if isinstance(p, str) else p
             chunks.append(speak(k, p["t"], voice, p.get("speed", line.get("speed", cfg.get("speed", 1.0))),
