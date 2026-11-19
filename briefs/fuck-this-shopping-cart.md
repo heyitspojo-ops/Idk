@@ -4,7 +4,7 @@
 - **Length:** ~45 s · 1080×1920 · 30 fps (tight: each beat = its line + a breath)
 - **Look:** soft 3D low-poly toy diorama
 - **Voice:** `audio/fuck-this-shopping-cart-vo.wav` — narrator ElevenLabs v3 "Chris" (the old lady never speaks)
-- **Reuses from `bucket-shared/`:** `toy-kit`, `rig-toy-person` (you + old lady), `props`, `synth-toy`, `vo-warp`, `voice/`. New builders: `world-store`, cart prop (wobbly wheel + haunted eyes), purse, toilet-paper display, speed lines, `butt` flag on the person rig, synth SFX (squeak, slap).
+- **Reuses from `bucket-shared/`:** `toy-kit`, `rig-toy-person` (you + old lady), `props`, `synth-toy`, `vo-warp`, `voice/`. New builders: `world-store`, cart prop (wobbly wheel + haunted eyes), ghost, purse, toilet-paper display, speed lines, `butt` flag on the person rig, synth SFX (squeak, slap).
 
 ## Hook (0–3 s)
 
@@ -25,11 +25,11 @@ Extreme close-up on a shopping cart's front wheel: it shimmies and spins like cr
 | 9 | 29.0–33.5 | Tracking down the aisle | The cart launches; speed lines, boxes flying off shelves, you dragged behind horizontally like a flag | "When it takes off through the aisles at fifty miles per fucking hour!" | **50 MPH** |
 | 10 | 33.5–36.0 | Close, you holding on | Face flapping in the wind, butt bouncing, screaming | "I'm holding on for dear life!" | — |
 | 11 | 36.0–41.0 | End of the aisle, wide | BOOM: the cart plows the old lady into a toilet-paper pyramid; rolls fly everywhere; she sits dazed with stars | "BOOM! It hits that old ass lady. She was a bitch anyway." | **BOOM** |
-| 12 | 41.0–45.0 | You on the cart, end card | You ride the cart like a chariot, yoga-ball butt, smug; old lady in the TP pile behind | — (music + end card) | End card (below) |
+| 12 | 41.0–45.0 | You + cart, then your butt | A little ghost oozes out of the cart and dives into your yoga-ball butt. The cart's wheel snaps straight and it rolls away perfectly… while your butt starts shimmying and squeaking, dragging you sideways | "The cart's fixed… but now my ass has a wobbly wheel." | End card (below) |
 
 ## End card
 
-41–45 s. You standing on the back of the cart, yoga-ball butt, arms up like you won, toilet paper raining down; the old lady buried in rolls behind you with stars spinning. Text pops letter by letter: **CLEANUP ON AISLE 5.** Last 10 frames: the cart's eyes open, look at the lens, and the wheel starts to wobble again.
+43–45 s. Your haunted yoga-ball butt shimmies and squeaks, dragging you sideways down the aisle past the old lady buried in toilet paper (stars spinning); the cart glides away perfectly straight. Text pops letter by letter: **CLEANUP ON AISLE 5.** Last 10 frames: two glowing ghost eyes open on your butt and look at the lens.
 
 ## Look notes
 
