@@ -1,7 +1,8 @@
 // Peg-doll toy person, ~3 units tall, faces +z.
 // buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses })
 //   mirrored: flips left/right (a reflection of the same person) · longHair: shoulder-length hair + bun.
-//   -> { group, anchors: { head, headTop, handL, handR, hips }, foam, shades, pose({...}) }
+//   -> { group, anchors: { head, headTop, handL, handR, hips, butt, nose, cheek, chin, leg, back }, foam, shades, pose({...}) }
+//   nose/cheek/chin/leg/back: surface spots facing outward (for stickers, pimples, splats)
 // pose({ t, scratch, sit, slump, point, lather, look, tilt, mood,
 //        wave, fold, kick, kickReach, double, swing, hold, laugh, smug, lean, shades }):
 //   scratch/sit/slump/point/lather are 0..1 weights; scratch speed rises with `scratchRate` (Hz).
@@ -137,5 +138,9 @@ export function buildToyPerson(o = {}) {
     if (laugh) { mouth.scale.set(1.5, 0.9 + Math.abs(Math.sin(t * 22)) * 0.4 * laugh, 0.5); eyes.forEach(e => (e.scale.y = 0.4)); }
   }
   pose();
-  return { group: g, anchors: { head, headTop: hairG, handL: arms[0].hand, handR: arms[1].hand, hips, butt: buttBall }, foam, shades, pose };
+  const spot = (parent, x, y, z) => at(new THREE.Object3D(), x, y, z, parent);
+  const spots = { nose: spot(head, 0, -0.08, 0.63), cheek: spot(head, 0.36, -0.12, 0.5), chin: spot(head, 0, -0.5, 0.42),
+    leg: spot(legs[1], 0, -0.35, 0.17), back: spot(torso, 0, 0.6, -0.47) };
+  spots.back.rotation.y = Math.PI; spots.cheek.rotation.y = 0.6; spots.chin.rotation.x = 0.6;
+  return { group: g, anchors: { head, headTop: hairG, handL: arms[0].hand, handR: arms[1].hand, hips, butt: buttBall, ...spots }, foam, shades, pose };
 }

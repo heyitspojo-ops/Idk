@@ -394,3 +394,38 @@ export function engineParts(n = 12, seed = 9) {
   g.set = p => { g.visible = p > 0 && p < 1; list.forEach(q => { q.position.copy(q.userData.v).multiplyScalar(p * 1.2); q.position.y -= 9.8 * (p * 1.2) ** 2 / 2 * 1.4; q.rotation.set(p * q.userData.s, p * 3, 0); }); };
   return g;
 }
+
+// ---------- pimple gags ----------
+/** Cartoon pimple facing +z: red dome + white cap. pimple.set({ t, size, throb 0..1, popped 0..1 }) */
+export function pimple() {
+  const g = new THREE.Group(), red = mat('#e2574a', { roughness: 0.3 }), cap = mat('#fff7e6', { roughness: 0.25 });
+  const dome = at(mesh(ball(0.5, 2), red), 0, 0, 0, g); dome.scale.set(1, 1, 0.7);
+  const head = at(mesh(ball(0.2, 1), cap), 0, 0, 0.32, g);
+  at(mesh(ball(0.06, 0), '#ffffff'), -0.15, 0.18, 0.4, g); // shine
+  const burst = at(new THREE.Group(), 0, 0, 0.4, g);
+  for (let i = 0; i < 10; i++) { const a = (i / 10) * Math.PI * 2; const r = at(mesh(rbox(0.08, 0.5, 0.08, 0.03, 1), cap), Math.cos(a) * 0.5, Math.sin(a) * 0.5, 0, burst); r.rotation.z = a - Math.PI / 2; }
+  g.set = ({ t = 0, size = 1, throb = 1, popped = 0 } = {}) => {
+    const th = 1 + Math.sin(t * 9) * 0.06 * throb;
+    const shown = popped < 0.05;
+    dome.visible = head.visible = shown;
+    g.scale.setScalar(Math.max(0.001, size * th * (shown ? 1 : 1)));
+    burst.visible = popped > 0 && popped < 1; burst.scale.setScalar(0.4 + popped * 1.8);
+  };
+  g.set();
+  return g;
+}
+/** Wooden crate of oversized safety pins; one pin sticks out the back (anchors.tip, at -z). */
+export function safetyPinCrate() {
+  const g = new THREE.Group(), wood = mat('#c98f5f'), steel = mat('#c9ced6', { metalness: 0.5, roughness: 0.25 });
+  at(mesh(rbox(2.2, 1.4, 4.6, 0.08), wood), 0, 0.7, 0, g);
+  for (const z of [-1.6, 0, 1.6]) at(mesh(rbox(2.3, 0.14, 0.2, 0.03), '#a8754a'), 0, 1.0, z, g);
+  at(textCard(['SAFETY', 'PINS'], 2.0, { w: 1024, h: 620, bg: '#ffd166', color: '#2b2233', size: 230, radius: 30 }), 1.12, 0.75, 0, g).rotation.y = Math.PI / 2;
+  const pin = (len) => { const p = new THREE.Group();
+    at(mesh(cyl(0.05, 0.05, len, 6), steel), 0, 0, 0, p).rotation.x = Math.PI / 2;
+    at(mesh(new THREE.ConeGeometry(0.05, 0.3, 6), steel), 0, 0, -len / 2 - 0.15, p).rotation.x = -Math.PI / 2;
+    at(mesh(new THREE.TorusGeometry(0.2, 0.05, 5, 10), steel), 0, 0, len / 2 + 0.15, p); return p; };
+  for (let i = 0; i < 6; i++) { const p = at(pin(2.4), -0.7 + (i % 3) * 0.7, 1.5 + Math.floor(i / 3) * 0.12, -0.3 + (i % 2) * 0.6, g); p.rotation.y = (i - 2.5) * 0.15; }
+  const big = at(pin(6), 0.3, 1.1, -4.6, g);
+  g.anchors = { tip: at(new THREE.Object3D(), 0.3, 1.1, -7.8, g) };
+  return g;
+}

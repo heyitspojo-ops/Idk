@@ -1,0 +1,167 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.15,
+ "cache": "audio/takes/fuck-you-have-a",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 2.8,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[shouting] FUCK! [disgusted] You have a fuck ass pimple on your nose."
+    }
+   ],
+   "seed": 13
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 2.8,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[determined] So you pop it the fuck off your nose."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 3.2,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[confused] But wait... the same pimple keeps showing up. [annoyed] Now it's on your cheek."
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 3.2,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[frustrated] Fuck it, pop it again. [sarcastic] Great, now it's on your chin."
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 4.5,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[exasperated] You keep popping this goddamn pimple but it keeps showing up everywhere. Your face, your legs, your back...",
+     "pause": 0.45
+    },
+    {
+     "t": "[shouting] YOUR ASS!",
+     "exaggeration": 1
+    }
+   ],
+   "seed": 13
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[disbelief] And it keeps getting bigger and bigger. Now it's the size of a pickup truck. [deadpan] Right on your ass... fucking... great."
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 4.4,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[determined] So you climb your fat ass onto the roof of your house and jump, hoping to pop this...",
+     "pause": 0.2
+    },
+    {
+     "t": "[furious] [shouting] FUCKING PIMPLE THAT WON'T GO AWAY!",
+     "exaggeration": 1
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[mocking] It doesn't pop, you dumbass. You bounce around like a dumbass. [amused] Pimple basketball."
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[panicked] All the way across town, onto the fucking highway... and a truck hauling safety pins, of all things, is coming your way."
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 1.6,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[screaming] FUCK!"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[shouting] BOOM! [amazed] A needle pops your fat ass butt pimple, and the explosion is so violent it flies your ass across town..."
+    }
+   ],
+   "seed": 52
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 3.0,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[relieved] right back into your house. No more pimple."
+    }
+   ],
+   "seed": 52
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 2.2,
+   "tempo": 1.04,
+   "parts": [
+    {
+     "t": "[excited] Sweet!"
+    }
+   ]
+  }
+ ]
+}

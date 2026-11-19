@@ -8,7 +8,7 @@
 // Music styles: 'bouncy' | 'party' | 'march' | 'sad' | 'bright' | 'end'.
 // SFX: pop, chirp, slam, whoosh, scratch, splash, bubbles, squish, cheer, ding, sparkle, wahwah, steps, hit,
 //      splat, plop, fart ({ dur, wet }), gag, coo, squeak ({ dur, rate }), slap, rev, clang, rumble ({ dur }),
-//      engine ({ dur, from, to } Hz), hiss ({ dur }).
+//      engine ({ dur, from, to } Hz), hiss ({ dur }), boing ({ pitch }).
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -129,6 +129,9 @@ export const SFX = {
       b[i] = saw * fire * 0.5 * Math.min(1, t / 0.08) * Math.min(1, (dur - t) / 0.12); } return b; },
   hiss: ({ dur = 1.5 } = {}) => { const b = buf(dur); let prev = 0;
     for (let i = 0; i < b.length; i++) { const t = i / SR, n = noise(); b[i] = (n - prev * 0.6) * 0.45 * Math.min(1, t / 0.05) * Math.min(1, (dur - t) / 0.2); prev = n; } return b; },
+  boing: ({ pitch = 1 } = {}) => { const b = buf(0.6); let ph = 0;
+    for (let i = 0; i < b.length; i++) { const t = i / SR; ph += TAU * (180 * pitch * (1 + 0.6 * Math.exp(-t * 6) * Math.sin(TAU * 9 * t))) / SR;
+      b[i] = Math.sin(ph) * Math.exp(-t * 5) * 0.8 * Math.min(1, t / 0.004); } return b; },
   coo: () => { const b = buf(0.5); for (let i = 0; i < b.length; i++) { const t = i / SR;
     b[i] = Math.sin(TAU * (420 + 60 * Math.sin(TAU * 6 * t)) * t) * Math.sin(Math.PI * t / 0.5) * 0.5; } return b; },
   steps: ({ dur = 3, rate = 8 } = {}) => { const b = buf(dur);

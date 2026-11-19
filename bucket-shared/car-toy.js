@@ -1,5 +1,6 @@
 // Toy car, faces +z (front), ~4.2 long, wheels on y = 0.
-// buildCar({ style: 'sedan' | 'hatch', body, roof, rust, spoiler, underglow, convertible })
+// buildCar({ style: 'sedan' | 'hatch' | 'truck', body, roof, rust, spoiler, underglow, convertible, cargo })
+//   truck: a long flatbed behind the cab; cargo = an Object3D placed on the bed (anchors.bed)
 //   convertible: no roof/rear glass, just a windshield, so the driver is visible
 //   -> { group, anchors: { seat, hood, intake, exhaust, driverDoor }, doors[], set({...}) }
 // set({ t, speed (wheel spin rad/s), twist 0..1 (chassis pretzel), lift 0..1 (front wheels up), hoodOpen 0..1,
@@ -56,7 +57,13 @@ export function buildCar(o = {}) {
     return piv;
   });
   const seat = at(new THREE.Object3D(), 0.42, 0.62, -0.25, rear);
-  const anchors = { seat, hood, intake, exhaust: at(new THREE.Object3D(), -0.6, 0.45, -L / 2 - 0.15, rear), driverDoor: doors[0] };
+  const bed = at(new THREE.Object3D(), 0, 1.15, -L / 2 - 2.6, rear);
+  if (style === 'truck') { // cab = the car; add a long flatbed + rear wheels behind it
+    at(mesh(rbox(W + 0.2, 0.3, 5.2, 0.08), '#6b7280'), 0, 0.95, -L / 2 - 2.6, rear);
+    for (const s of [-1, 1]) for (const z of [-L / 2 - 1.2, -L / 2 - 4.0]) { const w = at(mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.35, 12), '#2b2233'), s * (W / 2 + 0.05), 0.45, z, rear); w.rotation.z = Math.PI / 2; }
+    if (o.cargo) bed.add(o.cargo);
+  }
+  const anchors = { seat, bed, hood, intake, exhaust: at(new THREE.Object3D(), -0.6, 0.45, -L / 2 - 0.15, rear), driverDoor: doors[0] };
   g.set = ({ t = 0, speed = 0, twist = 0, lift = 0, hoodOpen = 0, engine = 'stock', blown = 0, bounce = 0, doors: nd = 4, char: ch = 0 } = {}) => {
     wheels.forEach(w => (w.rotation.x = t * speed));
     front.rotation.set(-lift * 0.35, 0, twist * 0.6); rear.rotation.set(0, 0, -twist * 0.25);
