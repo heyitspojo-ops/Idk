@@ -1,0 +1,947 @@
+[
+ {
+  "id": 1,
+  "start": 0.0,
+  "end": 3.26,
+  "min": 2.8,
+  "text": "FUCK! A bird keeps shitting on me while I'm walking.",
+  "words": [
+   {
+    "w": "Fuck!",
+    "start": 0.0,
+    "end": 0.46
+   },
+   {
+    "w": "A",
+    "start": 1.32,
+    "end": 1.52
+   },
+   {
+    "w": "bird",
+    "start": 1.52,
+    "end": 1.82
+   },
+   {
+    "w": "keeps",
+    "start": 1.82,
+    "end": 2.06
+   },
+   {
+    "w": "shitting",
+    "start": 2.06,
+    "end": 2.4
+   },
+   {
+    "w": "on",
+    "start": 2.4,
+    "end": 2.56
+   },
+   {
+    "w": "me",
+    "start": 2.56,
+    "end": 2.68
+   },
+   {
+    "w": "while",
+    "start": 2.68,
+    "end": 2.78
+   },
+   {
+    "w": "I'm",
+    "start": 2.78,
+    "end": 2.94
+   },
+   {
+    "w": "walking,",
+    "start": 2.94,
+    "end": 3.26
+   }
+  ],
+  "heard": "Fuck! A bird keeps shitting on me while I'm walking,"
+ },
+ {
+  "id": 2,
+  "start": 3.5,
+  "end": 6.78,
+  "min": 3.0,
+  "text": "And it's starting to piss me the fuck off. This motherfucker.",
+  "words": [
+   {
+    "w": "and",
+    "start": 3.5,
+    "end": 3.58
+   },
+   {
+    "w": "it's",
+    "start": 3.58,
+    "end": 3.74
+   },
+   {
+    "w": "starting",
+    "start": 3.74,
+    "end": 3.92
+   },
+   {
+    "w": "to",
+    "start": 3.92,
+    "end": 4.14
+   },
+   {
+    "w": "piss",
+    "start": 4.14,
+    "end": 4.34
+   },
+   {
+    "w": "me",
+    "start": 4.34,
+    "end": 4.54
+   },
+   {
+    "w": "the",
+    "start": 4.54,
+    "end": 4.66
+   },
+   {
+    "w": "fuck",
+    "start": 4.66,
+    "end": 5.02
+   },
+   {
+    "w": "off.",
+    "start": 5.02,
+    "end": 5.38
+   },
+   {
+    "w": "This",
+    "start": 5.82,
+    "end": 6.02
+   },
+   {
+    "w": "motherfucker.",
+    "start": 6.02,
+    "end": 6.78
+   }
+  ],
+  "heard": "and it's starting to piss me the fuck off. This motherfucker."
+ },
+ {
+  "id": 3,
+  "start": 7.52,
+  "end": 13.36,
+  "min": 3.5,
+  "text": "So I go inside my house. But it's in my house now. Still. Fucking. Shitting on me.",
+  "words": [
+   {
+    "w": "So",
+    "start": 7.52,
+    "end": 7.8
+   },
+   {
+    "w": "I",
+    "start": 7.8,
+    "end": 7.9
+   },
+   {
+    "w": "go",
+    "start": 7.9,
+    "end": 8.0
+   },
+   {
+    "w": "inside",
+    "start": 8.0,
+    "end": 8.2
+   },
+   {
+    "w": "my",
+    "start": 8.2,
+    "end": 8.36
+   },
+   {
+    "w": "house.",
+    "start": 8.36,
+    "end": 8.64
+   },
+   {
+    "w": "But",
+    "start": 9.2,
+    "end": 9.36
+   },
+   {
+    "w": "it's",
+    "start": 9.36,
+    "end": 9.52
+   },
+   {
+    "w": "in",
+    "start": 9.52,
+    "end": 9.62
+   },
+   {
+    "w": "my",
+    "start": 9.62,
+    "end": 9.74
+   },
+   {
+    "w": "house",
+    "start": 9.74,
+    "end": 10.06
+   },
+   {
+    "w": "now,",
+    "start": 10.06,
+    "end": 10.36
+   },
+   {
+    "w": "still",
+    "start": 11.1,
+    "end": 11.38
+   },
+   {
+    "w": "fucking",
+    "start": 11.38,
+    "end": 12.26
+   },
+   {
+    "w": "shitting",
+    "start": 12.26,
+    "end": 12.98
+   },
+   {
+    "w": "on",
+    "start": 12.98,
+    "end": 13.18
+   },
+   {
+    "w": "me.",
+    "start": 13.18,
+    "end": 13.36
+   }
+  ],
+  "heard": "So I go inside my house. But it's in my house now, still fucking shitting on me."
+ },
+ {
+  "id": 4,
+  "start": 13.5,
+  "end": 14.82,
+  "min": 2.0,
+  "text": "He doesn't give a flying fuck.",
+  "words": [
+   {
+    "w": "He",
+    "start": 13.5,
+    "end": 13.6
+   },
+   {
+    "w": "doesn't",
+    "start": 13.6,
+    "end": 13.84
+   },
+   {
+    "w": "give",
+    "start": 13.84,
+    "end": 13.94
+   },
+   {
+    "w": "a",
+    "start": 13.94,
+    "end": 14.14
+   },
+   {
+    "w": "flying",
+    "start": 14.14,
+    "end": 14.42
+   },
+   {
+    "w": "fuck.",
+    "start": 14.42,
+    "end": 14.82
+   }
+  ],
+  "heard": "He doesn't give a flying fuck."
+ },
+ {
+  "id": 5,
+  "start": 15.5,
+  "end": 24.2,
+  "min": 6.5,
+  "text": "My wife is screaming at me... mostly because I haven't made love to her in three months. But I'm covered head to toe in bird shit! You don't give a fuck.",
+  "words": [
+   {
+    "w": "My",
+    "start": 15.5,
+    "end": 15.7
+   },
+   {
+    "w": "wife",
+    "start": 15.7,
+    "end": 15.92
+   },
+   {
+    "w": "is",
+    "start": 15.92,
+    "end": 16.1
+   },
+   {
+    "w": "screaming",
+    "start": 16.1,
+    "end": 16.54
+   },
+   {
+    "w": "at",
+    "start": 16.54,
+    "end": 16.82
+   },
+   {
+    "w": "me,",
+    "start": 16.82,
+    "end": 17.28
+   },
+   {
+    "w": "mostly",
+    "start": 17.58,
+    "end": 17.9
+   },
+   {
+    "w": "because",
+    "start": 17.9,
+    "end": 18.26
+   },
+   {
+    "w": "I",
+    "start": 18.26,
+    "end": 18.42
+   },
+   {
+    "w": "haven't",
+    "start": 18.42,
+    "end": 18.56
+   },
+   {
+    "w": "made",
+    "start": 18.56,
+    "end": 18.7
+   },
+   {
+    "w": "love",
+    "start": 18.7,
+    "end": 18.88
+   },
+   {
+    "w": "to",
+    "start": 18.88,
+    "end": 19.02
+   },
+   {
+    "w": "her",
+    "start": 19.02,
+    "end": 19.1
+   },
+   {
+    "w": "in",
+    "start": 19.1,
+    "end": 19.24
+   },
+   {
+    "w": "three",
+    "start": 19.24,
+    "end": 19.44
+   },
+   {
+    "w": "months.",
+    "start": 19.44,
+    "end": 19.72
+   },
+   {
+    "w": "But",
+    "start": 20.24,
+    "end": 20.5
+   },
+   {
+    "w": "I'm",
+    "start": 20.5,
+    "end": 20.72
+   },
+   {
+    "w": "covered",
+    "start": 20.72,
+    "end": 21.08
+   },
+   {
+    "w": "head",
+    "start": 21.08,
+    "end": 21.38
+   },
+   {
+    "w": "to",
+    "start": 21.38,
+    "end": 21.54
+   },
+   {
+    "w": "toe",
+    "start": 21.54,
+    "end": 21.76
+   },
+   {
+    "w": "in",
+    "start": 21.76,
+    "end": 21.94
+   },
+   {
+    "w": "bird",
+    "start": 21.94,
+    "end": 22.22
+   },
+   {
+    "w": "shit.",
+    "start": 22.22,
+    "end": 22.58
+   },
+   {
+    "w": "You",
+    "start": 22.96,
+    "end": 23.2
+   },
+   {
+    "w": "don't",
+    "start": 23.2,
+    "end": 23.52
+   },
+   {
+    "w": "give",
+    "start": 23.52,
+    "end": 23.68
+   },
+   {
+    "w": "a",
+    "start": 23.68,
+    "end": 23.96
+   },
+   {
+    "w": "fuck.",
+    "start": 23.96,
+    "end": 24.2
+   }
+  ],
+  "heard": "My wife is screaming at me, mostly because I haven't made love to her in three months. But I'm covered head to toe in bird shit. You don't give a fuck."
+ },
+ {
+  "id": 6,
+  "start": 24.52,
+  "end": 27.9,
+  "min": 3.5,
+  "text": "So I dig an underground bunker. Try to get in here, motherfucker.",
+  "words": [
+   {
+    "w": "So",
+    "start": 24.52,
+    "end": 24.76
+   },
+   {
+    "w": "I",
+    "start": 24.76,
+    "end": 25.0
+   },
+   {
+    "w": "dig",
+    "start": 25.0,
+    "end": 25.22
+   },
+   {
+    "w": "an",
+    "start": 25.22,
+    "end": 25.38
+   },
+   {
+    "w": "underground",
+    "start": 25.38,
+    "end": 25.66
+   },
+   {
+    "w": "bunker.",
+    "start": 25.66,
+    "end": 26.0
+   },
+   {
+    "w": "Try",
+    "start": 26.62,
+    "end": 26.88
+   },
+   {
+    "w": "to",
+    "start": 26.88,
+    "end": 27.0
+   },
+   {
+    "w": "get",
+    "start": 27.0,
+    "end": 27.12
+   },
+   {
+    "w": "in",
+    "start": 27.12,
+    "end": 27.26
+   },
+   {
+    "w": "here,",
+    "start": 27.26,
+    "end": 27.42
+   },
+   {
+    "w": "motherfucker.",
+    "start": 27.5,
+    "end": 27.9
+   }
+  ],
+  "heard": "So I dig an underground bunker. Try to get in here, motherfucker."
+ },
+ {
+  "id": 7,
+  "start": 28.34,
+  "end": 31.88,
+  "min": 3.2,
+  "text": "The bird finds me... and shits directly into my mouth.",
+  "words": [
+   {
+    "w": "The",
+    "start": 28.34,
+    "end": 28.62
+   },
+   {
+    "w": "bird",
+    "start": 28.62,
+    "end": 28.84
+   },
+   {
+    "w": "finds",
+    "start": 28.84,
+    "end": 29.16
+   },
+   {
+    "w": "me,",
+    "start": 29.16,
+    "end": 29.5
+   },
+   {
+    "w": "and",
+    "start": 30.06,
+    "end": 30.32
+   },
+   {
+    "w": "shits",
+    "start": 30.32,
+    "end": 30.7
+   },
+   {
+    "w": "directly",
+    "start": 30.7,
+    "end": 31.08
+   },
+   {
+    "w": "into",
+    "start": 31.08,
+    "end": 31.36
+   },
+   {
+    "w": "my",
+    "start": 31.36,
+    "end": 31.52
+   },
+   {
+    "w": "mouth.",
+    "start": 31.52,
+    "end": 31.88
+   }
+  ],
+  "heard": "The bird finds me, and shits directly into my mouth."
+ },
+ {
+  "id": 8,
+  "start": 33.16,
+  "end": 33.72,
+  "min": 1.4,
+  "text": "FUCK!",
+  "words": [
+   {
+    "w": "Fuck!",
+    "start": 33.16,
+    "end": 33.72
+   }
+  ],
+  "heard": "Fuck!"
+ },
+ {
+  "id": 9,
+  "start": 34.48,
+  "end": 38.12,
+  "min": 3.5,
+  "text": "So I sneak laxatives in his food. That'll teach that bastard a lesson.",
+  "words": [
+   {
+    "w": "So",
+    "start": 34.48,
+    "end": 34.66
+   },
+   {
+    "w": "I",
+    "start": 34.66,
+    "end": 34.78
+   },
+   {
+    "w": "sneak",
+    "start": 34.78,
+    "end": 35.0
+   },
+   {
+    "w": "laxatives",
+    "start": 35.0,
+    "end": 35.5
+   },
+   {
+    "w": "in",
+    "start": 35.5,
+    "end": 35.66
+   },
+   {
+    "w": "his",
+    "start": 35.66,
+    "end": 35.8
+   },
+   {
+    "w": "food.",
+    "start": 35.8,
+    "end": 36.08
+   },
+   {
+    "w": "That'll",
+    "start": 36.54,
+    "end": 36.86
+   },
+   {
+    "w": "teach",
+    "start": 36.86,
+    "end": 37.02
+   },
+   {
+    "w": "that",
+    "start": 37.02,
+    "end": 37.26
+   },
+   {
+    "w": "bastard",
+    "start": 37.26,
+    "end": 37.7
+   },
+   {
+    "w": "a",
+    "start": 37.7,
+    "end": 37.86
+   },
+   {
+    "w": "lesson.",
+    "start": 37.86,
+    "end": 38.12
+   }
+  ],
+  "heard": "So I sneak laxatives in his food. That'll teach that bastard a lesson."
+ },
+ {
+  "id": 10,
+  "start": 38.3,
+  "end": 43.82,
+  "min": 4.0,
+  "text": "But wait... it's about to fucking explode. It's holding... and holding...",
+  "words": [
+   {
+    "w": "But",
+    "start": 38.3,
+    "end": 38.42
+   },
+   {
+    "w": "wait,",
+    "start": 38.42,
+    "end": 38.64
+   },
+   {
+    "w": "it's",
+    "start": 39.14,
+    "end": 39.52
+   },
+   {
+    "w": "about",
+    "start": 39.52,
+    "end": 39.76
+   },
+   {
+    "w": "to",
+    "start": 39.76,
+    "end": 40.36
+   },
+   {
+    "w": "fucking",
+    "start": 40.36,
+    "end": 40.36
+   },
+   {
+    "w": "explode.",
+    "start": 40.36,
+    "end": 40.86
+   },
+   {
+    "w": "It's",
+    "start": 41.64,
+    "end": 41.92
+   },
+   {
+    "w": "holding,",
+    "start": 41.92,
+    "end": 42.32
+   },
+   {
+    "w": "and",
+    "start": 42.92,
+    "end": 43.26
+   },
+   {
+    "w": "holding,",
+    "start": 43.26,
+    "end": 43.82
+   }
+  ],
+  "heard": "But wait, it's about to fucking explode. It's holding, and holding,"
+ },
+ {
+  "id": 11,
+  "start": 44.28,
+  "end": 48.94,
+  "min": 3.5,
+  "text": "BOOM! Bird shit all over me. I look like a fucking porta potty.",
+  "words": [
+   {
+    "w": "boom!",
+    "start": 44.28,
+    "end": 44.68
+   },
+   {
+    "w": "Bird",
+    "start": 45.44,
+    "end": 45.76
+   },
+   {
+    "w": "shit",
+    "start": 45.76,
+    "end": 46.04
+   },
+   {
+    "w": "all",
+    "start": 46.04,
+    "end": 46.22
+   },
+   {
+    "w": "over",
+    "start": 46.22,
+    "end": 46.42
+   },
+   {
+    "w": "me.",
+    "start": 46.42,
+    "end": 46.64
+   },
+   {
+    "w": "I",
+    "start": 47.16,
+    "end": 47.38
+   },
+   {
+    "w": "look",
+    "start": 47.38,
+    "end": 47.52
+   },
+   {
+    "w": "like",
+    "start": 47.52,
+    "end": 47.68
+   },
+   {
+    "w": "a",
+    "start": 47.68,
+    "end": 47.92
+   },
+   {
+    "w": "fucking",
+    "start": 47.92,
+    "end": 48.18
+   },
+   {
+    "w": "porta",
+    "start": 48.18,
+    "end": 48.58
+   },
+   {
+    "w": "potty.",
+    "start": 48.58,
+    "end": 48.94
+   }
+  ],
+  "heard": "boom! Bird shit all over me. I look like a fucking porta potty."
+ },
+ {
+  "id": 12,
+  "start": 49.32,
+  "end": 54.22,
+  "min": 3.8,
+  "text": "The ass blast sends the bird all the way to my wife... and now he's shitting on HER.",
+  "words": [
+   {
+    "w": "The",
+    "start": 49.32,
+    "end": 49.46
+   },
+   {
+    "w": "ass",
+    "start": 49.46,
+    "end": 49.78
+   },
+   {
+    "w": "blast",
+    "start": 49.78,
+    "end": 50.02
+   },
+   {
+    "w": "sends",
+    "start": 50.02,
+    "end": 50.32
+   },
+   {
+    "w": "the",
+    "start": 50.32,
+    "end": 50.54
+   },
+   {
+    "w": "bird",
+    "start": 50.54,
+    "end": 50.78
+   },
+   {
+    "w": "all",
+    "start": 50.78,
+    "end": 51.18
+   },
+   {
+    "w": "the",
+    "start": 51.18,
+    "end": 51.32
+   },
+   {
+    "w": "way",
+    "start": 51.32,
+    "end": 51.48
+   },
+   {
+    "w": "to",
+    "start": 51.48,
+    "end": 51.58
+   },
+   {
+    "w": "my",
+    "start": 51.58,
+    "end": 51.74
+   },
+   {
+    "w": "wife.",
+    "start": 51.74,
+    "end": 52.08
+   },
+   {
+    "w": "And",
+    "start": 52.7,
+    "end": 52.9
+   },
+   {
+    "w": "now",
+    "start": 52.9,
+    "end": 53.12
+   },
+   {
+    "w": "he's",
+    "start": 53.12,
+    "end": 53.5
+   },
+   {
+    "w": "shitting",
+    "start": 53.5,
+    "end": 53.68
+   },
+   {
+    "w": "on",
+    "start": 53.68,
+    "end": 53.9
+   },
+   {
+    "w": "her.",
+    "start": 53.9,
+    "end": 54.22
+   }
+  ],
+  "heard": "The ass blast sends the bird all the way to my wife. And now he's shitting on her."
+ },
+ {
+  "id": 13,
+  "start": 54.86,
+  "end": 58.2,
+  "min": 3.0,
+  "text": "He isn't shitting on me anymore, so that's great. Sweet!",
+  "words": [
+   {
+    "w": "He",
+    "start": 54.86,
+    "end": 55.16
+   },
+   {
+    "w": "isn't",
+    "start": 55.16,
+    "end": 55.42
+   },
+   {
+    "w": "shitting",
+    "start": 55.42,
+    "end": 55.78
+   },
+   {
+    "w": "on",
+    "start": 55.78,
+    "end": 55.94
+   },
+   {
+    "w": "me",
+    "start": 55.94,
+    "end": 56.06
+   },
+   {
+    "w": "anymore,",
+    "start": 56.06,
+    "end": 56.28
+   },
+   {
+    "w": "so",
+    "start": 56.28,
+    "end": 56.6
+   },
+   {
+    "w": "that's",
+    "start": 56.6,
+    "end": 57.06
+   },
+   {
+    "w": "great.",
+    "start": 57.06,
+    "end": 57.26
+   },
+   {
+    "w": "Sweet!",
+    "start": 57.26,
+    "end": 58.2
+   }
+  ],
+  "heard": "He isn't shitting on me anymore, so that's great. Sweet!"
+ }
+]

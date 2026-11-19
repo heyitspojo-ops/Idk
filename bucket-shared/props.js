@@ -177,3 +177,59 @@ export function boat({ hull = '#ef7b6c', sail = '#fffaf0', stripe = '#5fa8d3' } 
   g.anchors = { seat: at(new THREE.Object3D(), 0, 0.45, -0.6, g), side: at(new THREE.Object3D(), 0.9, 0.5, -0.4, g), sail: sl };
   return g;
 }
+
+// ---------- bird-shit gags ----------
+const gooMat = () => mat('#f6f4ee', { roughness: 0.35 });
+/** Falling poop drop (teardrop), point up. */
+export function poopDrop(r = 0.16) {
+  const g = new THREE.Group();
+  at(mesh(ball(r, 1), gooMat()), 0, 0, 0, g);
+  const tip = at(mesh(new THREE.ConeGeometry(r * 0.7, r * 1.4, 6), gooMat()), 0, r * 0.9, 0, g);
+  at(mesh(ball(r * 0.45, 0), mat('#b9b6ad')), r * 0.3, -r * 0.2, r * 0.6, g);
+  return g;
+}
+/** Splat: flattened blob with drips, lies on +y. */
+export function splat(r = 0.4, seed = 2) {
+  const rr = rng(seed), g = new THREE.Group();
+  at(mesh(ball(r, 1), gooMat()), 0, 0, 0, g).scale.set(1, 0.25, 1);
+  for (let i = 0; i < 6; i++) { const a = i * 1.05 + rr(); at(mesh(ball(r * (0.25 + rr() * 0.2), 0), i % 3 ? gooMat() : mat('#b9b6ad')), Math.cos(a) * r * 1.1, 0, Math.sin(a) * r * 1.1, g).scale.set(1, 0.3, 1); }
+  return g;
+}
+/** Shovel held at the grip (origin), blade along -y. */
+export function shovel() {
+  const g = new THREE.Group();
+  at(mesh(cyl(0.05, 0.05, 1.4, 6), '#b5803e'), 0, -0.6, 0, g);
+  at(mesh(rbox(0.3, 0.08, 0.08, 0.03), '#3b2f4a'), 0, 0.12, 0, g);
+  const blade = at(mesh(rbox(0.4, 0.5, 0.05, 0.08), '#9aa3ad'), 0, -1.45, 0, g);
+  g.anchors = { blade };
+  return g;
+}
+/** Giant laxative bottle with a label. Base at y = 0. */
+export function laxative() {
+  const g = new THREE.Group();
+  at(mesh(cyl(0.32, 0.32, 0.9, 12), '#f4f0ea'), 0, 0.45, 0, g);
+  at(mesh(cyl(0.2, 0.22, 0.2, 12), '#e2577a'), 0, 1.0, 0, g);
+  at(textCard(['LAXATIVE', 'EXTRA STRONG'], 0.62, { w: 1024, h: 600, bg: '#e2577a', color: '#fffaf0', size: 170, radius: 30 }), 0, 0.48, 0.325, g);
+  return g;
+}
+/** Bird bowl on a stand with seed. Base at y = 0; anchors.food (top). */
+export function birdBowl() {
+  const g = new THREE.Group();
+  at(mesh(cyl(0.07, 0.1, 1.2, 6), '#e0b25c'), 0, 0.6, 0, g);
+  at(mesh(cyl(0.55, 0.35, 0.22, 12), '#7cc6a4'), 0, 1.28, 0, g);
+  const food = at(new THREE.Group(), 0, 1.4, 0, g);
+  for (let i = 0; i < 9; i++) at(mesh(ball(0.07, 0), '#e8c27a'), Math.cos(i * 2.3) * 0.25 * (i % 3) / 2, 0, Math.sin(i * 2.3) * 0.25 * (i % 3) / 2, food);
+  g.anchors = { food };
+  return g;
+}
+/** Lawn chair (seat at y ~0.55) + drink. anchors.seat */
+export function lawnChair({ color = '#5fa8d3' } = {}) {
+  const g = new THREE.Group();
+  for (const x of [-0.5, 0.5]) for (const z of [-0.4, 0.4]) at(mesh(cyl(0.04, 0.04, 0.55, 4), '#d9d2c5'), x, 0.27, z, g);
+  at(mesh(rbox(1.1, 0.1, 0.9, 0.04), color), 0, 0.55, 0, g);
+  const back = at(mesh(rbox(1.1, 1.0, 0.1, 0.04), color), 0, 1.0, -0.5, g); back.rotation.x = -0.35;
+  at(mesh(cyl(0.1, 0.08, 0.3, 8), '#ffd166'), 0.75, 0.75, 0.2, g);
+  at(mesh(cyl(0.012, 0.012, 0.3, 4), '#e2577a'), 0.78, 0.98, 0.2, g);
+  g.anchors = { seat: at(new THREE.Object3D(), 0, 0.6, 0.1, g) };
+  return g;
+}

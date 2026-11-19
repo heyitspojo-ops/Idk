@@ -6,7 +6,8 @@
 //   { duration, vo: { file, gain }, music: { bpm, key, gain, duck, sections: [{ from, to, style, key? }] },
 //     sfx: [[name, time, { gain, pan, ...args }], ...] }
 // Music styles: 'bouncy' | 'party' | 'march' | 'sad' | 'bright' | 'end'.
-// SFX: pop, chirp, slam, whoosh, scratch, splash, bubbles, squish, cheer, ding, sparkle, wahwah, steps, hit.
+// SFX: pop, chirp, slam, whoosh, scratch, splash, bubbles, squish, cheer, ding, sparkle, wahwah, steps, hit,
+//      splat, plop, fart ({ dur, wet }), gag, coo.
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -99,6 +100,18 @@ export const SFX = {
     for (let i = 0; i < s.length; i++) { const t = i / SR; ph += TAU * midi(m) * (1 + (k === 3 ? 0.01 * Math.sin(TAU * 6 * t) : 0)) / SR;
       lp += (0.03 + 0.12 * (0.5 - 0.5 * Math.cos(TAU * 2 * t))) * (((ph / TAU) % 1) * 2 - 1 - lp); s[i] = lp * Math.min(1, t / 0.03) * Math.min(1, (d - t) / 0.05); }
     mixInto(b, s, 1, at); }); return b; },
+  splat: () => mixInto(noiseBurst(0.35, 0.25, 16), sweep(220, 70, 0.18, 18), 0.6),
+  plop: () => sweep(700, 160, 0.14, 22),
+  fart: ({ dur = 1.0, wet = 0.5 } = {}) => { const b = buf(dur); let ph = 0, lp = 0;
+    for (let i = 0; i < b.length; i++) { const t = i / SR, x = t / dur, f = 75 + 35 * Math.sin(TAU * 7 * t) + 25 * Math.sin(TAU * 2.3 * t) - 30 * x;
+      ph += TAU * f / SR; lp += 0.3 * (noise() - lp);
+      const env = Math.min(1, t / 0.02) * Math.min(1, (dur - t) / 0.08) * (0.7 + 0.3 * Math.sin(TAU * 11 * t));
+      b[i] = (((ph / TAU) % 1) * 2 - 1) * 0.6 * env + lp * wet * env * 0.9; } return b; },
+  gag: () => { const b = buf(0.6); let ph = 0, lp = 0;
+    for (let i = 0; i < b.length; i++) { const t = i / SR; ph += TAU * (260 - 180 * t) / SR; lp += 0.2 * (noise() - lp);
+      b[i] = (Math.sign(Math.sin(ph)) * 0.25 + lp * 0.6) * Math.exp(-t * 4) * Math.min(1, t / 0.01); } return b; },
+  coo: () => { const b = buf(0.5); for (let i = 0; i < b.length; i++) { const t = i / SR;
+    b[i] = Math.sin(TAU * (420 + 60 * Math.sin(TAU * 6 * t)) * t) * Math.sin(Math.PI * t / 0.5) * 0.5; } return b; },
   steps: ({ dur = 3, rate = 8 } = {}) => { const b = buf(dur);
     for (let t = 0; t < dur - 0.05; t += 1 / rate) mixInto(b, sweep(1400, 900, 0.03, 80), 0.5, t); return b; },
 };
@@ -186,7 +199,7 @@ export function render(spec) {
   return { L, R };
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   const [specPath, out] = process.argv.slice(2);
   const spec = (await import(pathToFileURL(path.resolve(specPath)).href)).default;
   const { L, R } = render(spec);

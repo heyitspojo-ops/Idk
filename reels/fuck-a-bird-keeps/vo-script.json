@@ -1,0 +1,144 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.15,
+ "cache": "audio/takes/fuck-a-bird-keeps",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 2.8,
+   "parts": [
+    "[shouting] FUCK! [annoyed] A bird keeps shitting on me while I'm walking."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    {
+     "t": "[annoyed] And it's starting to piss me the fuck off.",
+     "pause": 0.35
+    },
+    {
+     "t": "[whispers] This motherfucker.",
+     "gain": 0,
+     "pause": 0.1
+    }
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 3.5,
+   "parts": [
+    "[relieved] So I go inside my house. [disbelief] But it's in my house now. [angry] Still. Fucking. Shitting on me."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 2.0,
+   "parts": [
+    "[deadpan] He doesn't give a flying fuck."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 6.5,
+   "parts": [
+    {
+     "t": "[frustrated] My wife is screaming at me... [embarrassed] mostly because I haven't made love to her in three months. [shouting] But I'm covered head to toe in bird shit!",
+     "pause": 0.35
+    },
+    {
+     "t": "[whispers] [angry] You don't give a fuck.",
+     "gain": 0,
+     "pause": 0.1
+    }
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 3.5,
+   "parts": [
+    "[determined] So I dig an underground bunker. [taunting] Try to get in here, motherfucker."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 3.2,
+   "parts": [
+    "[nervous] The bird finds me... [disgusted] and shits directly into my mouth."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 1.4,
+   "parts": [
+    "[gagging] FUCK!"
+   ],
+   "seed": 26,
+   "tempo": 1.08
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 3.5,
+   "parts": [
+    "[sneaky] So I sneak laxatives in his food. [smug] That'll teach that bastard a lesson."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 4.0,
+   "parts": [
+    "[curious] But wait... [nervous] it's about to fucking explode. [tense] It's holding... and holding..."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 3.5,
+   "parts": [
+    "[shouting] BOOM! [disgusted] Bird shit all over me. [deadpan] I look like a fucking porta potty."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 3.8,
+   "parts": [
+    "[amazed] The ass blast sends the bird all the way to my wife... [laughing] and now he's shitting on HER."
+   ],
+   "tempo": 1.08
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "[relieved] He isn't shitting on me anymore, so that's great. [excited] Sweet!"
+   ],
+   "tempo": 1.08
+  }
+ ]
+}
