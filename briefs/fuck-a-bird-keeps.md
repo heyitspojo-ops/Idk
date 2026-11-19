@@ -16,7 +16,7 @@ A sunny toy sidewalk. You're walking, whistling. A smug pigeon glides in overhea
 |---|------|------|--------|----|----------------|
 | 1 | 0.0–3.0 | Street, you walking | Pigeon glides over, stares at the lens, drops a splat on your head | "FUCK! A bird keeps shitting on me while I'm walking." | **A BIRD KEEPS SHITTING ON ME** |
 | 2 | 3.0–7.0 | Street, tracking | Splat after splat as you walk faster; you shake a fist at the sky | "And it's starting to piss me the fuck off. *(whispered)* This motherfucker." | — |
-| 3 | 7.0–11.5 | Your house, living room | You slam the door, relieved… the pigeon is sitting on the couch; it hops up and splats you again | "So I go inside my house. But it's in my house now. Still. Fucking. Shitting on me." | — |
+| 3 | 7.0–11.5 | Your house, living room | You slam the door, relieved… poof: the pigeon appears out of nowhere above your head and splats you again | "So I go inside my house. But it's in my house now. Still. Fucking. Shitting on me." | — |
 | 4 | 11.5–13.5 | Close on the pigeon | Pigeon on the lamp, shrugs its wings, splat without looking | "He doesn't give a flying fuck." | — |
 | 5 | 13.5–19.5 | Living room | Your wife storms in, yelling, arms waving; you stand there dripping, half-covered in white | "My wife is screaming at me… mostly because I haven't made love to her in three months. But I'm covered head to toe in bird shit! *(angrily whispered)* You don't give a fuck." | — |
 | 6 | 19.5–21.0 | Close on your wife | She screams, arms flailing | — (no VO) | Speech bubble: **"THREE FUCKING MONTHS!"** |

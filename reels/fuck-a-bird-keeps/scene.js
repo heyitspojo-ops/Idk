@@ -39,6 +39,7 @@ const dirt = Array.from({ length: 8 }, () => at(mesh(ball(0.12, 0), '#8a5a44'), 
 const drops = Array.from({ length: 4 }, () => { const d = poopDrop(0.26); scene.add(d); return d; });
 const blast = Array.from({ length: 28 }, (_, i) => { const d = poopDrop(0.12 + (i % 3) * 0.05); scene.add(d);
   d.userData.v = new THREE.Vector3(Math.cos(i * 2.39) * (1 + (i % 4)), 1 + (i % 5) * 0.8, Math.sin(i * 2.39) * (1 + (i % 4)) + 2); return d; });
+const poof = smoke({ n: 9, size: 1.4, seed: 7 }); scene.add(poof);
 const trail = Array.from({ length: 10 }, (_, i) => { const s = smoke({ n: 5, size: 0.8, seed: i }); scene.add(s); return s; });
 const lensDrop = poopDrop(0.5); scene.add(lensDrop);
 
@@ -72,7 +73,7 @@ function youGoo(t) {
 function stage(t) {
   const Y = you.group, W = wife.group, Bd = bird.group;
   let you_ = {}, wife_ = {}, bird_ = {};
-  [Y, W, Bd].forEach(o => o.rotation.set(0, 0, 0));
+  [Y, W, Bd].forEach(o => o.rotation.set(0, 0, 0)); Bd.scale.setScalar(1); poof.set(0);
   show(spade, t > T.dig[0] && t < T.dig[1]); show(bottle, t > 31 && t < T.peck[0]);
   dirt.forEach(d => show(d, false)); drops.forEach(d => show(d, false)); blast.forEach(d => show(d, false));
   trail.forEach(s => s.set(0)); show(lensDrop, false);
@@ -90,9 +91,13 @@ function stage(t) {
     Y.position.copy(o).add(new THREE.Vector3(lerp(4.0, 0.6, smooth(walkIn)), 0, lerp(1.5, 0.6, walkIn)));
     Y.rotation.y = t < T.enter + 1.2 ? -Math.PI / 2 : t < 13.5 ? 0.3 : 1.0;
     you_ = { walk: walkIn < 1 ? 1 : 0, mood: t < T.couch ? 0.6 : -0.9, double: t > 13.5 && t < 19.5 ? 0.25 : 0 };
-    const onLamp = t > 11.2, hop = seg(t, T.hop, T.hop + 0.5);
-    Bd.position.copy(o).add(onLamp ? new THREE.Vector3(2.6, 3.25, -2.6) : new THREE.Vector3(lerp(-1.4, 0.6, hop), 1.0 + Math.sin(hop * Math.PI) * 3.2, lerp(-2.3, 0.6, hop)));
-    Bd.rotation.set(0, onLamp ? -0.8 : 0.6, 0); bird_ = { smug: 1, flap: hop > 0 && hop < 1 ? 1 : 0, shrug: onLamp ? seg(t, T.shrug, T.shrug + 0.3) * (1 - seg(t, 12.8, 13.1)) : 0 };
+    // the bird appears out of nowhere above your head (poof), splats you, then flies to the lamp
+    const onLamp = t > 11.2, toLamp = seg(t, 10.6, 11.2), above = new THREE.Vector3(0.75, 3.95 + Math.sin(t * 3) * 0.08, 0.6);
+    Bd.position.copy(o).add(onLamp ? new THREE.Vector3(2.6, 3.25, -2.6) : above.lerp(new THREE.Vector3(2.6, 3.25, -2.6), smooth(toLamp)));
+    show(Bd, t > T.couch); if (!onLamp) P(Bd, pop(t, T.couch, 7, 13));
+    poof.position.copy(o).add(new THREE.Vector3(0.75, 3.7, 0.6)); poof.set(seg(t, T.couch - 0.05, T.couch + 0.7));
+    Bd.rotation.set(0, onLamp ? -0.8 : toLamp > 0 ? -0.9 : 0.4, 0);
+    bird_ = { smug: 1, flap: !onLamp ? 1 : 0, shrug: onLamp ? seg(t, T.shrug, T.shrug + 0.3) * (1 - seg(t, 12.8, 13.1)) : 0 };
     const wIn = seg(t, T.wifeIn, T.wifeIn + 1.4);
     W.position.copy(o).add(new THREE.Vector3(lerp(4.6, 2.0, smooth(wIn)), 0, lerp(1.5, 1.5, wIn))); W.rotation.y = wIn < 1 ? -Math.PI / 2 : -2.1;
     wife_ = { walk: wIn < 1 ? 1 : 0, laugh: wIn >= 1 ? 1 : 0, mood: -1, wave: wIn >= 1 ? 1 : 0, scratch: t > 19.5 ? 1 : 0, scratchRate: 6 };
