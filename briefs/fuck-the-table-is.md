@@ -24,11 +24,11 @@ Close on a coffee mug on a little table: the table rocks — clack, clack — co
 | 8 | 29.0–33.5 | Space | Pull out to the low-poly Earth: the whole planet wobbles like the table did, clouds sloshing, moon getting bumped | "Now the whole fucking planet is shaking!" | **🌍 WOBBLING** |
 | 9 | 33.5–38.0 | Close on the cat | The cat turns its head slowly toward camera — ears back, eyes narrowed, pure hatred | "And my cat is looking at me with a pissed off expression." | — |
 | 10 | 38.0–43.0 | Space, pulling further out | You bolt the planet to the sun with a giant chain… pull out further: you bolt the sun to the middle of a spiral galaxy… the whole galaxy, sun, planet and house now wobble together in perfect sync — cut back to the table: dead still on screen | "So I bolt the planet to the sun… and the sun to the fucking galaxy. Now the whole universe wobbles… so technically, the table doesn't." | — |
-| 11 | 43.0–45.0 | Living room, end card | You set your mug on the table: perfectly still. Everything else in the room sways in sync. The cat slides you a piece of paper: DIVORCE | — | End card (below) |
+| 11 | 43.0–47.0 | Living room | You set your mug on the table: perfectly still. The cat slides you a paper: DIVORCE. Then it drags the table out the front door by one leg, mug and all; you're left holding nothing, grinning | "The cat took the table in the divorce… fucking sweet." | Paper: **DIVORCE** |
 
 ## End card
 
-43–45 s. You admire your perfectly still table, the whole room swaying around it in sync. The cat slides a paper across the table: **DIVORCE**. Text pops letter by letter: **TECHNICALLY FIXED.** Last 10 frames: the cat glares at the lens and pushes your mug off the table.
+45–47 s. Empty living room, a square dust mark where the table was, you standing in it with a big relieved grin; through the doorway the cat drags the table down the street. Text pops letter by letter: **TECHNICALLY FIXED.** Last 10 frames: the cat looks back at the lens and slow-blinks.
 
 ## Look notes
 
