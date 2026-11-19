@@ -1,0 +1,116 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.2,
+ "cache": "audio/takes/fuck-this-shopping-cart",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 2.8,
+   "parts": [
+    "[shouting] FUCK! [annoyed] This shopping cart has a wobbly wheel."
+   ]
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "I try to go right... [frustrated] it goes fucking left."
+   ]
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "So I roll it through the store... and it rolls right into some old ass lady."
+   ]
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 2.6,
+   "parts": [
+    "[pained] She slapped the shit out of me. [whimpering] Ouch."
+   ]
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "[angry] So I decide to take control of this fuck ass shopping cart."
+   ]
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "[disbelief] But it doesn't like that. [shouting] It rams right into my ass. [screaming] FUCK!"
+   ]
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 4.0,
+   "parts": [
+    "[stunned] Now my ass is swollen to the size of a yoga ball... [pleased] I guess that's pretty cool."
+   ]
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 2.6,
+   "parts": [
+    "[determined] I'm trying to control this haunted ass shopping cart..."
+   ]
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "[panicked] When it takes off through the aisles at fifty miles per fucking hour!"
+   ]
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 2.0,
+   "parts": [
+    "[panting] [out of breath] Huss! Huss! Huss!"
+   ],
+   "voice_id": "SOYHLrjzK2X1ezoPC6cr",
+   "seed": 39
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 2.2,
+   "parts": [
+    "[screaming] I'm holding on for dear life!"
+   ]
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 3.6,
+   "parts": [
+    "[shouting] BOOM! [satisfied] It hits that old ass lady. [smug] She was a bitch anyway."
+   ]
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 4.0,
+   "parts": [
+    "[relieved] The cart's fixed... [deadpan] but now my ass has a wobbly wheel."
+   ]
+  }
+ ]
+}

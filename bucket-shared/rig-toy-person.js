@@ -1,5 +1,5 @@
 // Peg-doll toy person, ~3 units tall, faces +z.
-// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair })
+// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses })
 //   mirrored: flips left/right (a reflection of the same person) · longHair: shoulder-length hair + bun.
 //   -> { group, anchors: { head, headTop, handL, handR, hips }, foam, shades, pose({...}) }
 // pose({ t, scratch, sit, slump, point, lather, look, tilt, mood,
@@ -11,12 +11,14 @@
 //   hold: right arm straight forward (holding something out) · laugh: head back, mouth wide, shaking
 //   smug: one brow up + side smirk · lean: lean back, relaxed · shades: sunglasses on (0/1)
 //   walk 0..1: walk cycle at walkRate steps/s (legs + arm swing)
+//   push 0..1: both arms straight forward (pushing a cart) · butt 0..1: swells into a yoga ball (anchors.butt)
+//   buttEyes 0..1: glowing eyes open on that butt
 //   goo 0..1: covered in bird shit, from a splat on the head (0.1) to a full white shell (1)
 import * as THREE from 'three';
 import { mesh, ball, cyl, rbox, at, rng, mat } from './toy-kit.js';
 
 export function buildToyPerson(o = {}) {
-  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false } = o;
+  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false } = o;
   const r = rng(seed);
   const g = new THREE.Group(), hips = at(new THREE.Group(), 0, 0.85, 0, g), torso = at(new THREE.Group(), 0, 0, 0, hips);
   const legs = [-1, 1].map(s => {
@@ -52,6 +54,10 @@ export function buildToyPerson(o = {}) {
     for (const s of [-1, 1]) at(mesh(rbox(0.28, 0.95, 0.42, 0.12), hair), s * 0.58, -0.3, 0.05, hairG);
     at(mesh(ball(0.26, 1), hair), 0, 0.55, -0.35, hairG);
   }
+  if (glasses) for (const s of [-1, 1]) { const f = at(mesh(new THREE.TorusGeometry(0.13, 0.025, 4, 10), '#3b2f4a'), s * 0.21, 0.03, 0.6, head); }
+  const buttBall = at(mesh(ball(0.32, 2), pants), 0, 0.05, -0.32, hips);
+  const bEyes = at(new THREE.Group(), 0, 0.15, -0.3, buttBall);
+  for (const s of [-1, 1]) at(new THREE.Mesh(ball(0.06, 1), mat('#fff27a', { emissive: '#ffe600', emissiveIntensity: 2 })), s * 0.1, 0, -0.02, bEyes);
   const shades = at(new THREE.Group(), 0, 0.03, 0.6, head);
   for (const s of [-1, 1]) at(mesh(rbox(0.3, 0.17, 0.05, 0.05), '#1d1d2b'), s * 0.2, 0, 0, shades);
   at(mesh(rbox(0.16, 0.04, 0.04, 0.02), '#1d1d2b'), 0, 0.04, 0, shades);
@@ -82,7 +88,7 @@ export function buildToyPerson(o = {}) {
   for (const a of arms) { addGoo(a.sh, 0, -0.4, 0, 0.22); goos[goos.length - 1].scale.set(0.8, 1.9, 0.8); }
   if (mirrored) g.scale.x = -1;
   function pose({ t = 0, scratch = 0, scratchRate = 4, sit = 0, slump = 0, point = 0, lather = 0, look = 0, tilt = 0, mood = 0,
-    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0, goo = 0, walk = 0, walkRate = 2 } = {}) {
+    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0, goo = 0, walk = 0, walkRate = 2, push = 0, butt = 0, buttEyes = 0 } = {}) {
     hips.position.y = 0.85 - sit * 0.18;
     legs.forEach(l => (l.rotation.x = -sit * 1.45));
     torso.rotation.x = slump * 0.35;
@@ -120,6 +126,9 @@ export function buildToyPerson(o = {}) {
     head.position.y = Math.sin(t * 30) * 0.03 * laugh;
     shades.visible = sh > 0.5;
     goos.forEach((b, i) => (b.visible = goo > (i + 0.5) / goos.length));
+    if (push) for (const a of arms) { a.sh.rotation.x = lerp(a.sh.rotation.x, -1.35, push); a.sh.rotation.z = lerp(a.sh.rotation.z, -a.s * 0.12, push); }
+    const bs = 1 + butt * 2.6; buttBall.scale.setScalar(bs); buttBall.position.set(0, 0.05 + butt * 0.25, -0.32 - butt * 0.75);
+    buttBall.visible = butt > 0.02; bEyes.visible = buttEyes > 0.01; bEyes.scale.set(1, Math.max(0.01, buttEyes), 1);
     if (walk) { const w = Math.sin(t * Math.PI * walkRate) * 0.6 * walk;
       legs[0].rotation.x += w; legs[1].rotation.x -= w; L.sh.rotation.x -= w * 0.8; R.sh.rotation.x += w * 0.8;
       hips.position.y += Math.abs(Math.sin(t * Math.PI * walkRate)) * 0.06 * walk; }
@@ -128,5 +137,5 @@ export function buildToyPerson(o = {}) {
     if (laugh) { mouth.scale.set(1.5, 0.9 + Math.abs(Math.sin(t * 22)) * 0.4 * laugh, 0.5); eyes.forEach(e => (e.scale.y = 0.4)); }
   }
   pose();
-  return { group: g, anchors: { head, headTop: hairG, handL: arms[0].hand, handR: arms[1].hand, hips }, foam, shades, pose };
+  return { group: g, anchors: { head, headTop: hairG, handL: arms[0].hand, handR: arms[1].hand, hips, butt: buttBall }, foam, shades, pose };
 }

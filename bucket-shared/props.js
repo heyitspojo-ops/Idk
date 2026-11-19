@@ -233,3 +233,65 @@ export function lawnChair({ color = '#5fa8d3' } = {}) {
   g.anchors = { seat: at(new THREE.Object3D(), 0, 0.6, 0.1, g) };
   return g;
 }
+
+// ---------- shopping-cart gags ----------
+/** Shopping cart, faces -z (front), handle at +z. anchors: wobble (front-left wheel pivot), wheels[], eyes, handle, basket.
+ *  cart.set({ t, wobble 0..1, eyes 0..1 open, squint 0..1, spin (wheel roll angle) }) */
+export function cart({ frame = '#b9c0ca', handle = '#e2577a' } = {}) {
+  const g = new THREE.Group(), basket = at(new THREE.Group(), 0, 1.05, 0, g), fm = mat(frame, { metalness: 0.3, roughness: 0.4 });
+  const W = 1.2, L = 1.7, H = 0.85;
+  const bar = (w, h, d, x, y, z) => at(mesh(rbox(w, h, d, Math.min(w, h, d) * 0.4, 1), fm), x, y, z, basket);
+  for (const y of [0, H]) { bar(W, 0.05, 0.05, 0, y, -L / 2); bar(W, 0.05, 0.05, 0, y, L / 2); bar(0.05, 0.05, L, -W / 2, y, 0); bar(0.05, 0.05, L, W / 2, y, 0); }
+  for (let i = 0; i <= 6; i++) { const z = -L / 2 + (i / 6) * L; bar(0.04, H, 0.04, -W / 2, H / 2, z); bar(0.04, H, 0.04, W / 2, H / 2, z); }
+  for (let i = 0; i <= 4; i++) { const x = -W / 2 + (i / 4) * W; bar(0.04, H, 0.04, x, H / 2, -L / 2); bar(0.04, 0.04, L, x, 0, 0); }
+  at(mesh(rbox(W + 0.1, 0.12, 0.12, 0.05), handle), 0, H + 0.3, L / 2 + 0.25, basket);
+  for (const s of [-1, 1]) { const p = at(mesh(rbox(0.05, 0.4, 0.05, 0.02, 1), fm), s * W / 2, H + 0.12, L / 2 + 0.12, basket); p.rotation.x = 0.5; }
+  // chassis + wheels
+  for (const s of [-1, 1]) at(mesh(rbox(0.06, 0.06, L, 0.02, 1), fm), s * W * 0.4, 0.28, 0, g);
+  for (const s of [-1, 1]) at(mesh(rbox(0.05, 0.75, 0.05, 0.02, 1), fm), s * W * 0.4, 0.66, L / 2 - 0.1, g);
+  const wheels = [];
+  for (const [x, z] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
+    const piv = at(new THREE.Group(), x * W * 0.4, 0.14, z * L * 0.42, g);
+    const wh = at(mesh(new THREE.CylinderGeometry(0.13, 0.13, 0.08, 10), '#2b2233'), 0, 0, 0, piv); wh.rotation.z = Math.PI / 2;
+    at(mesh(rbox(0.06, 0.14, 0.06, 0.02, 1), fm), 0, 0.12, 0, piv);
+    wheels.push({ piv, wh });
+  }
+  // haunted eyes on the front of the basket
+  const eyes = at(new THREE.Group(), 0, H * 0.55, -L / 2 - 0.05, basket), lids = [];
+  for (const s of [-1, 1]) {
+    const e = at(new THREE.Group(), s * 0.26, 0, 0, eyes);
+    at(new THREE.Mesh(ball(0.16, 1), mat('#fff27a', { emissive: '#ffe600', emissiveIntensity: 1.8 })), 0, 0, 0, e);
+    at(mesh(ball(0.06, 0), '#221a26'), 0, 0, -0.14, e);
+    lids.push(e);
+  }
+  g.anchors = { wobble: wheels[0].piv, wheels, eyes, handle: at(new THREE.Object3D(), 0, H + 1.35, L / 2 + 0.3, g), basket };
+  g.set = ({ t = 0, wobble = 0, eyes: open = 0, squint = 0, spin = 0 } = {}) => {
+    wheels.forEach((w, i) => { w.wh.rotation.x = spin; w.piv.rotation.y = 0; });
+    wheels[0].piv.rotation.y = Math.sin(t * 34) * 0.9 * wobble; wheels[0].piv.position.x = -W * 0.4 + Math.sin(t * 51) * 0.04 * wobble;
+    eyes.visible = open > 0.01; lids.forEach(e => e.scale.set(1, Math.max(0.01, open * (1 - squint * 0.85)), 1));
+  };
+  g.set();
+  return g;
+}
+/** Little cartoon ghost (~1 tall), faces +z. ghost.set({ t, open }) wiggles the tail. */
+export function ghost() {
+  const g = new THREE.Group(), m = mat('#f4f7ff', { transparent: true, opacity: 0.85, emissive: '#cfe0ff', emissiveIntensity: 0.4 });
+  at(mesh(ball(0.42, 2), m), 0, 0.75, 0, g).scale.set(1, 1.1, 1);
+  at(mesh(new THREE.CylinderGeometry(0.42, 0.3, 0.6, 12), m), 0, 0.35, 0, g);
+  const tail = Array.from({ length: 4 }, (_, i) => at(mesh(ball(0.12, 1), m), Math.cos(i * 1.57) * 0.25, 0.05, Math.sin(i * 1.57) * 0.25, g));
+  for (const s of [-1, 1]) at(mesh(ball(0.07, 1), '#221a26'), s * 0.15, 0.85, 0.38, g);
+  at(mesh(ball(0.08, 1), '#221a26'), 0, 0.65, 0.4, g).scale.set(1.4, 0.6, 0.5);
+  g.set = ({ t = 0 } = {}) => tail.forEach((b, i) => (b.position.y = 0.05 + Math.sin(t * 9 + i) * 0.06));
+  return g;
+}
+/** Toilet-paper pyramid; returns { group, rolls } so rolls can be thrown. Base at y = 0. */
+export function tpPyramid({ rows = 5, color = '#fffaf0', band = '#7cc6a4' } = {}) {
+  const g = new THREE.Group(), rolls = [];
+  for (let row = 0; row < rows; row++) for (let i = 0; i < rows - row; i++) {
+    const rg = at(new THREE.Group(), (i - (rows - row - 1) / 2) * 0.52, 0.25 + row * 0.5, 0, g);
+    at(mesh(new THREE.CylinderGeometry(0.24, 0.24, 0.48, 12), color), 0, 0, 0, rg);
+    at(mesh(new THREE.CylinderGeometry(0.245, 0.245, 0.12, 12), band), 0, 0, 0, rg);
+    rg.userData.home = rg.position.clone(); rolls.push(rg);
+  }
+  return { group: g, rolls };
+}

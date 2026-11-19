@@ -7,7 +7,7 @@
 //     sfx: [[name, time, { gain, pan, ...args }], ...] }
 // Music styles: 'bouncy' | 'party' | 'march' | 'sad' | 'bright' | 'end'.
 // SFX: pop, chirp, slam, whoosh, scratch, splash, bubbles, squish, cheer, ding, sparkle, wahwah, steps, hit,
-//      splat, plop, fart ({ dur, wet }), gag, coo.
+//      splat, plop, fart ({ dur, wet }), gag, coo, squeak ({ dur, rate }), slap, rev.
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -110,6 +110,12 @@ export const SFX = {
   gag: () => { const b = buf(0.6); let ph = 0, lp = 0;
     for (let i = 0; i < b.length; i++) { const t = i / SR; ph += TAU * (260 - 180 * t) / SR; lp += 0.2 * (noise() - lp);
       b[i] = (Math.sign(Math.sin(ph)) * 0.25 + lp * 0.6) * Math.exp(-t * 4) * Math.min(1, t / 0.01); } return b; },
+  squeak: ({ dur = 1, rate = 6 } = {}) => { const b = buf(dur);
+    for (let k = 0; k * (1 / rate) < dur - 0.12; k++) mixInto(b, sweep(1900 + (k % 2) * 300, 2600, 0.1, 18, 'sq'), 0.3, k / rate); return b; },
+  slap: () => mixInto(noiseBurst(0.18, 0.7, 28, true), sweep(400, 120, 0.08, 40), 0.5),
+  rev: ({ dur = 1.2 } = {}) => { const b = buf(dur); let ph = 0;
+    for (let i = 0; i < b.length; i++) { const t = i / SR, x = t / dur; ph += TAU * (60 + 140 * x * x + 10 * Math.sin(TAU * 25 * t)) / SR;
+      b[i] = (((ph / TAU) % 1) * 2 - 1) * 0.5 * Math.min(1, t / 0.05) * Math.min(1, (dur - t) / 0.1); } return b; },
   coo: () => { const b = buf(0.5); for (let i = 0; i < b.length; i++) { const t = i / SR;
     b[i] = Math.sin(TAU * (420 + 60 * Math.sin(TAU * 6 * t)) * t) * Math.sin(Math.PI * t / 0.5) * 0.5; } return b; },
   steps: ({ dur = 3, rate = 8 } = {}) => { const b = buf(dur);
