@@ -13,10 +13,9 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[shouting] FUCK! [disgusted] You have a fuck ass pimple on your nose."
+     "t": "[screaming] FUCK! [furious] You have a fuck ass pimple on your nose."
     }
-   ],
-   "seed": 13
+   ]
   },
   {
    "id": 2,
@@ -25,7 +24,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[determined] So you pop it the fuck off your nose."
+     "t": "[enraged] So you pop it the fuck off your nose!"
     }
    ]
   },
@@ -36,7 +35,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[confused] But wait... the same pimple keeps showing up. [annoyed] Now it's on your cheek."
+     "t": "[angry] But wait... the same pimple keeps showing up. [furious] Now it's on your cheek!"
     }
    ]
   },
@@ -47,7 +46,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[frustrated] Fuck it, pop it again. [sarcastic] Great, now it's on your chin."
+     "t": "[enraged] Fuck it, pop it again! [angry sarcasm] Great. Now it's on your chin."
     }
    ]
   },
@@ -58,15 +57,14 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[exasperated] You keep popping this goddamn pimple but it keeps showing up everywhere. Your face, your legs, your back...",
+     "t": "[furious] You keep popping this goddamn pimple but it keeps showing up everywhere! Your face, your legs, your back...",
      "pause": 0.45
     },
     {
-     "t": "[shouting] YOUR ASS!",
+     "t": "[screaming] YOUR ASS!",
      "exaggeration": 1
     }
-   ],
-   "seed": 13
+   ]
   },
   {
    "id": 6,
@@ -75,7 +73,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[disbelief] And it keeps getting bigger and bigger. Now it's the size of a pickup truck. [deadpan] Right on your ass... fucking... great."
+     "t": "[angry] And it keeps getting bigger and bigger! Now it's the size of a pickup truck. [seething] Right on your ass... fucking... great."
     }
    ]
   },
@@ -86,11 +84,11 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[determined] So you climb your fat ass onto the roof of your house and jump, hoping to pop this...",
+     "t": "[furious] So you climb your fat ass onto the roof of your house and jump, hoping to pop this...",
      "pause": 0.2
     },
     {
-     "t": "[furious] [shouting] FUCKING PIMPLE THAT WON'T GO AWAY!",
+     "t": "[screaming] FUCKING PIMPLE THAT WON'T GO AWAY!",
      "exaggeration": 1
     }
    ]
@@ -102,7 +100,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[mocking] It doesn't pop, you dumbass. You bounce around like a dumbass. [amused] Pimple basketball."
+     "t": "[angry] It doesn't pop, you dumbass! You bounce around like a dumbass! [furious] Pimple basketball!"
     }
    ]
   },
@@ -113,7 +111,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[panicked] All the way across town, onto the fucking highway... and a truck hauling safety pins, of all things, is coming your way."
+     "t": "[enraged] All the way across town, onto the fucking highway... and a truck hauling safety pins, of all things, is coming your way!"
     }
    ]
   },
@@ -135,10 +133,9 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[shouting] BOOM! [amazed] A needle pops your fat ass butt pimple, and the explosion is so violent it flies your ass across town..."
+     "t": "[screaming] BOOM! [furious] A needle pops your fat ass butt pimple, and the explosion is so violent it flies your ass across town..."
     }
-   ],
-   "seed": 52
+   ]
   },
   {
    "id": 12,
@@ -147,10 +144,9 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[relieved] right back into your house. No more pimple."
+     "t": "[angry] right back into your house. [relieved] No more pimple."
     }
-   ],
-   "seed": 52
+   ]
   },
   {
    "id": 13,
@@ -159,7 +155,7 @@
    "tempo": 1.04,
    "parts": [
     {
-     "t": "[excited] Sweet!"
+     "t": "[shouting] Sweet!"
     }
    ]
   }
