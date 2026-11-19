@@ -3,7 +3,7 @@
 - **Reel folder:** `reels/fuck-this-shopping-cart/`
 - **Length:** ~45 s · 1080×1920 · 30 fps (tight: each beat = its line + a breath)
 - **Look:** soft 3D low-poly toy diorama
-- **Voice:** `audio/fuck-this-shopping-cart-vo.wav` — narrator ElevenLabs v3 "Chris" (the old lady never speaks)
+- **Voice:** `audio/fuck-this-shopping-cart-vo.wav` — narrator ElevenLabs v3 "Chris"; the cart's "Huss! Huss! Huss!" = a separate gruff, sprinting voice (the old lady never speaks)
 - **Reuses from `bucket-shared/`:** `toy-kit`, `rig-toy-person` (you + old lady), `props`, `synth-toy`, `vo-warp`, `voice/`. New builders: `world-store`, cart prop (wobbly wheel + haunted eyes), ghost, purse, toilet-paper display, speed lines, `butt` flag on the person rig, synth SFX (squeak, slap).
 
 ## Hook (0–3 s)
@@ -23,6 +23,7 @@ Extreme close-up on a shopping cart's front wheel: it shimmies and spins like cr
 | 7 | 21.0–26.0 | You from behind → turn | Your butt inflates like a yoga ball, bigger and bigger; you look back at it… shrug, kind of proud | "Now my ass is swollen to the size of a yoga ball. …I guess that's pretty cool." | — |
 | 8 | 26.0–29.0 | You + cart | You grip the handle again; the cart's eyes narrow, it shudders | "I'm trying to control this haunted ass shopping cart…" | — |
 | 9 | 29.0–33.5 | Tracking down the aisle | The cart launches; speed lines, boxes flying off shelves, you dragged behind horizontally like a flag | "When it takes off through the aisles at fifty miles per fucking hour!" | **50 MPH** |
+| 9b | 31.5–33.5 | Close on the cart, low and fast | The cart sprints like an athlete: eyes squeezed, wheels a blur, breathing hard | (cart, panting) "Huss! Huss! Huss!" | Speech bubble: **"HUSS HUSS HUSS"** |
 | 10 | 33.5–36.0 | Close, you holding on | Face flapping in the wind, butt bouncing, screaming | "I'm holding on for dear life!" | — |
 | 11 | 36.0–41.0 | End of the aisle, wide | BOOM: the cart plows the old lady into a toilet-paper pyramid; rolls fly everywhere; she sits dazed with stars | "BOOM! It hits that old ass lady. She was a bitch anyway." | **BOOM** |
 | 12 | 41.0–45.0 | You + cart, then your butt | A little ghost oozes out of the cart and dives into your yoga-ball butt. The cart's wheel snaps straight and it rolls away perfectly… while your butt starts shimmying and squeaking, dragging you sideways | "The cart's fixed… but now my ass has a wobbly wheel." | End card (below) |
