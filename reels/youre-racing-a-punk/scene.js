@@ -7,7 +7,7 @@ import { buildSwamp } from '../../bucket-shared/world-swamp.js';
 import { buildCar } from '../../bucket-shared/car-toy.js';
 import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { nosBottle, trophy, snail as buildSnail, engineParts, smoke, sparkle } from '../../bucket-shared/props.js';
-import { DURATION, SHOTS, T, toStory } from './timeline.js';
+import { DURATION, SHOTS, T, toStory, toOld, INSERT } from './timeline.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -57,6 +57,7 @@ const loser = ui.add(pill('LOSER', '#2b2233'), 'left:0;right:0;top:300px;text-al
 const nos = ui.add(pill('NOS', '#3b82f6'), 'left:0;right:0;top:300px;text-align:center;font-size:130px;');
 const boom = big('BOOM', 360, 230);
 const florida = ui.add(pill('FLORIDA', '#f4a3b5', '#2b2233'), 'left:0;right:0;top:300px;text-align:center;font-size:110px;');
+const haha = ui.add(pill('HA HA HA!', '#fffaf0', '#2b2233'), 'left:0;right:0;top:330px;text-align:center;font-size:110px;');
 const flash = ui.add('', 'inset:0;background:#fffaf0;');
 const end = ui.add(`<div>${[...'WINNER (TECHNICALLY).'].map(c => `<span style="display:inline-block;white-space:pre">${c}</span>`).join('')}</div>`, 'left:0;right:0;top:300px;text-align:center;font-size:84px;');
 const endL = [...end.querySelectorAll('span')];
@@ -162,8 +163,22 @@ function shoot(t) {
   key.place(look, s.world === 'map' ? 16 : 12);
 }
 
+// inserted beat: the Civic pulls up beside your burnt wreck and its driver points and laughs
+function laughBeat(n) {
+  const k = seg(n, INSERT.at, INSERT.at + INSERT.len);
+  civic.group.position.set(-0.6, 0, 18.8); civic.group.rotation.set(0, 0, 0); civic.set({ t: n });
+  punk.pose({ t: n, sit: 1, laugh: 1, wave: 1, mood: 1, smug: 0.5, look: 0.7 });
+  you.pose({ t: n, sit: 1, mood: -1, tilt: Math.sin(n * 3) * 0.05 });
+  const c = civic.group.position;
+  camera.position.set(lerp(0.9, 0.7, k), 4.3, c.z + lerp(6.6, 5.9, k)); camera.fov = 48; camera.updateProjectionMatrix();
+  camera.lookAt(0.75, 1.3, c.z - 0.9); key.place(new THREE.Vector3(c.x, 1, c.z), 12);
+}
+
 window.renderFrame = rt => {
-  const t = toStory(rt);
+  const n = toStory(rt), old = toOld(n), t = old ?? INSERT.at - 0.05;
   stage(t); shoot(t); screen(t);
+  haha.style.opacity = old === null ? 1 : 0;
+  haha.style.transform = `scale(${Math.max(0.01, pop(n, INSERT.at + 0.2, 8, 15))}) rotate(${Math.sin(n * 12) * 4}deg)`;
+  if (old === null) laughBeat(n);
   view.render(scene, camera, { focus: 0.5, blur: 1 });
 };

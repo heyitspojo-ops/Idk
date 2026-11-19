@@ -3,9 +3,15 @@
 import placed from '../../audio/youre-racing-a-punk-vo.lines.json' with { type: 'json' };
 import { voWarp } from '../../bucket-shared/vo-warp.js';
 
-// one knot per VO line start (15 lines) + the end
-const STORY = [0, 3.5, 7, 10, 13.5, 17, 22, 26.5, 31, 35, 39.5, 43.5, 47, 52, 57, 60];
-export const { toStory, toReel, duration: DURATION } = voWarp(placed, STORY);
+// A 3 s "he's LAUGHING at me" beat (VO line 16) is inserted at story 26.5. SHOTS and T below stay in the
+// original story clock ("old"); toStory returns the new clock, toOld maps it back (null inside the insert).
+export const INSERT = { at: 26.5, len: 3 };
+// one knot per VO line start (16 lines, in VO order) + the end — new clock
+const STORY = [0, 3.5, 7, 10, 13.5, 17, 22, 26.5, 29.5, 34, 38, 42.5, 46.5, 50, 55, 60, 63];
+const warp = voWarp(placed, STORY);
+export const toStory = warp.toStory, DURATION = warp.duration;
+export const toOld = n => (n < INSERT.at ? n : n < INSERT.at + INSERT.len ? null : n - INSERT.len);
+export const toReel = old => warp.toReel(old >= INSERT.at ? old + INSERT.len : old);
 
 // worlds: 'strip' (origin), 'map' (x + 500), 'swamp' (x + 800). track: 'you' | 'civic' -> cam offsets from that car
 export const SHOTS = [

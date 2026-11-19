@@ -27,22 +27,22 @@
     "end": 0.96
    },
    {
-    "w": "-ass",
+    "w": "ass",
     "start": 0.96,
-    "end": 1.2
+    "end": 1.22
    },
    {
     "w": "Honda",
-    "start": 1.2,
-    "end": 1.56
+    "start": 1.22,
+    "end": 1.54
    },
    {
-    "w": "Civic.",
-    "start": 1.56,
+    "w": "Civic,",
+    "start": 1.54,
     "end": 1.94
    }
   ],
-  "heard": "You're racing a punk -ass Honda Civic."
+  "heard": "You're racing a punk ass Honda Civic,"
  },
  {
   "id": 2,
@@ -52,7 +52,7 @@
   "text": "But your fuck ass car is too damn slow.",
   "words": [
    {
-    "w": "But",
+    "w": "but",
     "start": 3.04,
     "end": 3.26
    },
@@ -67,23 +67,23 @@
     "end": 3.72
    },
    {
-    "w": "-ass",
+    "w": "ass",
     "start": 3.72,
-    "end": 3.94
+    "end": 3.96
    },
    {
     "w": "car",
-    "start": 3.94,
+    "start": 3.96,
     "end": 4.3
    },
    {
     "w": "is",
     "start": 4.3,
-    "end": 4.68
+    "end": 4.66
    },
    {
     "w": "too",
-    "start": 4.68,
+    "start": 4.66,
     "end": 4.96
    },
    {
@@ -92,33 +92,33 @@
     "end": 5.2
    },
    {
-    "w": "slow.",
+    "w": "slow,",
     "start": 5.2,
     "end": 5.52
    }
   ],
-  "heard": "But your fuck -ass car is too damn slow."
+  "heard": "but your fuck ass car is too damn slow,"
  },
  {
   "id": 3,
-  "start": 6.1,
+  "start": 6.08,
   "end": 8.52,
   "min": 2.8,
   "text": "So you immediately floor it. Fuck yes!",
   "words": [
    {
-    "w": "So",
-    "start": 6.1,
+    "w": "so",
+    "start": 6.08,
     "end": 6.32
    },
    {
     "w": "you",
     "start": 6.32,
-    "end": 6.44
+    "end": 6.46
    },
    {
     "w": "immediately",
-    "start": 6.44,
+    "start": 6.46,
     "end": 6.92
    },
    {
@@ -129,20 +129,20 @@
    {
     "w": "it.",
     "start": 7.34,
-    "end": 7.7
+    "end": 7.76
    },
    {
     "w": "Fuck",
     "start": 8.14,
-    "end": 8.24
+    "end": 8.26
    },
    {
     "w": "yes!",
-    "start": 8.24,
+    "start": 8.26,
     "end": 8.52
    }
   ],
-  "heard": "So you immediately floor it. Fuck yes!"
+  "heard": "so you immediately floor it. Fuck yes!"
  },
  {
   "id": 4,
@@ -183,7 +183,7 @@
    },
    {
     "w": "You",
-    "start": 10.86,
+    "start": 10.88,
     "end": 11.12
    },
    {
@@ -199,15 +199,15 @@
    {
     "w": "that",
     "start": 11.56,
-    "end": 11.68
+    "end": 11.7
    },
    {
     "w": "dumb",
-    "start": 11.68,
+    "start": 11.7,
     "end": 11.94
    },
    {
-    "w": "-ass",
+    "w": "ass",
     "start": 11.94,
     "end": 12.14
    },
@@ -219,20 +219,20 @@
    {
     "w": "Civic.",
     "start": 12.48,
-    "end": 12.86
+    "end": 12.88
    },
    {
     "w": "Fuck!",
-    "start": 13.62,
+    "start": 13.6,
     "end": 13.88
    }
   ],
-  "heard": "Your car doesn't give a fuck. You lose to that dumb -ass Honda Civic. Fuck!"
+  "heard": "Your car doesn't give a fuck. You lose to that dumb ass Honda Civic. Fuck!"
  },
  {
   "id": 5,
   "start": 14.44,
-  "end": 16.82,
+  "end": 16.84,
   "min": 3.2,
   "text": "So you tear all the doors the fuck off your car.",
   "words": [
@@ -289,21 +289,21 @@
    {
     "w": "car.",
     "start": 16.5,
-    "end": 16.82
+    "end": 16.84
    }
   ],
   "heard": "So you tear all the doors the fuck off your car."
  },
  {
   "id": 6,
-  "start": 17.48,
-  "end": 24.62,
+  "start": 17.52,
+  "end": 24.7,
   "min": 4.6,
   "text": "You race him again. This time you blow NOS directly in the damn intake like you're fucking Vin Diesel. Fucking awesome!",
   "words": [
    {
     "w": "You",
-    "start": 17.48,
+    "start": 17.52,
     "end": 17.8
    },
    {
@@ -323,7 +323,7 @@
    },
    {
     "w": "This",
-    "start": 18.82,
+    "start": 18.8,
     "end": 18.98
    },
    {
@@ -333,7 +333,7 @@
    },
    {
     "w": "you",
-    "start": 19.6,
+    "start": 19.64,
     "end": 19.82
    },
    {
@@ -349,11 +349,11 @@
    {
     "w": "directly",
     "start": 20.44,
-    "end": 20.96
+    "end": 20.98
    },
    {
     "w": "in",
-    "start": 20.96,
+    "start": 20.98,
     "end": 21.2
    },
    {
@@ -379,40 +379,40 @@
    {
     "w": "you're",
     "start": 22.08,
-    "end": 22.38
+    "end": 22.4
    },
    {
     "w": "fucking",
-    "start": 22.38,
-    "end": 22.66
+    "start": 22.4,
+    "end": 22.64
    },
    {
     "w": "Vin",
-    "start": 22.66,
-    "end": 22.92
+    "start": 22.64,
+    "end": 22.9
    },
    {
     "w": "Diesel.",
-    "start": 22.92,
-    "end": 23.26
+    "start": 22.9,
+    "end": 23.28
    },
    {
     "w": "Fucking",
-    "start": 24.06,
+    "start": 24.08,
     "end": 24.28
    },
    {
-    "w": "awesome!",
+    "w": "awesome.",
     "start": 24.28,
-    "end": 24.62
+    "end": 24.7
    }
   ],
-  "heard": "You race them again. This time, you blow NAS directly in the damn intake like you're fucking Vin Diesel. Fucking awesome!"
+  "heard": "You race them again. This time, you blow NAS directly in the damn intake like you're fucking Vin Diesel. Fucking awesome."
  },
  {
   "id": 7,
   "start": 25.06,
-  "end": 30.5,
+  "end": 30.34,
   "min": 4.2,
   "text": "But now your bullshit engine fucking explodes. You are not fucking Vin Diesel. Idiot.",
   "words": [
@@ -429,582 +429,637 @@
    {
     "w": "your",
     "start": 25.3,
-    "end": 25.46
+    "end": 25.48
    },
    {
     "w": "bullshit",
-    "start": 25.46,
-    "end": 25.82
+    "start": 25.48,
+    "end": 25.84
    },
    {
     "w": "engine",
-    "start": 25.82,
-    "end": 26.1
+    "start": 25.84,
+    "end": 26.12
    },
    {
     "w": "fucking",
-    "start": 26.1,
-    "end": 26.54
+    "start": 26.12,
+    "end": 26.52
    },
    {
     "w": "explodes!",
-    "start": 26.54,
+    "start": 26.52,
     "end": 27.04
    },
    {
     "w": "You",
-    "start": 27.94,
-    "end": 28.32
+    "start": 27.7,
+    "end": 28.3
    },
    {
     "w": "are",
-    "start": 28.32,
-    "end": 28.46
+    "start": 28.3,
+    "end": 28.44
    },
    {
     "w": "not",
-    "start": 28.46,
+    "start": 28.44,
     "end": 28.7
    },
    {
     "w": "fucking",
     "start": 28.7,
-    "end": 29.06
+    "end": 29.08
    },
    {
     "w": "Vin",
-    "start": 29.06,
-    "end": 29.34
+    "start": 29.08,
+    "end": 29.32
    },
    {
-    "w": "Diesel.",
-    "start": 29.34,
-    "end": 29.64
+    "w": "Diesel,",
+    "start": 29.32,
+    "end": 29.68
    },
    {
-    "w": "Idiot.",
-    "start": 30.0,
-    "end": 30.5
+    "w": "idiot.",
+    "start": 30.16,
+    "end": 30.34
    }
   ],
-  "heard": "But now your bullshit engine fucking explodes! You are not fucking Vin Diesel. Idiot."
+  "heard": "But now your bullshit engine fucking explodes! You are not fucking Vin Diesel, idiot."
+ },
+ {
+  "id": 16,
+  "start": 30.94,
+  "end": 35.9,
+  "min": 3.0,
+  "text": "And this guy is fucking LAUGHING at me... fucking... motherfucker!",
+  "words": [
+   {
+    "w": "And",
+    "start": 30.94,
+    "end": 30.94
+   },
+   {
+    "w": "this",
+    "start": 30.94,
+    "end": 31.18
+   },
+   {
+    "w": "guy",
+    "start": 31.18,
+    "end": 31.5
+   },
+   {
+    "w": "is",
+    "start": 31.5,
+    "end": 31.92
+   },
+   {
+    "w": "fucking",
+    "start": 31.92,
+    "end": 32.48
+   },
+   {
+    "w": "laughing",
+    "start": 32.48,
+    "end": 32.98
+   },
+   {
+    "w": "at",
+    "start": 32.98,
+    "end": 33.32
+   },
+   {
+    "w": "me.",
+    "start": 33.32,
+    "end": 33.56
+   },
+   {
+    "w": "Fucking",
+    "start": 33.98,
+    "end": 34.4
+   },
+   {
+    "w": "motherfucker.",
+    "start": 34.4,
+    "end": 35.9
+   }
+  ],
+  "heard": "And this guy is fucking laughing at me. Fucking motherfucker."
  },
  {
   "id": 8,
-  "start": 30.78,
-  "end": 35.02,
+  "start": 36.14,
+  "end": 40.46,
   "min": 4.0,
   "text": "So you put a massive supercharged fucking V8 in it. Fucking genius.",
   "words": [
    {
     "w": "So",
-    "start": 30.78,
-    "end": 30.82
+    "start": 36.14,
+    "end": 36.28
    },
    {
     "w": "you",
-    "start": 30.82,
-    "end": 30.96
+    "start": 36.28,
+    "end": 36.42
    },
    {
     "w": "put",
-    "start": 30.96,
-    "end": 31.12
+    "start": 36.42,
+    "end": 36.58
    },
    {
     "w": "a",
-    "start": 31.12,
-    "end": 31.3
+    "start": 36.58,
+    "end": 36.72
    },
    {
     "w": "massive",
-    "start": 31.3,
-    "end": 31.62
+    "start": 36.72,
+    "end": 37.14
    },
    {
     "w": "supercharged",
-    "start": 31.62,
-    "end": 32.44
+    "start": 37.14,
+    "end": 37.9
    },
    {
     "w": "fucking",
-    "start": 32.44,
-    "end": 32.78
+    "start": 37.9,
+    "end": 38.3
    },
    {
     "w": "V8",
-    "start": 32.78,
-    "end": 33.28
+    "start": 38.3,
+    "end": 38.76
    },
    {
     "w": "in",
-    "start": 33.28,
-    "end": 33.42
+    "start": 38.76,
+    "end": 38.9
    },
    {
     "w": "it.",
-    "start": 33.42,
-    "end": 33.86
+    "start": 38.9,
+    "end": 39.32
    },
    {
     "w": "Fucking",
-    "start": 34.26,
-    "end": 34.46
+    "start": 39.72,
+    "end": 39.96
    },
    {
     "w": "genius.",
-    "start": 34.46,
-    "end": 35.02
+    "start": 39.96,
+    "end": 40.46
    }
   ],
   "heard": "So you put a massive supercharged fucking V8 in it. Fucking genius."
  },
  {
   "id": 9,
-  "start": 35.8,
-  "end": 40.96,
+  "start": 41.4,
+  "end": 46.44,
   "min": 3.4,
   "text": "But now that sick ass engine is so fucking big you can't see shit. You don't fucking care.",
   "words": [
    {
     "w": "But",
-    "start": 35.8,
-    "end": 36.02
+    "start": 41.4,
+    "end": 41.5
    },
    {
     "w": "now",
-    "start": 36.02,
-    "end": 36.2
+    "start": 41.5,
+    "end": 41.68
    },
    {
     "w": "that",
-    "start": 36.2,
-    "end": 36.4
+    "start": 41.68,
+    "end": 41.88
    },
    {
     "w": "sick",
-    "start": 36.4,
-    "end": 36.74
+    "start": 41.88,
+    "end": 42.22
    },
    {
-    "w": "-ass",
-    "start": 36.74,
-    "end": 36.94
+    "w": "ass",
+    "start": 42.22,
+    "end": 42.44
    },
    {
     "w": "engine",
-    "start": 36.94,
-    "end": 37.2
+    "start": 42.44,
+    "end": 42.7
    },
    {
     "w": "is",
-    "start": 37.2,
-    "end": 37.42
+    "start": 42.7,
+    "end": 42.9
    },
    {
     "w": "so",
-    "start": 37.42,
-    "end": 37.6
+    "start": 42.9,
+    "end": 43.08
    },
    {
     "w": "fucking",
-    "start": 37.6,
-    "end": 38.08
+    "start": 43.08,
+    "end": 43.58
    },
    {
     "w": "big",
-    "start": 38.08,
-    "end": 38.36
+    "start": 43.58,
+    "end": 43.84
    },
    {
     "w": "you",
-    "start": 38.36,
-    "end": 38.5
+    "start": 43.84,
+    "end": 43.98
    },
    {
     "w": "can't",
-    "start": 38.5,
-    "end": 38.74
+    "start": 43.98,
+    "end": 44.24
    },
    {
     "w": "see",
-    "start": 38.74,
-    "end": 38.92
+    "start": 44.24,
+    "end": 44.4
    },
    {
     "w": "shit.",
-    "start": 38.92,
-    "end": 39.22
+    "start": 44.4,
+    "end": 44.7
    },
    {
     "w": "You",
-    "start": 39.82,
-    "end": 40.18
+    "start": 45.32,
+    "end": 45.66
    },
    {
     "w": "don't",
-    "start": 40.18,
-    "end": 40.44
+    "start": 45.66,
+    "end": 45.92
    },
    {
     "w": "fucking",
-    "start": 40.44,
-    "end": 40.64
+    "start": 45.92,
+    "end": 46.1
    },
    {
     "w": "care.",
-    "start": 40.64,
-    "end": 40.96
+    "start": 46.1,
+    "end": 46.44
    }
   ],
-  "heard": "But now that sick -ass engine is so fucking big you can't see shit. You don't fucking care."
+  "heard": "But now that sick ass engine is so fucking big you can't see shit. You don't fucking care."
  },
  {
   "id": 10,
-  "start": 41.58,
-  "end": 47.6,
+  "start": 47.04,
+  "end": 53.08,
   "min": 4.0,
   "text": "You race that fucking shitbox Civic for the third time. There's so much torque the chassis fucking twists!",
   "words": [
    {
     "w": "You",
-    "start": 41.58,
-    "end": 41.84
+    "start": 47.04,
+    "end": 47.32
    },
    {
     "w": "race",
-    "start": 41.84,
-    "end": 42.1
+    "start": 47.32,
+    "end": 47.58
    },
    {
     "w": "that",
-    "start": 42.1,
-    "end": 42.32
+    "start": 47.58,
+    "end": 47.8
    },
    {
     "w": "fucking",
-    "start": 42.32,
-    "end": 42.7
+    "start": 47.8,
+    "end": 48.18
    },
    {
-    "w": "shit",
-    "start": 42.7,
-    "end": 43.04
-   },
-   {
-    "w": "-box",
-    "start": 43.04,
-    "end": 43.22
+    "w": "shitbox",
+    "start": 48.18,
+    "end": 48.7
    },
    {
     "w": "Civic",
-    "start": 43.22,
-    "end": 43.54
+    "start": 48.7,
+    "end": 49.02
    },
    {
     "w": "for",
-    "start": 43.54,
-    "end": 43.72
+    "start": 49.02,
+    "end": 49.2
    },
    {
     "w": "the",
-    "start": 43.72,
-    "end": 43.94
+    "start": 49.2,
+    "end": 49.42
    },
    {
     "w": "third",
-    "start": 43.94,
-    "end": 44.12
+    "start": 49.42,
+    "end": 49.6
    },
    {
     "w": "time.",
-    "start": 44.12,
-    "end": 44.48
+    "start": 49.6,
+    "end": 49.96
    },
    {
     "w": "There's",
-    "start": 45.0,
-    "end": 45.5
+    "start": 50.6,
+    "end": 50.96
    },
    {
     "w": "so",
-    "start": 45.5,
-    "end": 45.7
+    "start": 50.96,
+    "end": 51.18
    },
    {
     "w": "much",
-    "start": 45.7,
-    "end": 45.9
+    "start": 51.18,
+    "end": 51.38
    },
    {
     "w": "torque",
-    "start": 45.9,
-    "end": 46.18
+    "start": 51.38,
+    "end": 51.66
    },
    {
     "w": "the",
-    "start": 46.18,
-    "end": 46.4
+    "start": 51.66,
+    "end": 51.86
    },
    {
     "w": "chassis",
-    "start": 46.4,
-    "end": 46.7
+    "start": 51.86,
+    "end": 52.16
    },
    {
     "w": "fucking",
-    "start": 46.7,
-    "end": 47.2
+    "start": 52.16,
+    "end": 52.68
    },
    {
-    "w": "twists!",
-    "start": 47.2,
-    "end": 47.6
+    "w": "twists.",
+    "start": 52.68,
+    "end": 53.08
    }
   ],
-  "heard": "You race that fucking shit -box Civic for the third time. There's so much torque the chassis fucking twists!"
+  "heard": "You race that fucking shitbox Civic for the third time. There's so much torque the chassis fucking twists."
  },
  {
   "id": 11,
-  "start": 48.06,
-  "end": 51.88,
+  "start": 53.36,
+  "end": 57.38,
   "min": 3.6,
   "text": "You smash into the other car and fly across the fucking continental United States.",
   "words": [
    {
     "w": "You",
-    "start": 48.06,
-    "end": 48.2
+    "start": 53.36,
+    "end": 53.66
    },
    {
     "w": "smash",
-    "start": 48.2,
-    "end": 48.56
+    "start": 53.66,
+    "end": 54.02
    },
    {
     "w": "into",
-    "start": 48.56,
-    "end": 48.78
+    "start": 54.02,
+    "end": 54.26
    },
    {
     "w": "the",
-    "start": 48.78,
-    "end": 48.9
+    "start": 54.26,
+    "end": 54.38
    },
    {
     "w": "other",
-    "start": 48.9,
-    "end": 49.06
+    "start": 54.38,
+    "end": 54.54
    },
    {
     "w": "car",
-    "start": 49.06,
-    "end": 49.32
+    "start": 54.54,
+    "end": 54.8
    },
    {
     "w": "and",
-    "start": 49.32,
-    "end": 49.52
+    "start": 54.8,
+    "end": 55.04
    },
    {
     "w": "fly",
-    "start": 49.52,
-    "end": 49.8
+    "start": 55.04,
+    "end": 55.28
    },
    {
     "w": "across",
-    "start": 49.8,
-    "end": 50.02
+    "start": 55.28,
+    "end": 55.5
    },
    {
     "w": "the",
-    "start": 50.02,
-    "end": 50.24
+    "start": 55.5,
+    "end": 55.74
    },
    {
     "w": "fucking",
-    "start": 50.24,
-    "end": 50.6
+    "start": 55.74,
+    "end": 56.04
    },
    {
     "w": "continental",
-    "start": 50.6,
-    "end": 51.0
+    "start": 56.04,
+    "end": 56.5
    },
    {
     "w": "United",
-    "start": 51.0,
-    "end": 51.36
+    "start": 56.5,
+    "end": 56.82
    },
    {
     "w": "States.",
-    "start": 51.36,
-    "end": 51.88
+    "start": 56.82,
+    "end": 57.38
    }
   ],
   "heard": "You smash into the other car and fly across the fucking continental United States."
  },
  {
   "id": 12,
-  "start": 52.22,
-  "end": 52.94,
+  "start": 57.72,
+  "end": 58.42,
   "min": 2.2,
   "text": "Holy shit!",
   "words": [
    {
     "w": "Holy",
-    "start": 52.22,
-    "end": 52.42
+    "start": 57.72,
+    "end": 57.94
    },
    {
-    "w": "shit!",
-    "start": 52.42,
-    "end": 52.94
+    "w": "shit.",
+    "start": 57.94,
+    "end": 58.42
    }
   ],
-  "heard": "Holy shit!"
+  "heard": "Holy shit."
  },
  {
   "id": 13,
-  "start": 54.04,
-  "end": 57.12,
+  "start": 59.52,
+  "end": 62.6,
   "min": 3.4,
   "text": "Now you're stranded in bumfuck swamp infested Florida.",
   "words": [
    {
     "w": "Now",
-    "start": 54.04,
-    "end": 54.5
+    "start": 59.52,
+    "end": 59.96
    },
    {
     "w": "you're",
-    "start": 54.5,
-    "end": 54.66
+    "start": 59.96,
+    "end": 60.2
    },
    {
     "w": "stranded",
-    "start": 54.66,
-    "end": 54.96
+    "start": 60.2,
+    "end": 60.46
    },
    {
     "w": "in",
-    "start": 54.96,
-    "end": 55.22
+    "start": 60.46,
+    "end": 60.7
    },
    {
     "w": "bum",
-    "start": 55.22,
-    "end": 55.58
+    "start": 60.7,
+    "end": 61.04
    },
    {
-    "w": "-fuck",
-    "start": 55.58,
-    "end": 55.8
+    "w": "fuck",
+    "start": 61.04,
+    "end": 61.28
    },
    {
     "w": "swamp",
-    "start": 55.8,
-    "end": 56.22
+    "start": 61.28,
+    "end": 61.68
    },
    {
-    "w": "-infested",
-    "start": 56.22,
-    "end": 56.66
+    "w": "infested",
+    "start": 61.68,
+    "end": 62.16
    },
    {
     "w": "Florida.",
-    "start": 56.66,
-    "end": 57.12
+    "start": 62.16,
+    "end": 62.6
    }
   ],
-  "heard": "Now you're stranded in bum -fuck swamp -infested Florida."
+  "heard": "Now you're stranded in bum fuck swamp infested Florida."
  },
  {
   "id": 14,
-  "start": 57.54,
-  "end": 61.32,
+  "start": 63.08,
+  "end": 66.76,
   "min": 4.4,
   "text": "But you finally beat that dumbass Civic, and that's cool as hell.",
   "words": [
    {
     "w": "But",
-    "start": 57.54,
-    "end": 57.82
+    "start": 63.08,
+    "end": 63.28
    },
    {
     "w": "you",
-    "start": 57.82,
-    "end": 57.98
+    "start": 63.28,
+    "end": 63.46
    },
    {
     "w": "finally",
-    "start": 57.98,
-    "end": 58.34
+    "start": 63.46,
+    "end": 63.82
    },
    {
     "w": "beat",
-    "start": 58.34,
-    "end": 58.64
+    "start": 63.82,
+    "end": 64.12
    },
    {
     "w": "that",
-    "start": 58.64,
-    "end": 58.86
+    "start": 64.12,
+    "end": 64.34
    },
    {
     "w": "dumb",
-    "start": 58.86,
-    "end": 59.12
+    "start": 64.34,
+    "end": 64.58
    },
    {
-    "w": "-ass",
-    "start": 59.12,
-    "end": 59.3
+    "w": "ass",
+    "start": 64.58,
+    "end": 64.78
    },
    {
     "w": "Civic.",
-    "start": 59.3,
-    "end": 59.62
+    "start": 64.78,
+    "end": 65.08
    },
    {
     "w": "And",
-    "start": 60.0,
-    "end": 60.28
+    "start": 65.68,
+    "end": 65.76
    },
    {
     "w": "that's",
-    "start": 60.28,
-    "end": 60.62
+    "start": 65.76,
+    "end": 66.1
    },
    {
     "w": "cool",
-    "start": 60.62,
-    "end": 60.82
+    "start": 66.1,
+    "end": 66.28
    },
    {
     "w": "as",
-    "start": 60.82,
-    "end": 61.02
+    "start": 66.28,
+    "end": 66.52
    },
    {
     "w": "hell.",
-    "start": 61.02,
-    "end": 61.32
+    "start": 66.52,
+    "end": 66.76
    }
   ],
-  "heard": "But you finally beat that dumb -ass Civic. And that's cool as hell."
+  "heard": "But you finally beat that dumb ass Civic. And that's cool as hell."
  },
  {
   "id": 15,
-  "start": 62.16,
-  "end": 62.54,
+  "start": 67.6,
+  "end": 68.02,
   "min": 2.6,
   "text": "Sweet.",
   "words": [
    {
     "w": "Sweet.",
-    "start": 62.16,
-    "end": 62.54
+    "start": 67.6,
+    "end": 68.02
    }
   ],
   "heard": "Sweet."
