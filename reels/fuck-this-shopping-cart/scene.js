@@ -58,7 +58,8 @@ const path = (t, pts) => { // pts: [[time, x, z, ry], ...] -> smooth piecewise
 };
 function cartAt(t) {
   if (t < 13.5) return path(t, [[0, 0, 8.4, 0], [T.swerve, 0, 7.6, 0], [2.6, -0.3, 7.3, 0.45], [3.0, 0, 7.2, 0], [T.yank[0], 0, 7.0, 0],
-    [T.yank[1], -1.5, 5.2, 0.5], [7.2, 0, 4.6, 0], [8.6, 0.2, 3.0, 0.6], [T.bump, -0.55, 1.5, Math.PI / 2]]);
+    [T.yank[1], -1.5, 5.2, 0.5], [7.2, 0, 4.6, 0], [8.6, 0.2, 3.0, 0.6], [T.bump, -0.38, 1.5, Math.PI / 2],
+    [10.3, -0.2, 0.7, Math.PI / 2 - 0.3], [11.0, -0.1, -0.3, Math.PI / 2 - 0.45]]);  // stops at her butt, bounces aside
   if (t < 17) return [0, 4, 0];
   if (t < 21) { const r = t > T.rev[0] && t < T.rev[1] ? Math.sin(t * 60) * 0.06 : 0;
     const [x, z, ry] = path(t, [[17, 0, 0.6, Math.PI], [T.backUp[0], 0, 0.6, Math.PI], [T.backUp[1], 0, -1.6, Math.PI], [T.rev[1], 0, -1.6, Math.PI],
