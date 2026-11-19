@@ -36,7 +36,7 @@ const chair = at(lawnChair(), 2.4, 0, -2.0, street.group); chair.rotation.y = 0.
 const hole = at(mesh(new THREE.CircleGeometry(0.9, 12), '#4b3226'), 3.4, 0.03, -3.2, street.group); hole.rotation.x = -Math.PI / 2;
 const pile = at(mesh(ball(0.9, 1), '#8a5a44'), 4.7, 0, -4.2, street.group); pile.scale.set(1, 0.6, 1);
 const dirt = Array.from({ length: 8 }, () => at(mesh(ball(0.12, 0), '#8a5a44'), 0, 0, 0, scene));
-const drops = Array.from({ length: 4 }, () => { const d = poopDrop(); scene.add(d); return d; });
+const drops = Array.from({ length: 4 }, () => { const d = poopDrop(0.26); scene.add(d); return d; });
 const blast = Array.from({ length: 28 }, (_, i) => { const d = poopDrop(0.12 + (i % 3) * 0.05); scene.add(d);
   d.userData.v = new THREE.Vector3(Math.cos(i * 2.39) * (1 + (i % 4)), 1 + (i % 5) * 0.8, Math.sin(i * 2.39) * (1 + (i % 4)) + 2); return d; });
 const trail = Array.from({ length: 10 }, (_, i) => { const s = smoke({ n: 5, size: 0.8, seed: i }); scene.add(s); return s; });
@@ -106,7 +106,7 @@ function stage(t) {
     } else { Y.position.copy(o).add(new THREE.Vector3(-1.2, 0.15, -0.35)); Y.rotation.set(0, 0, 0);
       you_ = { sit: 1, double: 0.6, mood: -1, laugh: 0.6 }; }
     const out = seg(t, T.ventOut, T.ventOut + 0.6), vent = V(-2.4, 4.0, -1.9, 'bunker');
-    const hover = V(-2.0, 3.4, -0.25, 'bunker');
+    const hover = V(-2.1, 2.55, 0.15, 'bunker');
     Bd.position.lerpVectors(vent, hover, smooth(out)); Bd.rotation.set(0, Math.PI / 2, 0);
     show(Bd, t > T.ventOut); bird_ = { flap: 1, smug: 1 };
     bunker.group.children.forEach(c => c.position.x === -2.4 && (c.position.z = -2.35 + (t > T.vent && t < T.ventOut ? Math.sin(t * 60) * 0.05 : 0)));
@@ -115,7 +115,7 @@ function stage(t) {
     if (t < 23) { Y.position.set(3.0, 0, -2.6); Y.rotation.y = 2.2;
       const k = (t * 3) % 1; you_ = { swingUp: 1, swing: k < 0.5 ? k * 2 : 2 - k * 2, mood: -1 };
       dirt.forEach((d, i) => { const p = ((t * 3 + i / 8) % 1); show(d, true); d.position.set(3.6 + p * 1.4, 0.2 + Math.sin(p * Math.PI) * 2, -3.2 - p * 1.0); });
-    } else if (t < 44) { Y.position.set(t < 35.5 ? 3.1 : 3.5, 0, t < 35.5 ? -2.2 : -2.5); Y.rotation.y = 2.35;
+    } else if (t < 44) { Y.position.set(t < 35.5 ? 3.1 : 3.5, 0, t < 35.5 ? -2.2 : -2.5); Y.rotation.y = lerp(2.35, 0.6, smooth(seg(t, T.boom + 1.0, T.boom + 1.8)));
       you_ = { hold: t < T.peck[0] ? 1 : 0, fold: t > T.rub && t < 35.5 ? 1 : 0, smug: t > T.rub && t < 35.5 ? 1 : 0, slump: t > 35.5 && t < T.boom ? 0.5 : 0,
         mood: t > T.boom ? -1 : 0.5 };
       bottle.rotation.z = t > T.pour[0] && t < T.pour[1] ? -1.6 : 0;
