@@ -4,7 +4,7 @@
 - **Length:** ~45 s · 1080×1920 · 30 fps (tight: each beat = its line + a breath)
 - **Look:** soft 3D low-poly toy diorama
 - **Voice:** `audio/fuck-the-table-is-vo.wav` — narrator ElevenLabs v3 "Chris" (the cat never speaks)
-- **Reuses from `bucket-shared/`:** `toy-kit`, `rig-toy-person`, `world-house`, `world-street`, `props`, `synth-toy`, `vo-warp`, `voice/`. New builders: `rig-cat`, `world-planet`, props (wobbly table, giant nails, steel beams, giant bolts, wrench, folded napkin), group shake, synth SFX (clang, rumble).
+- **Reuses from `bucket-shared/`:** `toy-kit`, `rig-toy-person`, `world-house`, `world-street`, `props`, `synth-toy`, `vo-warp`, `voice/`. New builders: `rig-cat`, `world-planet` (with sun + spiral galaxy), props (wobbly table, giant nails, steel beams, giant bolts, wrench, folded napkin), group shake, synth SFX (clang, rumble).
 
 ## Hook (0–3 s)
 
@@ -23,12 +23,12 @@ Close on a coffee mug on a little table: the table rocks — clack, clack — co
 | 7 | 24.5–29.0 | Street → sky | You drive giant bolts through the house corners deep into the ground with a giant wrench | "So I bolt my whole house to the fucking earth." | — |
 | 8 | 29.0–33.5 | Space | Pull out to the low-poly Earth: the whole planet wobbles like the table did, clouds sloshing, moon getting bumped | "Now the whole fucking planet is shaking!" | **🌍 WOBBLING** |
 | 9 | 33.5–38.0 | Close on the cat | The cat turns its head slowly toward camera — ears back, eyes narrowed, pure hatred | "And my cat is looking at me with a pissed off expression." | — |
-| 10 | 38.0–43.0 | Living room | The cat sighs, hops down, folds a napkin, slides it under the short table leg. Silence. The table, the floor, the house, the planet: all still | "…Then the cat fixed it with a napkin. Fuck that cat." | — |
-| 11 | 43.0–45.0 | End card | You stare at the napkin; the cat walks off, tail up | — | End card (below) |
+| 10 | 38.0–43.0 | Space, pulling further out | You bolt the planet to the sun with a giant chain… pull out further: you bolt the sun to the middle of a spiral galaxy… the whole galaxy, sun, planet and house now wobble together in perfect sync — cut back to the table: dead still on screen | "So I bolt the planet to the sun… and the sun to the fucking galaxy. Now the whole universe wobbles… so technically, the table doesn't." | — |
+| 11 | 43.0–45.0 | Living room, end card | You set your mug on the table: perfectly still. Everything else in the room sways in sync. The cat slides you a piece of paper: DIVORCE | — | End card (below) |
 
 ## End card
 
-43–45 s. You frozen, mouth open, holding the giant wrench; the cat strolls past, tail high, smug. Text pops letter by letter: **FIXED IT.** Last 10 frames: the cat looks back at the lens and slow-blinks.
+43–45 s. You admire your perfectly still table, the whole room swaying around it in sync. The cat slides a paper across the table: **DIVORCE**. Text pops letter by letter: **TECHNICALLY FIXED.** Last 10 frames: the cat glares at the lens and pushes your mug off the table.
 
 ## Look notes
 
