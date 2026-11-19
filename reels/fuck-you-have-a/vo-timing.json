@@ -1,0 +1,1002 @@
+[
+ {
+  "id": 1,
+  "start": 0.0,
+  "end": 3.26,
+  "min": 2.8,
+  "text": "FUCK! You have a fuck ass pimple on your nose.",
+  "words": [
+   {
+    "w": "Fuck.",
+    "start": 0.0,
+    "end": 0.44
+   },
+   {
+    "w": "You",
+    "start": 1.32,
+    "end": 1.48
+   },
+   {
+    "w": "have",
+    "start": 1.48,
+    "end": 1.58
+   },
+   {
+    "w": "a",
+    "start": 1.58,
+    "end": 1.88
+   },
+   {
+    "w": "fuck",
+    "start": 1.88,
+    "end": 2.1
+   },
+   {
+    "w": "-ass",
+    "start": 2.1,
+    "end": 2.3
+   },
+   {
+    "w": "pimple",
+    "start": 2.3,
+    "end": 2.7
+   },
+   {
+    "w": "on",
+    "start": 2.7,
+    "end": 2.84
+   },
+   {
+    "w": "your",
+    "start": 2.84,
+    "end": 2.96
+   },
+   {
+    "w": "nose,",
+    "start": 2.96,
+    "end": 3.26
+   }
+  ],
+  "heard": "Fuck. You have a fuck -ass pimple on your nose,"
+ },
+ {
+  "id": 2,
+  "start": 3.46,
+  "end": 5.34,
+  "min": 2.8,
+  "text": "So you pop it the fuck off your nose.",
+  "words": [
+   {
+    "w": "so",
+    "start": 3.46,
+    "end": 3.66
+   },
+   {
+    "w": "you",
+    "start": 3.66,
+    "end": 3.84
+   },
+   {
+    "w": "pop",
+    "start": 3.84,
+    "end": 4.04
+   },
+   {
+    "w": "it",
+    "start": 4.04,
+    "end": 4.18
+   },
+   {
+    "w": "the",
+    "start": 4.18,
+    "end": 4.3
+   },
+   {
+    "w": "fuck",
+    "start": 4.3,
+    "end": 4.62
+   },
+   {
+    "w": "off",
+    "start": 4.62,
+    "end": 4.8
+   },
+   {
+    "w": "your",
+    "start": 4.8,
+    "end": 4.96
+   },
+   {
+    "w": "nose.",
+    "start": 4.96,
+    "end": 5.34
+   }
+  ],
+  "heard": "so you pop it the fuck off your nose."
+ },
+ {
+  "id": 3,
+  "start": 6.32,
+  "end": 10.78,
+  "min": 3.2,
+  "text": "But wait... the same pimple keeps showing up. Now it's on your cheek.",
+  "words": [
+   {
+    "w": "But",
+    "start": 6.32,
+    "end": 6.38
+   },
+   {
+    "w": "wait,",
+    "start": 6.38,
+    "end": 6.64
+   },
+   {
+    "w": "the",
+    "start": 7.14,
+    "end": 7.32
+   },
+   {
+    "w": "same",
+    "start": 7.32,
+    "end": 7.6
+   },
+   {
+    "w": "pimple",
+    "start": 7.6,
+    "end": 7.94
+   },
+   {
+    "w": "keeps",
+    "start": 7.94,
+    "end": 8.14
+   },
+   {
+    "w": "showing",
+    "start": 8.14,
+    "end": 8.46
+   },
+   {
+    "w": "up.",
+    "start": 8.46,
+    "end": 8.74
+   },
+   {
+    "w": "Now",
+    "start": 9.8,
+    "end": 10.0
+   },
+   {
+    "w": "it's",
+    "start": 10.0,
+    "end": 10.22
+   },
+   {
+    "w": "on",
+    "start": 10.22,
+    "end": 10.34
+   },
+   {
+    "w": "your",
+    "start": 10.34,
+    "end": 10.48
+   },
+   {
+    "w": "cheek.",
+    "start": 10.48,
+    "end": 10.78
+   }
+  ],
+  "heard": "But wait, the same pimple keeps showing up. Now it's on your cheek."
+ },
+ {
+  "id": 4,
+  "start": 11.44,
+  "end": 14.4,
+  "min": 3.2,
+  "text": "Fuck it, pop it again. Great, now it's on your chin.",
+  "words": [
+   {
+    "w": "Fuck",
+    "start": 11.44,
+    "end": 11.54
+   },
+   {
+    "w": "it,",
+    "start": 11.54,
+    "end": 11.72
+   },
+   {
+    "w": "pop",
+    "start": 11.82,
+    "end": 11.96
+   },
+   {
+    "w": "it",
+    "start": 11.96,
+    "end": 12.1
+   },
+   {
+    "w": "again.",
+    "start": 12.1,
+    "end": 12.44
+   },
+   {
+    "w": "Great,",
+    "start": 13.24,
+    "end": 13.42
+   },
+   {
+    "w": "now",
+    "start": 13.58,
+    "end": 13.66
+   },
+   {
+    "w": "it's",
+    "start": 13.66,
+    "end": 13.8
+   },
+   {
+    "w": "on",
+    "start": 13.8,
+    "end": 13.92
+   },
+   {
+    "w": "your",
+    "start": 13.92,
+    "end": 14.06
+   },
+   {
+    "w": "chin.",
+    "start": 14.06,
+    "end": 14.4
+   }
+  ],
+  "heard": "Fuck it, pop it again. Great, now it's on your chin."
+ },
+ {
+  "id": 5,
+  "start": 14.9,
+  "end": 21.48,
+  "min": 4.5,
+  "text": "You keep popping this goddamn pimple but it keeps showing up everywhere. Your face, your legs, your back... YOUR ASS!",
+  "words": [
+   {
+    "w": "You",
+    "start": 14.9,
+    "end": 15.04
+   },
+   {
+    "w": "keep",
+    "start": 15.04,
+    "end": 15.24
+   },
+   {
+    "w": "popping",
+    "start": 15.24,
+    "end": 15.58
+   },
+   {
+    "w": "this",
+    "start": 15.58,
+    "end": 15.82
+   },
+   {
+    "w": "goddamn",
+    "start": 15.82,
+    "end": 16.16
+   },
+   {
+    "w": "pimple,",
+    "start": 16.16,
+    "end": 16.54
+   },
+   {
+    "w": "but",
+    "start": 16.6,
+    "end": 16.68
+   },
+   {
+    "w": "it",
+    "start": 16.68,
+    "end": 16.78
+   },
+   {
+    "w": "keeps",
+    "start": 16.78,
+    "end": 16.92
+   },
+   {
+    "w": "showing",
+    "start": 16.92,
+    "end": 17.26
+   },
+   {
+    "w": "up",
+    "start": 17.26,
+    "end": 17.48
+   },
+   {
+    "w": "everywhere.",
+    "start": 17.48,
+    "end": 17.82
+   },
+   {
+    "w": "Your",
+    "start": 18.18,
+    "end": 18.3
+   },
+   {
+    "w": "face,",
+    "start": 18.3,
+    "end": 18.66
+   },
+   {
+    "w": "your",
+    "start": 18.88,
+    "end": 18.98
+   },
+   {
+    "w": "legs,",
+    "start": 18.98,
+    "end": 19.3
+   },
+   {
+    "w": "your",
+    "start": 19.44,
+    "end": 19.54
+   },
+   {
+    "w": "back.",
+    "start": 19.54,
+    "end": 19.96
+   },
+   {
+    "w": "Your",
+    "start": 20.66,
+    "end": 20.9
+   },
+   {
+    "w": "ass.",
+    "start": 20.9,
+    "end": 21.48
+   }
+  ],
+  "heard": "You keep popping this goddamn pimple, but it keeps showing up everywhere. Your face, your legs, your back. Your ass."
+ },
+ {
+  "id": 6,
+  "start": 22.06,
+  "end": 28.84,
+  "min": 4.0,
+  "text": "And it keeps getting bigger and bigger. Now it's the size of a pickup truck. Right on your ass... fucking... great.",
+  "words": [
+   {
+    "w": "And",
+    "start": 22.06,
+    "end": 22.22
+   },
+   {
+    "w": "it",
+    "start": 22.22,
+    "end": 22.32
+   },
+   {
+    "w": "keeps",
+    "start": 22.32,
+    "end": 22.48
+   },
+   {
+    "w": "getting",
+    "start": 22.48,
+    "end": 22.78
+   },
+   {
+    "w": "bigger",
+    "start": 22.78,
+    "end": 23.2
+   },
+   {
+    "w": "and",
+    "start": 23.2,
+    "end": 23.42
+   },
+   {
+    "w": "bigger,",
+    "start": 23.42,
+    "end": 23.78
+   },
+   {
+    "w": "now",
+    "start": 23.86,
+    "end": 24.02
+   },
+   {
+    "w": "it's",
+    "start": 24.02,
+    "end": 24.14
+   },
+   {
+    "w": "the",
+    "start": 24.14,
+    "end": 24.28
+   },
+   {
+    "w": "size",
+    "start": 24.28,
+    "end": 24.46
+   },
+   {
+    "w": "of",
+    "start": 24.46,
+    "end": 24.58
+   },
+   {
+    "w": "a",
+    "start": 24.58,
+    "end": 24.72
+   },
+   {
+    "w": "pickup",
+    "start": 24.72,
+    "end": 24.98
+   },
+   {
+    "w": "truck.",
+    "start": 24.98,
+    "end": 25.38
+   },
+   {
+    "w": "Right",
+    "start": 26.16,
+    "end": 26.5
+   },
+   {
+    "w": "on",
+    "start": 26.5,
+    "end": 26.7
+   },
+   {
+    "w": "your",
+    "start": 26.7,
+    "end": 26.86
+   },
+   {
+    "w": "ass,",
+    "start": 26.86,
+    "end": 27.26
+   },
+   {
+    "w": "fucking",
+    "start": 27.64,
+    "end": 27.98
+   },
+   {
+    "w": "great.",
+    "start": 27.98,
+    "end": 28.84
+   }
+  ],
+  "heard": "And it keeps getting bigger and bigger, now it's the size of a pickup truck. Right on your ass, fucking great."
+ },
+ {
+  "id": 7,
+  "start": 28.84,
+  "end": 36.12,
+  "min": 4.4,
+  "text": "So you climb your fat ass onto the roof of your house and jump, hoping to pop this... FUCKING PIMPLE THAT WON'T GO AWAY!",
+  "words": [
+   {
+    "w": "So",
+    "start": 28.84,
+    "end": 29.28
+   },
+   {
+    "w": "you",
+    "start": 29.28,
+    "end": 29.44
+   },
+   {
+    "w": "climb",
+    "start": 29.44,
+    "end": 29.7
+   },
+   {
+    "w": "your",
+    "start": 29.7,
+    "end": 29.86
+   },
+   {
+    "w": "fat",
+    "start": 29.86,
+    "end": 30.28
+   },
+   {
+    "w": "ass",
+    "start": 30.28,
+    "end": 30.48
+   },
+   {
+    "w": "onto",
+    "start": 30.48,
+    "end": 30.7
+   },
+   {
+    "w": "the",
+    "start": 30.7,
+    "end": 30.86
+   },
+   {
+    "w": "roof",
+    "start": 30.86,
+    "end": 31.0
+   },
+   {
+    "w": "of",
+    "start": 31.0,
+    "end": 31.14
+   },
+   {
+    "w": "your",
+    "start": 31.14,
+    "end": 31.26
+   },
+   {
+    "w": "house",
+    "start": 31.26,
+    "end": 31.44
+   },
+   {
+    "w": "and",
+    "start": 31.44,
+    "end": 31.68
+   },
+   {
+    "w": "jump.",
+    "start": 31.68,
+    "end": 32.0
+   },
+   {
+    "w": "Hoping",
+    "start": 32.46,
+    "end": 32.8
+   },
+   {
+    "w": "to",
+    "start": 32.8,
+    "end": 32.94
+   },
+   {
+    "w": "pop",
+    "start": 32.94,
+    "end": 33.14
+   },
+   {
+    "w": "this",
+    "start": 33.14,
+    "end": 33.5
+   },
+   {
+    "w": "fucking",
+    "start": 33.5,
+    "end": 34.6
+   },
+   {
+    "w": "pimple",
+    "start": 34.6,
+    "end": 35.1
+   },
+   {
+    "w": "that",
+    "start": 35.1,
+    "end": 35.26
+   },
+   {
+    "w": "won't",
+    "start": 35.26,
+    "end": 35.54
+   },
+   {
+    "w": "go",
+    "start": 35.54,
+    "end": 35.72
+   },
+   {
+    "w": "away.",
+    "start": 35.72,
+    "end": 36.12
+   }
+  ],
+  "heard": "So you climb your fat ass onto the roof of your house and jump. Hoping to pop this fucking pimple that won't go away."
+ },
+ {
+  "id": 8,
+  "start": 36.34,
+  "end": 41.56,
+  "min": 3.6,
+  "text": "It doesn't pop, you dumbass. You bounce around like a dumbass. Pimple basketball.",
+  "words": [
+   {
+    "w": "It",
+    "start": 36.34,
+    "end": 36.58
+   },
+   {
+    "w": "doesn't",
+    "start": 36.58,
+    "end": 36.98
+   },
+   {
+    "w": "pop,",
+    "start": 36.98,
+    "end": 37.22
+   },
+   {
+    "w": "you",
+    "start": 37.4,
+    "end": 37.42
+   },
+   {
+    "w": "dumbass.",
+    "start": 37.42,
+    "end": 38.08
+   },
+   {
+    "w": "You",
+    "start": 38.52,
+    "end": 38.64
+   },
+   {
+    "w": "bounce",
+    "start": 38.64,
+    "end": 38.92
+   },
+   {
+    "w": "around",
+    "start": 38.92,
+    "end": 39.14
+   },
+   {
+    "w": "like",
+    "start": 39.14,
+    "end": 39.26
+   },
+   {
+    "w": "a",
+    "start": 39.26,
+    "end": 39.46
+   },
+   {
+    "w": "dumbass.",
+    "start": 39.46,
+    "end": 40.1
+   },
+   {
+    "w": "Pimple",
+    "start": 40.78,
+    "end": 41.04
+   },
+   {
+    "w": "basketball,",
+    "start": 41.04,
+    "end": 41.56
+   }
+  ],
+  "heard": "It doesn't pop, you dumbass. You bounce around like a dumbass. Pimple basketball,"
+ },
+ {
+  "id": 9,
+  "start": 41.88,
+  "end": 48.3,
+  "min": 4.0,
+  "text": "All the way across town, onto the fucking highway... and a truck hauling safety pins, of all things, is coming your way.",
+  "words": [
+   {
+    "w": "all",
+    "start": 41.88,
+    "end": 42.1
+   },
+   {
+    "w": "the",
+    "start": 42.1,
+    "end": 42.2
+   },
+   {
+    "w": "way",
+    "start": 42.2,
+    "end": 42.32
+   },
+   {
+    "w": "across",
+    "start": 42.32,
+    "end": 42.54
+   },
+   {
+    "w": "town,",
+    "start": 42.54,
+    "end": 42.88
+   },
+   {
+    "w": "onto",
+    "start": 43.3,
+    "end": 43.46
+   },
+   {
+    "w": "the",
+    "start": 43.46,
+    "end": 43.76
+   },
+   {
+    "w": "fucking",
+    "start": 43.76,
+    "end": 44.02
+   },
+   {
+    "w": "highway.",
+    "start": 44.02,
+    "end": 44.44
+   },
+   {
+    "w": "And",
+    "start": 45.1,
+    "end": 45.22
+   },
+   {
+    "w": "a",
+    "start": 45.22,
+    "end": 45.34
+   },
+   {
+    "w": "truck",
+    "start": 45.34,
+    "end": 45.54
+   },
+   {
+    "w": "hauling",
+    "start": 45.54,
+    "end": 46.0
+   },
+   {
+    "w": "safety",
+    "start": 46.0,
+    "end": 46.4
+   },
+   {
+    "w": "pins",
+    "start": 46.4,
+    "end": 46.86
+   },
+   {
+    "w": "of",
+    "start": 46.86,
+    "end": 47.04
+   },
+   {
+    "w": "all",
+    "start": 47.04,
+    "end": 47.2
+   },
+   {
+    "w": "things",
+    "start": 47.2,
+    "end": 47.44
+   },
+   {
+    "w": "is",
+    "start": 47.44,
+    "end": 47.62
+   },
+   {
+    "w": "coming",
+    "start": 47.62,
+    "end": 47.84
+   },
+   {
+    "w": "your",
+    "start": 47.84,
+    "end": 48.06
+   },
+   {
+    "w": "way.",
+    "start": 48.06,
+    "end": 48.3
+   }
+  ],
+  "heard": "all the way across town, onto the fucking highway. And a truck hauling safety pins of all things is coming your way."
+ },
+ {
+  "id": 10,
+  "start": 48.64,
+  "end": 48.8,
+  "min": 1.6,
+  "text": "FUCK!",
+  "words": [
+   {
+    "w": "Fuck.",
+    "start": 48.64,
+    "end": 48.8
+   }
+  ],
+  "heard": "Fuck."
+ },
+ {
+  "id": 11,
+  "start": 49.88,
+  "end": 57.38,
+  "min": 4.0,
+  "text": "BOOM! A needle pops your fat ass butt pimple, and the explosion is so violent it flies your ass across town...",
+  "words": [
+   {
+    "w": "Boom.",
+    "start": 49.88,
+    "end": 50.36
+   },
+   {
+    "w": "A",
+    "start": 50.92,
+    "end": 51.18
+   },
+   {
+    "w": "needle",
+    "start": 51.18,
+    "end": 51.42
+   },
+   {
+    "w": "pops",
+    "start": 51.42,
+    "end": 51.84
+   },
+   {
+    "w": "your",
+    "start": 51.84,
+    "end": 52.06
+   },
+   {
+    "w": "fat",
+    "start": 52.06,
+    "end": 52.42
+   },
+   {
+    "w": "ass",
+    "start": 52.42,
+    "end": 52.62
+   },
+   {
+    "w": "butt",
+    "start": 52.62,
+    "end": 52.94
+   },
+   {
+    "w": "pimple.",
+    "start": 52.94,
+    "end": 53.28
+   },
+   {
+    "w": "And",
+    "start": 53.6,
+    "end": 53.82
+   },
+   {
+    "w": "the",
+    "start": 53.82,
+    "end": 53.9
+   },
+   {
+    "w": "explosion",
+    "start": 53.9,
+    "end": 54.3
+   },
+   {
+    "w": "is",
+    "start": 54.3,
+    "end": 54.58
+   },
+   {
+    "w": "so",
+    "start": 54.58,
+    "end": 54.92
+   },
+   {
+    "w": "violent,",
+    "start": 54.92,
+    "end": 55.38
+   },
+   {
+    "w": "it",
+    "start": 55.6,
+    "end": 55.8
+   },
+   {
+    "w": "flies",
+    "start": 55.8,
+    "end": 56.2
+   },
+   {
+    "w": "your",
+    "start": 56.2,
+    "end": 56.44
+   },
+   {
+    "w": "ass",
+    "start": 56.44,
+    "end": 56.64
+   },
+   {
+    "w": "across",
+    "start": 56.64,
+    "end": 56.94
+   },
+   {
+    "w": "town.",
+    "start": 56.94,
+    "end": 57.38
+   }
+  ],
+  "heard": "Boom. A needle pops your fat ass butt pimple. And the explosion is so violent, it flies your ass across town."
+ },
+ {
+  "id": 12,
+  "start": 57.38,
+  "end": 59.72,
+  "min": 3.0,
+  "text": "right back into your house. No more pimple.",
+  "words": [
+   {
+    "w": "Right",
+    "start": 57.38,
+    "end": 57.84
+   },
+   {
+    "w": "back",
+    "start": 57.84,
+    "end": 58.06
+   },
+   {
+    "w": "into",
+    "start": 58.06,
+    "end": 58.22
+   },
+   {
+    "w": "your",
+    "start": 58.22,
+    "end": 58.38
+   },
+   {
+    "w": "house.",
+    "start": 58.38,
+    "end": 58.64
+   },
+   {
+    "w": "No",
+    "start": 59.2,
+    "end": 59.26
+   },
+   {
+    "w": "more",
+    "start": 59.26,
+    "end": 59.4
+   },
+   {
+    "w": "pimple.",
+    "start": 59.4,
+    "end": 59.72
+   }
+  ],
+  "heard": "Right back into your house. No more pimple."
+ },
+ {
+  "id": 13,
+  "start": 60.54,
+  "end": 61.0,
+  "min": 2.2,
+  "text": "Sweet!",
+  "words": [
+   {
+    "w": "Sweet.",
+    "start": 60.54,
+    "end": 61.0
+   }
+  ],
+  "heard": "Sweet."
+ }
+]

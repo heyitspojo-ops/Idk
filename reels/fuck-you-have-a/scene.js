@@ -87,7 +87,7 @@ function stage(t) {
   if (t < 19) { Y.position.set(0, 0, 1.4); Y.rotation.y = t > 15.3 ? Math.PI : 0;
     const squeezing = POPS.some(p => t > p - 0.6 && t < p + 0.2);
     Object.assign(yp, { mood: POPS.some(p => t > p && t < p + 1.0) ? 0.9 : -0.7, hold: squeezing && t < 13.5 ? 1 : 0, lather: squeezing && t < 13.5 ? 0.0 : 0 });
-    goo.forEach((g, i) => { const p = POPS[i]; show(g, t > p && t < 13.5); g.position.set(-0.6 + i * 0.6, 2.4 + i * 0.3, 1.0); g.rotation.x = Math.PI / 2; }); }
+  }
   else if (t < 23) { Y.position.copy(OFF.room).add(new THREE.Vector3(1.4, 0, 0.8)); Y.rotation.y = -0.6;
     Object.assign(yp, { mood: -1, look: -1.0, tilt: Math.sin(t * 2) * 0.1 }); }
   else if (t < 31.5) { const S = OFF.street; Y.rotation.y = Math.PI / 2;
@@ -107,7 +107,7 @@ function stage(t) {
   else { const O = OFF.room, f = seg(t, 42.5, T.crash);
     Y.position.copy(O).add(new THREE.Vector3(-1.4, lerp(14, 0.55, easeIn(f)), -2.1)); Y.rotation.y = 0;
     dust.position.copy(O).add(new THREE.Vector3(-1.4, 1, -2.1)); dust.set(seg(t, T.crash, T.crash + 1.5));
-    Object.assign(yp, { sit: t > T.crash ? 1 : 0, mood: t > T.crash + 0.6 ? 1 : -1, hold: t > T.mirror ? 1 : 0, look: t > T.mirror ? 0.3 : 0 });
+    Object.assign(yp, { sit: t > T.crash ? 1 : 0, mood: t > T.crash + 0.6 ? 1 : -1, hold: t > T.mirror ? 0.55 : 0, look: t > T.mirror ? 0.25 : 0 });
     sparks.forEach((s, i) => { show(s, t > T.crash + 0.8 && t < T.mirror); const a = t * 3 + i; s.position.copy(O).add(new THREE.Vector3(-1.4 + Math.cos(a) * 1.2, 3.6, -2.1 + Math.sin(a) * 0.4)); }); }
   you.pose(yp);
   scene.updateMatrixWorld(); placeZit(t);
@@ -126,7 +126,7 @@ function screen(t) {
 
 function shoot(t) {
   const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
-  const base = s.track === 'sky' ? you.group.position.clone() : s.track === 'you' ? you.group.position.clone().setY(0) : OFF[s.world].clone();
+  const base = s.track === 'zit' ? zit.getWorldPosition(new THREE.Vector3()) : s.track === 'sky' ? you.group.position.clone() : s.track === 'you' ? you.group.position.clone().setY(0) : OFF[s.world].clone();
   const shake = t > T.hit && t < T.hit + 0.6 ? 0.25 : t > T.crash && t < T.crash + 0.4 ? 0.15 : 0;
   camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 80) * shake; camera.position.y += Math.cos(t * 70) * shake;
   const look = lerpV(a.l, b.l, k).add(base);
@@ -137,6 +137,6 @@ function shoot(t) {
 
 window.renderFrame = rt => {
   const t = toStory(rt);
-  stage(t); shoot(t); screen(t);
+  stage(t); scene.updateMatrixWorld(); shoot(t); screen(t);
   view.render(scene, camera, { focus: 0.5, blur: 1 });
 };
