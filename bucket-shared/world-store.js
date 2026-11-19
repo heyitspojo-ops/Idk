@@ -30,6 +30,7 @@ export function buildStore(o = {}) {
   at(mesh(rbox(width + 4, 6, 0.4, 0.1), '#f7e3c8'), 0, 3, z1 - 0.2, g);
   const sign = at(textCard('AISLE 5', 2.4, { w: 1024, h: 380, bg: '#5fa8d3', color: '#fffaf0', size: 210, radius: 50 }), 0, 5.6, z0 - 6, g);
   for (const s of [-1, 1]) at(mesh(rbox(0.03, 1.2, 0.03, 0.01, 1), '#9aa3ad'), s * 0.9, 6.6, z0 - 6, g);
+  const back = at(textCard('AISLE 5', 2.4, { w: 1024, h: 380, bg: '#5fa8d3', color: '#fffaf0', size: 210, radius: 50 }), 0, 5.6, z0 - 6.02, g); back.rotation.y = Math.PI; // readable from both sides
   const anchors = {};
   const A = (nm, x, y, z) => { anchors[nm] = at(new THREE.Object3D(), x, y, z, g); };
   A('start', 0, 0, 9); A('prunes', -1.7, 0, 1.5); A('end', 0, 0, z1 + 3.5); A('tp', 0.4, 0, z1 + 1.6);
