@@ -41,12 +41,12 @@ export function buildCat(o = {}) {
 
   function pose({ t = 0, unimpressed = 0, pissed = 0, blink = 0, look = 0, tilt = 0, tail: flick = 0.3, paw = 0, sigh = 0, bob = 0 } = {}) {
     head.rotation.set(-0.05 + pissed * 0.08, look, tilt);
-    ears.forEach((e, i) => (e.rotation.z = (i ? -1 : 1) * pissed * 0.9));
-    ears.forEach(e => (e.rotation.x = -pissed * 0.5));
+    ears.forEach((e, i) => { e.rotation.z = (i ? -1 : 1) * pissed * 1.35; e.rotation.x = -pissed * 0.7; });
     const close = Math.max(blink, unimpressed * 0.5, pissed * 0.45);
-    lids.forEach(([up, lo]) => { up.position.y = 0.12 - close * 0.1; lo.position.y = -0.14 + Math.max(blink, pissed * 0.35) * 0.08; });
+    lids.forEach(([up, lo], i) => { up.position.y = 0.12 - close * 0.1; lo.position.y = -0.14 + Math.max(blink, pissed * 0.35) * 0.08;
+      up.rotation.z = (i ? 1 : -1) * pissed * 0.4; });
     brows.forEach((b, i) => { b.rotation.z = (i ? 1 : -1) * pissed * 0.45; b.position.y = 0.21 - pissed * 0.05 - unimpressed * 0.03; });
-    mouth.scale.x = 1 - pissed * 0.4;
+    mouth.scale.x = 1 - pissed * 0.2; mouth.rotation.z = 0; mouth.position.y = -0.17 - pissed * 0.02; mouth.scale.y = 1 + pissed * 1.5;
     tail.forEach((s, i) => (s.rotation.x = -0.5 + Math.sin(t * 3 + ph - i * 0.6) * 0.35 * flick - i * 0.08));
     tail.forEach(s => s.scale.set(1 + pissed * 0.8, 1, 1 + pissed * 0.8));
     paws[1].position.set(0.18, 0.12 + paw * 0.25, 0.42 + paw * 0.45);
