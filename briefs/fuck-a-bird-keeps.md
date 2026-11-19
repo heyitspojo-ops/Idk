@@ -3,7 +3,7 @@
 - **Reel folder:** `reels/fuck-a-bird-keeps/`
 - **Length:** ~45–55 s · 1080×1920 · 30 fps (tight: each beat = its line + a breath)
 - **Look:** soft 3D low-poly toy diorama
-- **Voice:** `audio/fuck-a-bird-keeps-vo.wav` — narrator ElevenLabs v3 "Chris"; wife's scream = a female ElevenLabs voice (unless you record it)
+- **Voice:** `audio/fuck-a-bird-keeps-vo.wav` — narrator ElevenLabs v3 "Chris" only (the wife never speaks; she gets a speech bubble)
 - **Reuses from `bucket-shared/`:** `toy-kit`, `rig-toy-person` (you + wife), `props`, `synth-toy`, `vo-warp`, `voice/`. New builders: `rig-bird`, `world-street`, `world-house`, `world-bunker`, poop props + a "covered in shit" flag on the person rig, synth SFX (splat, fart, gag).
 
 ## Hook (0–3 s)
@@ -19,14 +19,14 @@ A sunny toy sidewalk. You're walking, whistling. A smug pigeon glides in overhea
 | 3 | 7.0–11.5 | Your house, living room | You slam the door, relieved… the pigeon is sitting on the couch; it hops up and splats you again | "So I go inside my house. But it's in my house now. Still. Fucking. Shitting on me." | — |
 | 4 | 11.5–13.5 | Close on the pigeon | Pigeon on the lamp, shrugs its wings, splat without looking | "He doesn't give a flying fuck." | — |
 | 5 | 13.5–19.5 | Living room | Your wife storms in, yelling, arms waving; you stand there dripping, half-covered in white | "My wife is screaming at me… mostly because I haven't made love to her in three months. But I'm covered head to toe in bird shit!" | — |
-| 6 | 19.5–21.0 | Close on your wife | She screams | (wife) "Three fucking months!" | — |
+| 6 | 19.5–21.0 | Close on your wife | She screams, arms flailing | — (no VO) | Speech bubble: **"THREE FUCKING MONTHS!"** |
 | 7 | 21.0–25.5 | Backyard → underground cutaway | You dig furiously (dirt flying), slam a bunker hatch shut, flip off the ceiling | "So I dig an underground bunker. Try to get in here, motherfucker." | — |
 | 8 | 25.5–29.5 | Bunker | Air vent rattles… pigeon pops out of the vent, hovers over your yawning face, splat straight in your mouth | "The bird finds me… and shits directly into my mouth." | — |
 | 9 | 29.5–31.0 | Close on you | You gag, eyes bulging | "FUCK!" | — |
 | 10 | 31.0–35.5 | Backyard, bird feeder | You sneak a giant LAXATIVE bottle into the bird bowl; pigeon gobbles it up; you rub your hands | "So I sneak laxatives in his food. That'll teach that bastard a lesson." | Bottle: **LAXATIVE** |
 | 11 | 35.5–40.0 | Close on the pigeon | Pigeon swells up like a balloon, shaking, cheeks puffed, holding it… holding it… you lean in closer | "But wait… it's about to fucking explode. It's holding… and holding…" | — |
 | 12 | 40.0–44.0 | Wide | BOOM: a cartoon blast of runny white shit covers you completely; you're a dripping white lump with eyes | "BOOM! Bird shit all over me. I look like a fucking porta potty." | **BOOM** |
-| 13 | 44.0–48.0 | Sky → front yard | The ass blast rockets the pigeon across the sky… it lands on your wife's head and splats *her* — she screams and runs | "The ass blast sends the bird all the way to my wife… and now he's shitting on HER." | — |
+| 13 | 44.0–48.0 | Sky → front yard | The ass blast rockets the pigeon across the sky… it lands on your wife's head and splats *her*, again and again — she screams and runs | "The ass blast sends the bird all the way to my wife… and now he's shitting on HER." | Wife bubble: **"AAAAAH!"** |
 | 14 | 48.0–51.0 | You, end card | You, still dripping, lean back in a lawn chair with sunglasses, totally at peace | "He isn't shitting on me anymore, so that's great. Sweet!" | End card (below) |
 
 ## End card
