@@ -34,7 +34,7 @@ const you = seatPerson(mine), punk = seatPerson(civic, { shirt: '#2b2233', hair:
 const youFoot = buildToyPerson(); scene.add(youFoot.group); // you, standing (pit beats)
 const bottle = nosBottle(); youFoot.anchors.handR.add(bottle); bottle.rotation.x = Math.PI * 0.6;
 const cup = trophy(); scene.add(cup);
-const slug = buildSnail(); scene.add(slug); slug.scale.setScalar(1.6);
+const slug = buildSnail(); scene.add(slug); slug.scale.setScalar(3);
 const parts = engineParts(14); scene.add(parts);
 const boomSmoke = smoke({ n: 16, size: 2.6, color: '#5b5560' }); scene.add(boomSmoke);
 const exhaust = Array.from({ length: 5 }, (_, i) => { const s = smoke({ n: 3, size: 0.5, seed: i, color: '#d9d4cb' }); scene.add(s); return s; });
@@ -69,7 +69,7 @@ function race1(t) { // z positions on the strip
 function stage(t) {
   const M = mine.group, C = civic.group;
   M.rotation.set(0, 0, 0); C.rotation.set(0, 0, 0); M.scale.setScalar(1); C.scale.setScalar(1);
-  show(youFoot.group, false); show(cup, false); show(slug, false); parts.set(0); boomSmoke.set(0);
+  show(you.group, true); you.group.position.x = 0; show(youFoot.group, false); show(cup, false); show(slug, false); parts.set(0); boomSmoke.set(0);
   exhaust.forEach(s => s.set(0)); flames.forEach(f => show(f, false)); doorsFly.forEach(d => show(d, false));
   let ms = { t, engine: 'stock', doors: 4, speed: 0 }, cs = { t, speed: 0 };
   let yp = { t, sit: 1, mood: 0 }, pp = { t, sit: 1, smug: 1, mood: 0.6 }, fp = { t };
@@ -91,7 +91,7 @@ function stage(t) {
     M.position.set(LANE.you, 0, Math.min(18, go * go * 6)); C.position.set(LANE.civic, 0, t > T.launch2 ? Math.min(30, go * 9) : 0);
     Object.assign(ms, { doors: 0, hoodOpen: t < T.launch2 ? 1 : 0, speed: go ? 40 : 0, blown: boomed ? 1 : 0, char: boomed ? 1 : 0, bounce: t > T.nos ? 1 : 0 });
     cs.speed = go ? 25 : 0;
-    if (t < T.launch2) { show(you.group, false); show(youFoot.group, true); youFoot.group.position.set(LANE.you + 0.2, 0, 3.4); youFoot.group.rotation.y = Math.PI;
+    if (t < T.launch2) { show(you.group, false); show(youFoot.group, true); youFoot.group.position.set(LANE.you + 1.75, 0, 1.3); youFoot.group.rotation.y = -Math.PI / 2;
       fp = { t, hold: 1, mood: t > T.nos ? 1 : 0.2, laugh: t > T.nos ? 1 : 0 }; }
     else show(you.group, true);
     Object.assign(yp, { mood: boomed ? -1 : 1, laugh: !boomed && go ? 1 : 0 });
@@ -124,7 +124,7 @@ function stage(t) {
   // --- swamp (47–60)
   else { const S = OFF.swamp, land = seg(t, T.splash - 0.4, T.splash);
     M.position.set(S.x + 0.4, lerp(8, -0.35, easeIn(land)), S.z - 0.3 + (1 - land) * 6); M.rotation.set(0, -0.4, 0.12);
-    C.position.set(S.x - 3.4, 0.8, S.z - 2.6); C.rotation.set(0, 0.6, Math.PI);
+    C.position.set(S.x - 2.8, 1.35, S.z + 0.6); C.rotation.set(0, 0.9, Math.PI);
     Object.assign(ms, { doors: 0, engine: 'v8', char: 0 }); cs.speed = t > T.wreck ? 18 : 0;
     splash.forEach((d, i) => { const p = seg(t, T.splash, T.splash + 1.0), a = i * 0.52; show(d, p > 0 && p < 1);
       d.position.set(0.4 + Math.cos(a) * p * 3.4, Math.sin(p * Math.PI) * 2.4, -0.3 + Math.sin(a) * p * 3.4); });
