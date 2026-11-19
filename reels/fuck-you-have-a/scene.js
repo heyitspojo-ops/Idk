@@ -91,7 +91,7 @@ function stage(t) {
   else if (t < 23) { Y.position.copy(OFF.room).add(new THREE.Vector3(1.4, 0, 0.8)); Y.rotation.y = -0.6;
     Object.assign(yp, { mood: -1, look: -1.0, tilt: Math.sin(t * 2) * 0.1 }); }
   else if (t < 31.5) { const S = OFF.street; Y.rotation.y = Math.PI / 2;
-    if (t < T.jump) { const up = smooth(seg(t, T.roof, T.roof + 1.5)); Y.position.set(S.x - 1.0, lerp(0, 5.7, up), S.z - 8.6 + up * 0.6); Object.assign(yp, { mood: -1, walk: up < 1 ? 1 : 0 }); }
+    if (t < T.jump) { const up = smooth(seg(t, T.roof, T.roof + 1.5)); Y.position.set(S.x - 1.0 + (1 - up) * 3.6, lerp(0, 5.9, up), lerp(S.z - 4.8, S.z - 8, up)); Object.assign(yp, { mood: -1, walk: up < 1 ? 1 : 0 }); }
     else if (t < T.land) { const f = seg(t, T.jump, T.land); Y.position.set(S.x - 1.0 + f * 3, lerp(5.7, 2.6, easeIn(f)) + Math.sin(f * Math.PI) * 2, S.z - 8 + f * 6); Y.rotation.z = -f * 0.4; Object.assign(yp, { mood: -1, wave: 1 }); }
     else { const k = t - T.land; Y.position.set(S.x + 2 + k * 9, 2.6 + bounceAt(t), S.z - 2); Y.rotation.z = Math.sin(t * 3) * 0.3; Object.assign(yp, { laugh: 1, mood: -1, wave: 1 }); } }
   else if (t < 38.7) { const R = OFF.road, k = seg(t, 31.5, 35);
