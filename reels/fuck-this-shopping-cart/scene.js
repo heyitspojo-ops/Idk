@@ -67,7 +67,7 @@ function cartAt(t) {
   if (t < T.launch) return [t > T.shudder[0] ? Math.sin(t * 50) * 0.05 : 0, 4, 0];
   if (t < T.boom) { const p = seg(t, ...T.run); return [Math.sin(t * 7) * 0.25 * p, 4 - 21.5 * p ** 1.6, Math.sin(t * 5) * 0.08]; }
   if (t < T.rollAway[0]) return [0, lerp(-17.5, -17.0, easeOut(seg(t, T.boom, T.boom + 0.4))), 0];
-  return path(t, [[T.rollAway[0], 0, -17.0, 0], [43.2, 0.6, -16.4, Math.PI], [45, 0.6, -12.5, Math.PI]]);
+  return path(t, [[T.rollAway[0], 0, -17.0, 0], [43.4, 0.9, -18.8, -0.5], [45, 2.0, -20.6, -0.9]]);
 }
 
 function stage(t) {
@@ -90,11 +90,11 @@ function stage(t) {
     Object.assign(yp, { double: hit, mood: t > T.ram ? -1 : -0.3, look: t < T.ram ? -0.6 : 0 }); }
   else if (t < 26) { Y.position.set(0, 0, 3.9); Y.rotation.y = 0.2;
     Object.assign(yp, { look: t > T.lookBack[0] && t < T.proud ? -1.2 * smooth(seg(t, ...T.lookBack)) : 0, mood: t > T.proud ? 1 : -0.4, smug: t > T.proud ? 1 : 0 }); }
-  else if (running) { Y.rotation.set(Math.PI / 2 + Math.sin(t * 9) * 0.08, Math.PI + cry, Math.sin(t * 13) * 0.1, 'YXZ');
-    Y.position.set(cx, 1.55 + Math.sin(t * 11) * 0.15, cz + 1.2 + 2.6); Object.assign(yp, { push: 1, laugh: 1, mood: -1 }); }
+  else if (running) { Y.rotation.set(1.15 + Math.sin(t * 9) * 0.08, Math.PI + cry, Math.sin(t * 13) * 0.1, 'YXZ');
+    Y.position.set(cx, 0.55 + Math.sin(t * 11) * 0.12, cz + 1.2 + 2.45); Object.assign(yp, { push: 1, laugh: 1, mood: -1 }); }
   else if (t < 41) { const fly = seg(t, T.boom, T.boom + 0.8); Y.position.set(lerp(0, -1.5, fly), Math.sin(fly * Math.PI) * 2.2, lerp(-15.2, -16.2, fly)); Y.rotation.y = Math.PI - 0.6;
     Object.assign(yp, { mood: -0.8, tilt: Math.sin(t * 4) * 0.12 }); }
-  else { const sh = seg(t, T.ghostIn[1], 45); Y.position.set(-1.4 + Math.sin(t * 10) * 0.35 * Math.min(1, sh * 3), 0, lerp(-16.2, -14.6, sh)); Y.rotation.y = Math.PI / 2 + 0.6;
+  else { const sh = seg(t, T.ghostIn[1], 45); Y.position.set(-1.4 + Math.sin(t * 10) * 0.35 * Math.min(1, sh * 3), 0, lerp(-16.2, -14.8, sh)); Y.rotation.y = -2.4 + Math.sin(t * 10) * 0.25 * sh;
     Object.assign(yp, { mood: t > T.ghostIn[1] ? -0.5 : 0.4, buttEyes: t > T.buttEyes ? Math.min(1, pop(t, T.buttEyes, 7, 13)) : 0, tilt: Math.sin(t * 10) * 0.1 * sh }); }
   you.pose(yp);
   show(handprint, t > T.slap + 0.05 && t < 29);
@@ -114,7 +114,7 @@ function stage(t) {
   // --- boxes: tumble off the shelf in beat 2; fly as the cart passes in the run
   tumble.forEach((b, i) => { const p = seg(t, T.tumble + i * 0.08, T.tumble + 0.6 + i * 0.08); show(b, t > 3 && t < 13.5);
     b.position.set(-2.3 + p * (0.4 + i * 0.15), lerp(1.3 + (i % 3) * 0.9, 0.35, easeIn(p)), 5.6 + (i - 2) * 0.55); b.rotation.set(p * 2 + i, i, p * 3); });
-  fliers.forEach(b => { const { s, z, sp } = b.userData, p = running && cz < z ? seg(z - cz, 0, 4) : 0; show(b, running);
+  fliers.forEach(b => { const { s, z, sp } = b.userData, p = running && cz < z ? seg(z - cz, 0, 4) : 0; show(b, running && t < 33.5);
     b.position.set(s * lerp(2.3, 0.6, p), 1.4 + Math.sin(p * Math.PI) * 2.5, z - p * 2); b.rotation.set(p * sp, p * 3, 0); });
   // --- toilet paper explosion
   tp.rolls.forEach((r, i) => { const p = seg(t, T.boom + 0.15, T.boom + 1.4), a = i * 2.4;
