@@ -358,3 +358,39 @@ export function chain(a, b, link = 0.9) {
 }
 /** A sheet of paper with a word on it (flat card). */
 export const paper = (text, w = 0.9) => textCard(text, w, { w: 1024, h: 1320, bg: '#fffaf0', color: '#e2574a', size: 220, radius: 30 });
+
+// ---------- car gags ----------
+/** NOS bottle held at the valve (origin), body along -y, nozzle at +y. */
+export function nosBottle() {
+  const g = new THREE.Group();
+  at(mesh(new THREE.CylinderGeometry(0.22, 0.22, 1.1, 12), '#3b82f6'), 0, -0.6, 0, g);
+  at(mesh(ball(0.22, 1), '#3b82f6'), 0, -0.05, 0, g);
+  at(mesh(cyl(0.06, 0.06, 0.3, 6), '#c9ced6'), 0, 0.22, 0, g);
+  at(textCard('NOS', 0.36, { w: 512, h: 512, bg: '#fffaf0', color: '#ef4444', size: 220, radius: 60 }), 0, -0.6, 0.225, g);
+  return g;
+}
+/** Little gold trophy, base at y = 0. */
+export function trophy() {
+  const g = new THREE.Group(), gold = mat('#ffd166', { metalness: 0.5, roughness: 0.25, emissive: '#7a5200', emissiveIntensity: 0.2 });
+  at(mesh(rbox(0.3, 0.1, 0.3, 0.03), '#3b2f4a'), 0, 0.05, 0, g);
+  at(mesh(cyl(0.04, 0.05, 0.2, 6), gold), 0, 0.2, 0, g);
+  at(mesh(cyl(0.2, 0.08, 0.28, 10), gold), 0, 0.42, 0, g);
+  for (const s of [-1, 1]) at(mesh(new THREE.TorusGeometry(0.08, 0.02, 4, 8), gold), s * 0.2, 0.44, 0, g).rotation.y = Math.PI / 2;
+  return g;
+}
+/** Snail, faces +z. */
+export function snail() {
+  const g = new THREE.Group();
+  at(mesh(rbox(0.25, 0.12, 0.6, 0.06), '#e8c27a'), 0, 0.06, 0, g);
+  at(mesh(ball(0.22, 1), '#c98f5f'), 0, 0.26, -0.08, g);
+  for (const s of [-1, 1]) { const st = at(mesh(cyl(0.015, 0.015, 0.16, 4), '#e8c27a'), s * 0.05, 0.18, 0.3, g); st.rotation.x = 0.5; }
+  return g;
+}
+/** Exploding engine parts: pistons + bolts that fly out. parts.set(p 0..1) */
+export function engineParts(n = 12, seed = 9) {
+  const r = rng(seed), g = new THREE.Group(), list = [];
+  for (let i = 0; i < n; i++) { const p = at(mesh(i % 3 ? cyl(0.12, 0.12, 0.3, 6) : rbox(0.25, 0.25, 0.25, 0.04), i % 2 ? '#9aa3ad' : '#6b7280'), 0, 0, 0, g);
+    p.userData.v = new THREE.Vector3((r() - 0.5) * 6, 4 + r() * 5, (r() - 0.5) * 6); p.userData.s = r() * 8; list.push(p); }
+  g.set = p => { g.visible = p > 0 && p < 1; list.forEach(q => { q.position.copy(q.userData.v).multiplyScalar(p * 1.2); q.position.y -= 9.8 * (p * 1.2) ** 2 / 2 * 1.4; q.rotation.set(p * q.userData.s, p * 3, 0); }); };
+  return g;
+}

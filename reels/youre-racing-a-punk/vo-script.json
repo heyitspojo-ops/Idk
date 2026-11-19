@@ -1,0 +1,147 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.12,
+ "cache": "audio/takes/youre-racing-a-punk",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 3.0,
+   "parts": [
+    "[smug] You're racing a punk ass Honda Civic..."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "[annoyed] But your fuck ass car is too damn slow."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 2.8,
+   "parts": [
+    "[determined] So you immediately floor it. [excited] Fuck yes!"
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "[deadpan] Your car doesn't give a fuck. [frustrated] You lose to that dumbass Honda Civic. [shouting] FUCK!"
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 3.2,
+   "parts": [
+    "[angry] So you tear all the doors the fuck off your car."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 4.6,
+   "parts": [
+    "[determined] You race him again. [excited] This time you blow NOS directly in the damn intake like you're fucking Vin Diesel. [shouting] Fucking awesome!"
+   ],
+   "seed": 13,
+   "tempo": 1.06
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 4.2,
+   "parts": [
+    "[panicked] But now your bullshit engine fucking explodes. [deadpan] You are not fucking Vin Diesel. Idiot."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 4.0,
+   "parts": [
+    "[proud] So you put a massive supercharged fucking V8 in it. [smug] Fucking genius."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "[annoyed] But now that sick ass engine is so fucking big you can't see shit. [carefree] You don't fucking care."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 4.0,
+   "parts": [
+    "[determined] You race that fucking shitbox Civic for the third time. [shouting] There's so much torque the chassis fucking twists!"
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 3.6,
+   "parts": [
+    "[panicked] You smash into the other car and fly across the fucking continental United States."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 2.2,
+   "parts": [
+    "[shocked] Holy shit!"
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "[deflated] Now you're stranded in bumfuck swamp infested Florida."
+   ],
+   "seed": 26,
+   "tempo": 1.06
+  },
+  {
+   "id": 14,
+   "at": 0,
+   "min": 4.4,
+   "parts": [
+    "[proud] But you finally beat that dumbass Civic, [excited] and that's cool as hell."
+   ],
+   "tempo": 1.06
+  },
+  {
+   "id": 15,
+   "at": 0,
+   "min": 2.6,
+   "parts": [
+    "[satisfied] Sweet."
+   ],
+   "tempo": 1.06
+  }
+ ]
+}
