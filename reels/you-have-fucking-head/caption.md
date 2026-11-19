@@ -1,11 +1,6 @@
 # Caption
 
-They didn't leave. They UNIONIZED. 🐛👑
-
-Scratching? Theme park. Shampoo? Pool party. The comb? They built a whole fucking town with a flag.
-So I did the only thing that works on squatters: I offered them better real estate. 🏠💜
-
-Watch till the end. One of them is still waving. 👀
+They didn't leave. They unionized. 🐛 Wait for the last second 👀
 
 #headlice #animation #comedy #relatable #fyp
 
