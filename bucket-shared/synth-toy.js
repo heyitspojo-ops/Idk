@@ -7,7 +7,7 @@
 //     sfx: [[name, time, { gain, pan, ...args }], ...] }
 // Music styles: 'bouncy' | 'party' | 'march' | 'sad' | 'bright' | 'end'.
 // SFX: pop, chirp, slam, whoosh, scratch, splash, bubbles, squish, cheer, ding, sparkle, wahwah, steps, hit,
-//      splat, plop, fart ({ dur, wet }), gag, coo, squeak ({ dur, rate }), slap, rev.
+//      splat, plop, fart ({ dur, wet }), gag, coo, squeak ({ dur, rate }), slap, rev, clang, rumble ({ dur }).
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -116,6 +116,12 @@ export const SFX = {
   rev: ({ dur = 1.2 } = {}) => { const b = buf(dur); let ph = 0;
     for (let i = 0; i < b.length; i++) { const t = i / SR, x = t / dur; ph += TAU * (60 + 140 * x * x + 10 * Math.sin(TAU * 25 * t)) / SR;
       b[i] = (((ph / TAU) % 1) * 2 - 1) * 0.5 * Math.min(1, t / 0.05) * Math.min(1, (dur - t) / 0.1); } return b; },
+  clang: ({ pitch = 1 } = {}) => { const b = buf(1.2);
+    for (let i = 0; i < b.length; i++) { const t = i / SR; b[i] = [1, 2.76, 5.4, 8.93].reduce((v, h, k) => v + Math.sin(TAU * 520 * pitch * h * t) * Math.exp(-t * (4 + k * 3)) / (k + 1), 0) * 0.5 * Math.min(1, t / 0.002); }
+    return mixInto(b, noiseBurst(0.05, 0.6, 60, true), 0.4); },
+  rumble: ({ dur = 2 } = {}) => { const b = buf(dur); let lp = 0, lp2 = 0;
+    for (let i = 0; i < b.length; i++) { const t = i / SR; lp += 0.01 * (noise() - lp); lp2 += 0.05 * (lp - lp2);
+      b[i] = lp2 * 12 * (0.6 + 0.4 * Math.sin(TAU * 7 * t)) * Math.min(1, t / 0.3) * Math.min(1, (dur - t) / 0.4); } return b; },
   coo: () => { const b = buf(0.5); for (let i = 0; i < b.length; i++) { const t = i / SR;
     b[i] = Math.sin(TAU * (420 + 60 * Math.sin(TAU * 6 * t)) * t) * Math.sin(Math.PI * t / 0.5) * 0.5; } return b; },
   steps: ({ dur = 3, rate = 8 } = {}) => { const b = buf(dur);

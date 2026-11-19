@@ -1,5 +1,5 @@
 // Sunny toy street: grass, sidewalk along x, road, pastel houses and round trees; "your" house in the middle
-// with a front lawn. buildStreet({ seed, length }) -> { group, anchors: { door, lawn, walkStart, walkEnd, sky } }
+// with a front lawn. buildStreet({ seed, length }) -> { group, anchors: { door, lawn, walkStart, walkEnd, sky }, houses, mine }
 // Units: a toy person is ~3 tall. Sidewalk runs along x at z = 0; your front door faces +z at x = 0.
 import * as THREE from 'three';
 import { mesh, mat, rbox, cyl, ball, at, rng } from './toy-kit.js';
@@ -20,7 +20,7 @@ export function buildStreet(o = {}) {
     for (const s of [-1, 1]) at(mesh(rbox(0.9, 0.8, 0.1, 0.06), '#bfe6f5'), s * w * 0.3, 2.2, 2.02, h);
     return h;
   };
-  for (let i = -3; i <= 3; i++) house(i * 8, -8, palette[(i + 3) % palette.length], 5, i === 0);
+  const houses = []; for (let i = -3; i <= 3; i++) houses.push(house(i * 8, -8, palette[(i + 3) % palette.length], 5, i === 0));
   for (let i = -4; i <= 4; i++) {
     if (i === 0) continue;
     const t = at(new THREE.Group(), i * 8 + 4 + (r() - 0.5), 0, -4.2 + r() * 0.6, g);
@@ -32,5 +32,5 @@ export function buildStreet(o = {}) {
   const anchors = {};
   const A = (n, x, y, z) => { anchors[n] = at(new THREE.Object3D(), x, y, z, g); };
   A('door', 0, 0, -5.8); A('lawn', 3.2, 0, -3.0); A('walkStart', -10, 0, 0); A('walkEnd', 2, 0, 0); A('sky', 0, 9, 0);
-  return { group: g, anchors };
+  return { group: g, anchors, houses, mine: houses[3] };
 }

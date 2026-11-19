@@ -295,3 +295,66 @@ export function tpPyramid({ rows = 5, color = '#fffaf0', band = '#7cc6a4' } = {}
   }
   return { group: g, rolls };
 }
+
+// ---------- wobbly-table gags ----------
+/** Little round table with one short leg. Top at y ~1.3. table.set({ t, wobble }) rocks it on the short leg.
+ *  anchors: top (where a mug goes), legs[] (for nails), short (the short leg). */
+export function wobblyTable({ wood = '#c98f5f', top = '#d9a873' } = {}) {
+  const g = new THREE.Group(), rock = at(new THREE.Group(), 0, 0, 0, g);
+  at(mesh(new THREE.CylinderGeometry(1.15, 1.15, 0.14, 14), top), 0, 1.3, 0, rock);
+  at(mesh(new THREE.CylinderGeometry(1.05, 1.05, 0.1, 14), wood), 0, 1.2, 0, rock);
+  const legs = [[0.7, 0.7], [-0.7, 0.7], [-0.7, -0.7], [0.7, -0.7]].map(([x, z], i) => {
+    const h = i === 0 ? 1.05 : 1.2; const l = at(mesh(cyl(0.07, 0.06, h, 6), wood), x, 1.2 - h / 2, z, rock); return l; });
+  g.anchors = { top: at(new THREE.Object3D(), 0, 1.38, 0, rock), legs, short: legs[0] };
+  g.set = ({ t = 0, wobble = 0 } = {}) => { const a = Math.sin(t * 9) * 0.07 * wobble; rock.rotation.set(-a * 0.7, 0, a * 0.7); };
+  return g;
+}
+/** Coffee mug, base at y = 0; mug.set({ slosh }) tilts the coffee surface. */
+export function mug({ color = '#5fa8d3' } = {}) {
+  const g = new THREE.Group();
+  at(mesh(new THREE.CylinderGeometry(0.2, 0.18, 0.4, 12), color), 0, 0.2, 0, g);
+  const h = at(mesh(new THREE.TorusGeometry(0.11, 0.03, 6, 10), color), 0.22, 0.22, 0, g); h.rotation.y = Math.PI / 2;
+  const coffee = at(mesh(new THREE.CircleGeometry(0.18, 12), '#6b4226'), 0, 0.36, 0, g); coffee.rotation.x = -Math.PI / 2;
+  g.set = ({ slosh = 0 } = {}) => { coffee.rotation.z = slosh * 0.3; coffee.position.y = 0.36 + Math.abs(slosh) * 0.03; };
+  return g;
+}
+/** Giant nail (point down at y = 0). */
+export function giantNail(len = 1.6) {
+  const g = new THREE.Group(), m = mat('#b9c0ca', { metalness: 0.4, roughness: 0.3 });
+  at(mesh(cyl(0.06, 0.06, len, 6), m), 0, len / 2 + 0.12, 0, g);
+  at(mesh(new THREE.ConeGeometry(0.06, 0.24, 6), m), 0, 0.12, 0, g).rotation.x = Math.PI;
+  at(mesh(cyl(0.2, 0.2, 0.06, 10), m), 0, len + 0.15, 0, g);
+  return g;
+}
+/** Steel I-beam along y, length len. */
+export function steelBeam(len = 4, color = '#e0702f') {
+  const g = new THREE.Group();
+  for (const z of [-0.18, 0.18]) at(mesh(rbox(0.36, len, 0.06, 0.02, 1), color), 0, len / 2, z, g);
+  at(mesh(rbox(0.06, len, 0.36, 0.02, 1), color), 0, len / 2, 0, g);
+  return g;
+}
+/** Giant hex bolt, shaft down from y = 0 (head on top). */
+export function giantBolt(len = 4, r = 0.35) {
+  const g = new THREE.Group(), m = mat('#9aa3ad', { metalness: 0.5, roughness: 0.3 });
+  at(mesh(new THREE.CylinderGeometry(r * 1.8, r * 1.8, r * 1.1, 6), m), 0, r * 0.55, 0, g);
+  at(mesh(cyl(r, r, len, 8), m), 0, -len / 2, 0, g);
+  for (let i = 0; i < len / 0.35; i++) at(mesh(new THREE.TorusGeometry(r, 0.04, 4, 10), m), 0, -0.2 - i * 0.35, 0, g).rotation.x = Math.PI / 2;
+  return g;
+}
+/** Giant wrench held at the grip (origin), jaw along -y. */
+export function wrench(len = 2.2) {
+  const g = new THREE.Group(), m = mat('#c9ced6', { metalness: 0.4, roughness: 0.35 });
+  at(mesh(rbox(0.22, len, 0.1, 0.05), m), 0, -len / 2, 0, g);
+  for (const s of [-1, 1]) at(mesh(rbox(0.16, 0.4, 0.12, 0.04), m), s * 0.22, -len - 0.1, 0, g);
+  at(mesh(rbox(0.6, 0.16, 0.12, 0.05), m), 0, -len + 0.08, 0, g);
+  return g;
+}
+/** Chain of links from a to b (THREE.Vector3s, local to the parent). */
+export function chain(a, b, link = 0.9) {
+  const g = new THREE.Group(), m = mat('#9aa3ad', { metalness: 0.5, roughness: 0.3 }), d = b.clone().sub(a), n = Math.max(2, Math.round(d.length() / link));
+  for (let i = 0; i <= n; i++) { const l = at(mesh(new THREE.TorusGeometry(link * 0.45, link * 0.1, 5, 10), m), 0, 0, 0, g);
+    l.position.copy(a).addScaledVector(d, i / n); l.lookAt(l.position.clone().add(d)); if (i % 2) l.rotateZ(Math.PI / 2); }
+  return g;
+}
+/** A sheet of paper with a word on it (flat card). */
+export const paper = (text, w = 0.9) => textCard(text, w, { w: 1024, h: 1320, bg: '#fffaf0', color: '#e2574a', size: 220, radius: 30 });

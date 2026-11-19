@@ -1,0 +1,108 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.2,
+ "cache": "audio/takes/fuck-the-table-is",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 2.8,
+   "parts": [
+    "[shouting] FUCK! [annoyed] The table is uneven, so it wobbles."
+   ]
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 3.2,
+   "parts": [
+    "[proud] So I nail the whole table to the ground. [smug] Genius."
+   ],
+   "seed": 39
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 3.2,
+   "parts": [
+    "[confused] Wait... now my floor keeps fucking wobbling. [deflated] Fuck."
+   ]
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 3.0,
+   "parts": [
+    "[determined] So I reinforce the floor into the rest of the house..."
+   ],
+   "seed": 13
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 3.6,
+   "parts": [
+    "[shouting] What the fuck, now my whole house is wobbling! [sarcastic] Fucking... awesome."
+   ]
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 3.6,
+   "parts": [
+    {
+     "t": "[deadpan] Meanwhile, my cat is fucking not impressed.",
+     "pause": 0.3
+    },
+    {
+     "t": "[whispers] Not impressed at all.",
+     "gain": 0,
+     "pause": 0.1
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "[determined] So I bolt my whole house to the fucking earth."
+   ]
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "[panicked] Now the whole fucking planet is shaking!"
+   ]
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 3.4,
+   "parts": [
+    "[nervous] And my cat is looking at me with a pissed off expression."
+   ]
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 5.0,
+   "parts": [
+    "[determined] So I bolt the planet to the sun... and the sun to the fucking galaxy. [proud] Now the whole universe wobbles... so technically, the table doesn't."
+   ]
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 4.0,
+   "parts": [
+    "[surprised] The cat took the table in the divorce... [relieved] fucking sweet."
+   ]
+  }
+ ]
+}
