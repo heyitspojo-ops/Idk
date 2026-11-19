@@ -169,11 +169,11 @@ export function boat({ hull = '#ef7b6c', sail = '#fffaf0', stripe = '#5fa8d3' } 
   const h = at(mesh(rbox(1.8, 0.7, 3.6, 0.3), hull), 0, 0.1, 0, g); h.scale.set(1, 1, 1);
   at(mesh(rbox(1.5, 0.1, 3.2, 0.05), '#d9a873'), 0, 0.42, 0, g);
   at(mesh(rbox(0.5, 0.5, 1.0, 0.2), hull), 0, 0.2, 1.75, g).scale.set(0.8, 1, 1);
-  at(mesh(cyl(0.06, 0.07, 4.0, 6), '#b5803e'), 0, 2.4, 0.6, g);
-  const sg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 3.4, 0), new THREE.Vector3(0, 0, -2.0)]);
+  at(mesh(cyl(0.06, 0.07, 4.0, 6), '#b5803e'), 0, 2.4, 1.55, g); // mast at the bow, clear of the seat
+  const sg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 3.4, 0), new THREE.Vector3(0, 0, -1.3)]);
   sg.setIndex([0, 1, 2]); sg.computeVertexNormals();
-  const sl = at(mesh(sg, mat(sail, { side: THREE.DoubleSide })), 0.02, 0.8, 0.5, g);
-  const st = at(mesh(rbox(0.04, 0.25, 1.5, 0.01), mat(stripe, { side: THREE.DoubleSide })), 0.04, 1.6, -0.25, g); st.rotation.x = 0.0;
+  const sl = at(mesh(sg, mat(sail, { side: THREE.DoubleSide })), 0.02, 0.8, 1.45, g); // sail ends ahead of the seat
+  const st = at(mesh(rbox(0.04, 0.25, 0.95, 0.01), mat(stripe, { side: THREE.DoubleSide })), 0.04, 1.6, 0.95, g); st.rotation.x = 0.0;
   g.anchors = { seat: at(new THREE.Object3D(), 0, 0.45, -0.6, g), side: at(new THREE.Object3D(), 0.9, 0.5, -0.4, g), sail: sl };
   return g;
 }

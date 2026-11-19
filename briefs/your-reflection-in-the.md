@@ -21,7 +21,7 @@ Close on the bathroom mirror. You wave. Your reflection doesn't. It folds its ar
 | 5 | 14.0–20.0 | Quick cuts on the mirror | Sledgehammer bounces → chainsaw sparks and snaps → cartoon bomb, smoke clears; mirror spotless, reflection filing its nails | "Sledgehammer. Chainsaw. A fucking bomb. That bitch is fucking invincible." | **NOTHING CAN DESTROY IT** |
 | 6 | 20.0–25.5 | Ocean diorama, toy boat | You sail a tiny boat across a faceted blue sea, dotted route line, you relax | "So you sail across the whole goddamn Pacific to get away from that piece of shit." | Map label: **PACIFIC OCEAN** |
 | 7 | 25.5–31.0 | Over the side of the boat → pull back | You peek over the side: the reflection in the water laughs; pull back, a reflection in every wave, all laughing | "But you're in the middle of the goddamn ocean. Your reflection is FUCKING everywhere... and it's laughing at you." | — |
-| 8 | 31.0–34.0 | Close on you in the boat | You clutch your head as a ring of laughing reflections spins around the boat | (whispered) "This nigga." | — |
+| 8 | 31.0–34.0 | Close on you in the boat | You clutch your head as a ring of laughing reflections spins around the boat | (whispered, aggressive) "Motherfucker." | — |
 | 9 | 34.0–41.0 | Close on the water | You hold up a hand mirror at the water. The reflection sees itself, calls *itself* fat, kicks its own reflection → infinite mirror tunnel collapses; the water-reflection cracks and shatters into sparkles | "So you show the bastard a mirror. And it can't stand its own fucking face." | — |
 | 10 | 41.0–45.0 | Boat at sunset | You lean back in sunglasses, hand mirror cracked in your lap; end card | "Reflect on that, motherfucker. Hell yeah. Sweet!" | End card (below) |
 
