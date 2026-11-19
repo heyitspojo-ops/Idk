@@ -12,6 +12,7 @@ const warp = voWarp(placed, STORY);
 export const toStory = warp.toStory, DURATION = warp.duration;
 export const toOld = n => (n < INSERT.at ? n : n < INSERT.at + INSERT.len ? null : n - INSERT.len);
 export const toReel = old => warp.toReel(old >= INSERT.at ? old + INSERT.len : old);
+export const atNew = n => warp.toReel(n); // place a cue by NEW story time (e.g. inside the insert)
 
 // worlds: 'strip' (origin), 'map' (x + 500), 'swamp' (x + 800). track: 'you' | 'civic' -> cam offsets from that car
 export const SHOTS = [
