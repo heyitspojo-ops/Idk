@@ -211,7 +211,7 @@ async function buildAudio(reelDir, name) {
   const meas = spawnSyncText('ffmpeg', ['-hide_banner', '-i', pre, '-af', `${chain}:print_format=json`, '-f', 'null', '-']);
   const m = JSON.parse(meas.match(/\{[^{}]*"input_i"[^{}]*\}/)[0]);
   execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', pre, '-af',
-    `${chain}:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true,alimiter=limit=0.89:level=false`,
+    `${chain}:measured_I=${m.input_i}:measured_TP=${m.input_tp}:measured_LRA=${m.input_lra}:measured_thresh=${m.input_thresh}:offset=${m.target_offset}:linear=true,alimiter=limit=0.8:level=false:attack=1:release=50`,
     '-ar', '48000', '-c:a', 'pcm_s16le', out]);
   console.log(`Mastered ${path.relative(process.cwd(), out)} (from ${m.input_i} LUFS to -14 LUFS)`);
   return out;
