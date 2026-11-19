@@ -7,7 +7,7 @@ So I fed the bastard laxatives… and that was the worst decision of my entire f
 
 Good news though: he's not shitting on me anymore. 😎
 
-#pigeon #birdpoop #3danimation #lowpoly #toyanimation #animatedshort #comedy #cartoon #relatable #fyp
+#pigeon #birdpoop #animation #comedy #fyp
 
 # Pinned comment
 

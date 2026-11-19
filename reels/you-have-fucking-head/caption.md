@@ -7,7 +7,7 @@ So I did the only thing that works on squatters: I offered them better real esta
 
 Watch till the end. One of them is still waving. 👀
 
-#headlice #lice #3danimation #lowpoly #toyanimation #animatedshort #relatable #comedy #cartoon #fyp
+#headlice #animation #comedy #relatable #fyp
 
 # Pinned comment
 

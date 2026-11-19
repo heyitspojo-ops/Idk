@@ -7,7 +7,7 @@ So I sailed across the entire Pacific… and forgot the ocean is one giant fucki
 
 Turns out the only thing that can beat your reflection is its own reflection. Reflect on that. 😎
 
-#mirror #reflection #3danimation #lowpoly #toyanimation #animatedshort #comedy #cartoon #relatable #fyp
+#mirror #reflection #animation #comedy #fyp
 
 # Pinned comment
 
