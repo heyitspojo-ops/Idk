@@ -60,8 +60,8 @@ export function buildCar(o = {}) {
   g.set = ({ t = 0, speed = 0, twist = 0, lift = 0, hoodOpen = 0, engine = 'stock', blown = 0, bounce = 0, doors: nd = 4, char: ch = 0 } = {}) => {
     wheels.forEach(w => (w.rotation.x = t * speed));
     front.rotation.set(-lift * 0.35, 0, twist * 0.6); rear.rotation.set(0, 0, -twist * 0.25);
-    front.position.y = lift * 0.5;
-    g.position.y = Math.abs(Math.sin(t * 22)) * 0.05 * bounce;
+    const bo = Math.abs(Math.sin(t * 22)) * 0.05 * bounce; // bounce inside the body, so g.position stays the caller's
+    front.position.y = lift * 0.5 + bo; rear.position.y = bo;
     hood.rotation.x = -hoodOpen * 1.3; hood.visible = blown < 0.5;
     stock.visible = engine === 'stock' && blown < 0.5; v8.visible = engine === 'v8';
     doors.forEach((d, i) => (d.visible = i < nd));

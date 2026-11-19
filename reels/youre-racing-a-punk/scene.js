@@ -43,6 +43,8 @@ const flames = Array.from({ length: 4 }, (_, i) => { const f = mesh(new THREE.Co
 const doorsFly = mine.doors.map(d => { const c = d.clone(); c.material = d.material; scene.add(c); return c; });
 const trail = Array.from({ length: 24 }, () => at(mesh(ball(0.12, 0), '#e2577a'), 0, 0, 0, usa.group));
 const mapCar = buildCar({ body: '#d9c7a3', convertible: true }); usa.group.add(mapCar.group); mapCar.group.scale.setScalar(0.3);
+const wreck = buildCar({ style: 'hatch', body: '#9be15d', rust: false, spoiler: true, convertible: true });
+swamp.group.add(wreck.group); wreck.group.position.set(-2.9, 1.55, 0.6); wreck.group.rotation.set(0.15, 0.9, Math.PI);
 const splash = Array.from({ length: 12 }, (_, i) => at(mesh(ball(0.3, 1), '#cfe9dc'), 0, 0, 0, swamp.group));
 
 // ---------- screen text ----------
@@ -124,7 +126,7 @@ function stage(t) {
   // --- swamp (47–60)
   else { const S = OFF.swamp, land = seg(t, T.splash - 0.4, T.splash);
     M.position.set(S.x + 0.4, lerp(8, -0.35, easeIn(land)), S.z - 0.3 + (1 - land) * 6); M.rotation.set(0, -0.4, 0.12);
-    C.position.set(S.x - 2.8, 1.35, S.z + 0.6); C.rotation.set(0, 0.9, Math.PI);
+    C.position.set(0, -50, 0); wreck.set({ t, speed: t > T.wreck ? 18 : 0 });
     Object.assign(ms, { doors: 0, engine: 'v8', char: 0 }); cs.speed = t > T.wreck ? 18 : 0;
     splash.forEach((d, i) => { const p = seg(t, T.splash, T.splash + 1.0), a = i * 0.52; show(d, p > 0 && p < 1);
       d.position.set(0.4 + Math.cos(a) * p * 3.4, Math.sin(p * Math.PI) * 2.4, -0.3 + Math.sin(a) * p * 3.4); });
@@ -151,7 +153,7 @@ function screen(t) {
 
 function shoot(t) {
   const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
-  const base = s.track === 'you' ? mine.group.position.clone().setY(0) : s.track === 'civic' ? civic.group.position.clone().setY(0) : OFF[s.world].clone();
+  const base = s.track === 'you' ? mine.group.position.clone().setY(t > T.fly[0] && t < 43.5 ? mine.group.position.y : 0) : s.track === 'civic' ? civic.group.position.clone().setY(0) : OFF[s.world].clone();
   const shake = (t > T.boom && t < T.boom + 0.6) || (t > T.smash && t < T.smash + 0.5) ? 0.2 : t > T.launch3 && t < T.smash ? 0.05 : 0;
   camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 80) * shake; camera.position.y += Math.cos(t * 70) * shake;
   const look = lerpV(a.l, b.l, k).add(base);
