@@ -8,6 +8,7 @@ import { buildCar } from '../../bucket-shared/car-toy.js';
 import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { nosBottle, trophy, snail as buildSnail, engineParts, smoke, sparkle } from '../../bucket-shared/props.js';
 import { DURATION, SHOTS, T, toStory, toOld, INSERT } from './timeline.js';
+import { snap, hop, dynamicCamera } from '../../bucket-shared/motion-fx.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -72,7 +73,7 @@ function race1(t) { // z positions on the strip
 function stage(t) {
   const M = mine.group, C = civic.group;
   M.rotation.set(0, 0, 0); C.rotation.set(0, 0, 0); M.scale.setScalar(1); C.scale.setScalar(1);
-  show(you.group, true); you.group.position.x = 0; show(youFoot.group, false); show(cup, false); show(slug, false); parts.set(0); boomSmoke.set(0);
+  show(you.group, true); you.group.position.x = 0; show(youFoot.group, false); youFoot.group.scale.setScalar(1); show(cup, false); show(slug, false); parts.set(0); boomSmoke.set(0);
   exhaust.forEach(s => s.set(0)); flames.forEach(f => show(f, false)); doorsFly.forEach(d => show(d, false));
   let ms = { t, engine: 'stock', doors: 4, speed: 0 }, cs = { t, speed: 0 };
   let yp = { t, sit: 1, mood: 0 }, pp = { t, sit: 1, smug: 1, mood: 0.6 }, fp = { t };
@@ -105,14 +106,14 @@ function stage(t) {
   // --- pit: V8 (26.5–35)
   else if (t < 35) { const inPit = t < 31; M.position.set(inPit ? 9 : LANE.you, 0, inPit ? 2 : 0); M.rotation.y = inPit ? 0.4 : 0; C.position.set(LANE.civic, 0, 0);
     Object.assign(ms, { doors: 0, engine: 'v8', bounce: 0.6 });
-    mine.parts.v8.position.y = 1.05 + (inPit ? (1 - easeOut(seg(t, ...T.crane))) * 7 : 0);
+    mine.parts.v8.position.y = 1.05 + (inPit ? (1 - Math.min(1.12, snap(t, T.crane[1] - 0.5, 0.3))) * 7 : 0);
     Object.assign(yp, { mood: t > 29 ? 1 : 0, smug: t > 29 && inPit ? 1 : 0, look: t > T.peek ? -0.9 : 0, tilt: t > T.peek ? -0.4 : 0 });
-    if (t > T.peek) you.group.position.x = 0.35 * smooth(seg(t, T.peek, T.peek + 0.5)); else you.group.position.x = 0; }
+    if (t > T.peek) you.group.position.x = 0.35 * snap(t, T.peek, 0.25); else you.group.position.x = 0; }
   // --- race 3: torque twist, smash, fly (35–43.5)
   else if (t < 43.5) { const go = Math.max(0, t - T.launch3);
     const zc = Math.min(45, go * 7), zm = Math.min(34, go * go * 2.2);
     C.position.set(LANE.civic, 0, zc);
-    Object.assign(ms, { doors: 0, engine: 'v8', speed: go ? 50 : 0, twist: smooth(seg(t, ...T.twist)) * (t < T.smash ? 1 : 0.6), lift: go ? 0.6 + Math.sin(t * 9) * 0.2 : 0, bounce: 1 });
+    Object.assign(ms, { doors: 0, engine: 'v8', speed: go ? 50 : 0, twist: Math.min(1.1, snap(t, T.twist[0], 0.5)) * (t < T.smash ? 1 : 0.6), lift: go ? 0.6 + Math.sin(t * 9) * 0.2 : 0, bounce: 1 });
     cs.speed = go ? 20 : 0;
     const fly = seg(t, ...T.fly), hit = t > T.smash;
     const mx = hit ? lerp(0, -1.2, seg(t, T.smash, T.smash + 0.3)) : lerp(LANE.you, 0, seg(t, 39.0, T.smash));
@@ -131,12 +132,13 @@ function stage(t) {
     Object.assign(ms, { doors: 0, engine: 'v8', char: 0 }); cs.speed = t > T.wreck ? 18 : 0;
     splash.forEach((d, i) => { const p = seg(t, T.splash, T.splash + 1.0), a = i * 0.52; show(d, p > 0 && p < 1);
       d.position.set(0.4 + Math.cos(a) * p * 3.4, Math.sin(p * Math.PI) * 2.4, -0.3 + Math.sin(a) * p * 3.4); });
-    swamp.gator.position.set(lerp(5.6, 3.0, smooth(seg(t, T.splash, T.gator))), 0, lerp(3.4, 1.4, smooth(seg(t, T.splash, T.gator))));
+    { const g = hop(t, T.splash + 0.8, 0.5, new THREE.Vector3(5.6, 0, 3.4), new THREE.Vector3(3.0, 0, 1.4), 1.0); swamp.gator.position.copy(g.pos); }
     swamp.gator.rotation.y = -2.3; swamp.gator.jaw.rotation.x = -Math.abs(Math.sin(t * 2)) * 0.4;
     if (t > 57) { swamp.gator.position.set(0.9, 1.15, 1.9); swamp.gator.rotation.y = 0.1; swamp.gator.scale.setScalar(0.55); } else swamp.gator.scale.setScalar(1);
     const onRoof = t > T.trophy - 0.6;
     show(you.group, !onRoof); show(youFoot.group, onRoof);
-    if (onRoof) { youFoot.group.position.set(S.x + 0.3, 0.75, S.z - 0.6); youFoot.group.rotation.y = 0.5; fp = { t, wave: 1, mood: 1, smug: 1 }; }
+    if (onRoof) { const q = hop(t, T.trophy - 0.6, 0.5, new THREE.Vector3(S.x + 0.4, 0.1, S.z - 0.3), new THREE.Vector3(S.x + 0.3, 0.75, S.z - 0.6), 1.4);
+      youFoot.group.position.copy(q.pos); youFoot.group.scale.set(q.squash.xz, q.squash.y, q.squash.xz); youFoot.group.rotation.y = 0.5; fp = { t, wave: 1, mood: 1, smug: 1 }; }
     show(cup, onRoof); cup.position.copy(youFoot.anchors.handR.getWorldPosition(new THREE.Vector3())).add(new THREE.Vector3(0, 0.05, 0));
     Object.assign(yp, { mood: -0.6, tilt: Math.sin(t * 2) * 0.1 }); Object.assign(pp, { smug: 0, mood: -1, laugh: 1, sit: 1 }); }
   mine.set(ms); civic.set(cs); you.pose(yp); punk.pose(pp); youFoot.pose(fp);
@@ -152,13 +154,12 @@ function screen(t) {
     s.style.opacity = t < T.endCard + i * 0.04 ? 0 : 1; s.style.transform = `translateY(${(1 - Math.min(p, 1.2)) * 80}px) scale(${Math.max(0.01, p)})`; });
 }
 
+const HITS = [T.title, T.green, T.floor, T.snail, T.civicWins, ...T.doors, T.nos, T.launch2, T.boom, T.crane[1] - 0.2, T.peek, T.launch3, T.smash, T.splash, T.gator, T.trophy, T.endCard];
 function shoot(t) {
-  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
+  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1];
   const base = s.track === 'you' ? mine.group.position.clone().setY(t > T.fly[0] && t < 43.5 ? mine.group.position.y : 0) : s.track === 'civic' ? civic.group.position.clone().setY(0) : OFF[s.world].clone();
-  const shake = (t > T.boom && t < T.boom + 0.6) || (t > T.smash && t < T.smash + 0.5) ? 0.2 : t > T.launch3 && t < T.smash ? 0.05 : 0;
-  camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 80) * shake; camera.position.y += Math.cos(t * 70) * shake;
-  const look = lerpV(a.l, b.l, k).add(base);
-  camera.fov = s.fov; camera.updateProjectionMatrix(); camera.lookAt(look);
+  const look = dynamicCamera(camera, t, s, base, HITS);
+  if (t > T.launch3 && t < T.smash) camera.position.add(new THREE.Vector3(Math.sin(t * 80), Math.cos(t * 70), 0).multiplyScalar(0.05));
   scene.background = SKY[s.world];
   key.place(look, s.world === 'map' ? 16 : 12);
 }
@@ -169,9 +170,10 @@ function laughBeat(n) {
   civic.group.position.set(-0.6, 0, 18.8); civic.group.rotation.set(0, 0, 0); civic.set({ t: n });
   punk.pose({ t: n, sit: 1, laugh: 1, wave: 1, mood: 1, smug: 0.5, look: 0.7 });
   you.pose({ t: n, sit: 1, mood: -1, tilt: Math.sin(n * 3) * 0.05 });
-  const c = civic.group.position;
-  camera.position.set(lerp(0.9, 0.7, k), 4.3, c.z + lerp(6.6, 5.9, k)); camera.fov = 48; camera.updateProjectionMatrix();
-  camera.lookAt(0.75, 1.3, c.z - 0.9); key.place(new THREE.Vector3(c.x, 1, c.z), 12);
+  const c = civic.group.position, z = c.z;
+  const shot = { from: INSERT.at, to: INSERT.at + INSERT.len, fov: 48, cam: [{ p: [1.4, 4.6, z + 7.4], l: [0.75, 1.3, z - 0.9] }, { p: [0.7, 4.3, z + 5.9], l: [0.75, 1.3, z - 0.9] }] };
+  const look = dynamicCamera(camera, n, shot, new THREE.Vector3(), [INSERT.at + 0.2, INSERT.at + 1.1, INSERT.at + 2.0]);
+  key.place(look, 12);
 }
 
 window.renderFrame = rt => {
