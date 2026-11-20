@@ -2,6 +2,7 @@
 // buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses, mustache, bald, big, gooColor, habit, helmet })
 //   habit: nun's veil + white coif + long robe · helmet: round soldier helmet
 //   creepy: permanent half-lidded eyes + wide grin · hug 0..1: both arms wrap forward around someone
+//   sleep 0..1: eyes shut · stare 0..1: eyes huge (sleepless horror)
 //   pose extras: cat 0..1 (cat ears pop up + glowing eyes) · hurt 0..1 (bandaid + dizzy tilt) · meow 0..1 (head back, mouth wide)
 //   mustache: thick mustache · bald: no hair on top (side tufts only) · big: broader torso
 //   mirrored: flips left/right (a reflection of the same person) · longHair: shoulder-length hair + bun.
@@ -108,7 +109,7 @@ export function buildToyPerson(o = {}) {
   for (const a of arms) { addGoo(a.sh, 0, -0.4, 0, 0.22); goos[goos.length - 1].scale.set(0.8, 1.9, 0.8); }
   if (mirrored) g.scale.x = -1;
   function pose({ t = 0, scratch = 0, scratchRate = 4, sit = 0, slump = 0, point = 0, lather = 0, look = 0, tilt = 0, mood = 0,
-    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0, goo = 0, walk = 0, walkRate = 2, push = 0, butt = 0, buttEyes = 0, cat = 0, hurt = 0, meow = 0, hug = 0 } = {}) {
+    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0, goo = 0, walk = 0, walkRate = 2, push = 0, butt = 0, buttEyes = 0, cat = 0, hurt = 0, meow = 0, hug = 0, sleep = 0, stare = 0 } = {}) {
     hips.position.y = 0.85 - sit * 0.18;
     legs.forEach(l => (l.rotation.x = -sit * 1.45));
     torso.rotation.x = slump * 0.35;
@@ -128,7 +129,7 @@ export function buildToyPerson(o = {}) {
     brows.forEach((b, i) => { b.rotation.z = (i ? -1 : 1) * Math.max(0, -mood) * 0.35; b.position.y = 0.19 + mood * 0.03 + Math.max(0, -mood) * 0.02; });
     mouth.scale.set(mood >= 0 ? 1 + mood * 0.9 : 1 + -mood * 0.3, mood >= 0 ? 0.35 + mood * 0.2 : 0.25, 0.4);
     mouth.position.y = -0.24 - mood * 0.02;
-    eyes.forEach(e => (e.scale.y = mood < -0.5 ? 0.5 : 1));
+    eyes.forEach(e => e.scale.set(1, mood < -0.5 ? 0.5 : 1, 1));
     // --- extra poses (layered on top) ---
     const [L, R] = arms, lerp = THREE.MathUtils.lerp;
     if (wave) { R.sh.rotation.z = lerp(R.sh.rotation.z, 2.7 + Math.sin(t * 12) * 0.35, wave); R.sh.rotation.x = lerp(R.sh.rotation.x, -0.2, wave); }
@@ -149,8 +150,10 @@ export function buildToyPerson(o = {}) {
     catEars.forEach(e => { e.visible = cat > 0.02; e.scale.setScalar(Math.max(0.01, cat)); });
     glow.forEach(g => (g.visible = cat > 0.5)); bandaid.visible = hurt > 0.5;
     if (hurt) { head.rotation.z += Math.sin(t * 3) * 0.12 * hurt; }
-    if (hug) for (const a of arms) { a.sh.rotation.x = THREE.MathUtils.lerp(a.sh.rotation.x, -1.3, hug); a.sh.rotation.z = THREE.MathUtils.lerp(a.sh.rotation.z, a.s * 0.75, hug); }
+    if (hug) for (const a of arms) { a.sh.rotation.x = THREE.MathUtils.lerp(a.sh.rotation.x, -1.3, hug); a.sh.rotation.z = THREE.MathUtils.lerp(a.sh.rotation.z, -a.s * 0.25, hug); }
     if (creepy) { eyes.forEach(e => (e.scale.y = 0.45)); mouth.scale.set(2.6, 0.55, 0.45); mouth.position.y = -0.22; }
+    if (stare) eyes.forEach(e => e.scale.set(1 + 0.8 * stare, 1 + 0.8 * stare, 1));
+    if (sleep) eyes.forEach(e => (e.scale.y = THREE.MathUtils.lerp(e.scale.y, 0.08, sleep)));
     if (meow) { neck.rotation.x -= 0.18 * meow; mouth.scale.set(1.4, 1.4 * meow + 0.3, 0.5); }
     if (push) for (const a of arms) { a.sh.rotation.x = lerp(a.sh.rotation.x, -1.35, push); a.sh.rotation.z = lerp(a.sh.rotation.z, -a.s * 0.12, push); }
     const bs = 1 + butt * 2.6; buttBall.scale.setScalar(bs); buttBall.position.set(0, 0.05 + butt * 0.25, -0.32 - butt * 0.75);

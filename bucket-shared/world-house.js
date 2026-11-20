@@ -1,11 +1,11 @@
 // Cosy toy living room: floor, three walls (open to +z), couch, lamp, rug, window, TV, a door on the right wall.
 // buildHouse({ seed, w, d, ceiling }) -> { group, anchors: { door, couch, lamp, center }, ceiling }   floor top at y = 0
-//   ceiling: adds a ceiling at y = 7 with a round cut-out hole: ceiling.hole({ x, z, r, cut 0..1 (saw progress), patched })
+//   furniture: false drops the couch + TV (e.g. for a bedroom) · ceiling: adds a ceiling at y = 7 with a round cut-out hole: ceiling.hole({ x, z, r, cut 0..1 (saw progress), patched })
 import * as THREE from 'three';
 import { mesh, mat, rbox, cyl, ball, at } from './toy-kit.js';
 
 export function buildHouse(o = {}) {
-  const { w = 11, d = 8, wall = '#f7e3c8', floor = '#d9a873', accent = '#e2577a' , ceiling: withCeiling = false } = o;
+  const { w = 11, d = 8, wall = '#f7e3c8', floor = '#d9a873', accent = '#e2577a' , ceiling: withCeiling = false, furniture = true } = o;
   const g = new THREE.Group(), H = 7;
   at(mesh(rbox(w + 0.6, 0.6, d + 0.6, 0.25), '#c98f5f'), 0, -0.32, 0, g);
   for (let i = 0; i < 9; i++) at(mesh(rbox(w / 9 - 0.05, 0.06, d, 0.02, 1), i % 2 ? floor : '#e2b483'), -w / 2 + (i + 0.5) * (w / 9), 0, 0, g);
@@ -21,7 +21,7 @@ export function buildHouse(o = {}) {
   at(mesh(rbox(1.4, 1.0, 0.08, 0.05), accent), 2.8, 4.4, -d / 2 + 0.03, g);
   at(mesh(rbox(3.6, 0.05, 2.6, 0.02, 1), '#f4a3b5'), -0.6, 0.04, 0.4, g);
   // couch
-  const c = at(new THREE.Group(), -1.4, 0, -2.4, g);
+  const c = at(new THREE.Group(), -1.4, 0, -2.4, g); c.visible = furniture;
   at(mesh(rbox(3.8, 0.8, 1.5, 0.25), '#7cc6a4'), 0, 0.6, 0, c);
   at(mesh(rbox(3.8, 1.3, 0.45, 0.2), '#6ab894'), 0, 1.25, -0.6, c);
   for (const s of [-1, 1]) at(mesh(rbox(0.45, 1.1, 1.5, 0.2), '#6ab894'), s * 2.0, 0.85, 0, c);
@@ -32,8 +32,8 @@ export function buildHouse(o = {}) {
   at(mesh(cyl(0.05, 0.05, 2.6, 6), '#3b2f4a'), 0, 1.35, 0, l);
   at(mesh(cyl(0.45, 0.7, 0.7, 10), mat('#fbe3a0', { emissive: '#fbe3a0', emissiveIntensity: 0.3 })), 0, 2.9, 0, l);
   // TV on a stand (left)
-  at(mesh(rbox(1.6, 0.7, 0.8, 0.08), '#b5803e'), -4.2, 0.35, 0.8, g);
-  const tv = at(mesh(rbox(0.15, 1.1, 1.7, 0.06), '#2b2233'), -4.5, 1.3, 0.8, g);
+  at(mesh(rbox(1.6, 0.7, 0.8, 0.08), '#b5803e'), -4.2, 0.35, 0.8, g).visible = furniture;
+  const tv = at(mesh(rbox(0.15, 1.1, 1.7, 0.06), '#2b2233'), -4.5, 1.3, 0.8, g); tv.visible = furniture;
   const anchors = {};
   const A = (n, x, y, z) => { anchors[n] = at(new THREE.Object3D(), x, y, z, g); };
   A('door', w / 2 - 1.0, 0, 1.5); A('couch', -1.4, 1.0, -2.3); A('lamp', 2.6, 3.25, -2.6); A('center', 0.4, 0, 0.8);

@@ -1,0 +1,192 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.12,
+ "cache": "audio/takes/after-a-long-days",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 3.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[exhausted] [annoyed] After a long day's work, you try to hit the hay..."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 2.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[furious] [through gritted teeth] But this NIGGA climbs in bed with you."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 2.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[screaming] [enraged] GET THE FUCK OUT!",
+     "exaggeration": 1
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 3.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[seething] He climbs out of your bed and smiles at you as he leaves. [disgusted] Fucking creep."
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 3.2,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[angry] [tired] So the next night, you lock your door and fall asleep..."
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 4.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[furious] But this fucking PRICK climbs through your window and he's back in your bed, [enraged] holding you like he's the fucking big spoon."
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 3.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[seething] [through gritted teeth] Motherfucker, I swear to God.",
+     "pause": 0.25
+    },
+    {
+     "t": "[shouting] [furious] You kick him the fuck out of the house!",
+     "exaggeration": 1
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 3.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[angry] [determined] The next night you bolt the fucking windows down and go back to sleep..."
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[confused] You feel ceiling dust on your face.",
+     "pause": 0.2
+    },
+    {
+     "t": "[screaming] [enraged] Fucking CHRIST ALMIGHTY!",
+     "exaggeration": 1
+    },
+    {
+     "t": "[furious] He's cutting a Looney Tunes ass hole in your ceiling."
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[seething] You've had just about enough of his bullshit, [furious] so once again you kick his freaky ass to the curb!"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[exhausted] You patch the hole, lay down in your bed and\u2014",
+     "pause": 0.15
+    },
+    {
+     "t": "[screaming] [enraged] goddammit, he's back in the house! [furious] He jumps into your bed.",
+     "exaggeration": 1
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.0,
+   "parts": [
+    {
+     "t": "[whispers] [creepy] Hold me baby...",
+     "pause": 0.4
+    },
+    {
+     "t": "[whispers] [creepy] and don't let go..."
+    }
+   ],
+   "voice_id": "N2lVS1w4EtoT3dr4eOWO"
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 3.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[defeated] [bitter] He caresses you all night."
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "at": 0,
+   "min": 2.2,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[defeated] Not sweet...",
+     "pause": 0.3
+    },
+    {
+     "t": "[bitter] [angry] fuck."
+    }
+   ]
+  }
+ ]
+}
