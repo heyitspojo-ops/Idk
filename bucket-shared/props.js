@@ -448,8 +448,10 @@ export function toilet() {
   const water = at(new THREE.Mesh(new THREE.CircleGeometry(0.55, 16), waterM), 0, 0.85, 0.25, g); water.rotation.x = -Math.PI / 2; water.scale.y = 1.25;
   const swirl = at(new THREE.Group(), 0, 0.87, 0.25, g);
   for (let i = 0; i < 3; i++) at(mesh(ball(0.07, 0), '#ffffff'), Math.cos(i * 2.1) * 0.3, 0, Math.sin(i * 2.1) * 0.3, swirl);
-  const spill = at(new THREE.Group(), 0, 1.2, 0.25, g);
-  for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2; const s = at(mesh(rbox(0.22, 1.1, 0.12, 0.06), brown()), Math.cos(a) * 0.68, -0.55, Math.sin(a) * 0.8, spill); s.rotation.y = -a; }
+  const spill = at(new THREE.Group(), 0, 1.2, 0.25, g); // overflow: a brown sheet pouring down the bowl + a rim puddle
+  const sheet = at(mesh(new THREE.CylinderGeometry(0.68, 0.86, 1.15, 16, 1, true), mat('#7a4a2a', { roughness: 0.35, side: THREE.DoubleSide })), 0, -0.6, 0, spill); sheet.scale.z = 1.25;
+  at(mesh(new THREE.TorusGeometry(0.66, 0.1, 6, 18), brown()), 0, 0.02, 0, spill).rotation.x = Math.PI / 2;
+  spill.children[1].scale.set(1, 1.25, 1);
   const clean = new THREE.Color('#bfe6f5'), dirtyC = new THREE.Color('#7a4a2a');
   g.anchors = { seat: at(new THREE.Object3D(), 0, 1.2, 0.2, g), bowl: at(new THREE.Object3D(), 0, 0.9, 0.25, g), handle };
   g.set = ({ t = 0, level = 0, dirty = 0, swirl: sw = 0, overflow = 0, press = 0 } = {}) => {

@@ -1,5 +1,5 @@
 // Peg-doll toy person, ~3 units tall, faces +z.
-// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses, mustache, bald, big })
+// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses, mustache, bald, big, gooColor })
 //   mustache: thick mustache · bald: no hair on top (side tufts only) · big: broader torso
 //   mirrored: flips left/right (a reflection of the same person) · longHair: shoulder-length hair + bun.
 //   -> { group, anchors: { head, headTop, handL, handR, hips, butt, nose, cheek, chin, leg, back }, foam, shades, pose({...}) }
@@ -20,7 +20,7 @@ import * as THREE from 'three';
 import { mesh, ball, cyl, rbox, at, rng, mat } from './toy-kit.js';
 
 export function buildToyPerson(o = {}) {
-  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false, mustache = false, bald = false, big = false } = o;
+  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false, mustache = false, bald = false, big = false, gooColor = '#f6f4ee' } = o;
   const r = rng(seed);
   const g = new THREE.Group(), hips = at(new THREE.Group(), 0, 0.85, 0, g), torso = at(new THREE.Group(), 0, 0, 0, hips);
   const legs = [-1, 1].map(s => {
@@ -81,7 +81,7 @@ export function buildToyPerson(o = {}) {
   });
 
   // bird shit: blobs ordered from the top of the head downwards; pose({ goo }) reveals them in that order
-  const gooM = mat('#f6f4ee', { roughness: 0.35 }), grey = mat('#b9b6ad', { roughness: 0.4 }), goos = [];
+  const gooM = mat(gooColor, { roughness: 0.35 }), grey = mat(new THREE.Color(gooColor).multiplyScalar(0.75).getStyle(), { roughness: 0.4 }), goos = [];
   const addGoo = (parent, x, y, z, r, drip = 0) => { const b = at(mesh(ball(r, 1), goos.length % 4 === 3 ? grey : gooM), x, y, z, parent);
     b.scale.set(1, 0.7, 1); if (drip) at(mesh(cyl(r * 0.25, r * 0.12, drip, 5), gooM), 0, -drip / 2 - r * 0.3, 0, b); goos.push(b); };
   addGoo(head, 0.05, 0.62, 0.05, 0.28, 0.35); addGoo(head, -0.3, 0.5, 0.2, 0.18, 0.3); addGoo(head, 0.32, 0.45, -0.1, 0.2, 0.4);

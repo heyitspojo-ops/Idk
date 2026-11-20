@@ -28,8 +28,9 @@ const street = buildStreet(); street.group.position.copy(OFF.street); scene.add(
 const usa = buildUsaMap(); usa.group.position.copy(OFF.map); scene.add(usa.group);
 const B = bath.group, door = bath.door;
 // ---------- cast & props ----------
-const you = buildToyPerson(), dad = buildToyPerson({ bald: true, mustache: true, big: true, shirt: '#b84a4a', pants: '#3b3f52', hair: '#3b2f2a', skin: '#e8b48f', seed: 12 });
-const gf = buildToyPerson({ longHair: true, shirt: '#c3b1e1', pants: '#5a4a7a', hair: '#6b4226', skin: '#f0c9a8', seed: 6 });
+const BR = '#7a4a2a';
+const you = buildToyPerson({ gooColor: BR }), dad = buildToyPerson({ gooColor: BR, bald: true, mustache: true, big: true, shirt: '#b84a4a', pants: '#3b3f52', hair: '#3b2f2a', skin: '#e8b48f', seed: 12 });
+const gf = buildToyPerson({ gooColor: BR, longHair: true, shirt: '#c3b1e1', pants: '#5a4a7a', hair: '#6b4226', skin: '#f0c9a8', seed: 6 });
 [you, dad, gf].forEach(p => B.add(p.group));
 const loo = at(buildToilet(), 0.2, 0, -3.75, B);
 const flood = at(mesh(new THREE.PlaneGeometry(11.6, 8.6), brownM), 0, 0.02, 0, B); flood.rotation.x = -Math.PI / 2;
@@ -37,7 +38,7 @@ const gordita = wrapper('GORDITA'); B.add(gordita);
 const crunch = wrapper('CRUNCHWRAP'); dad.anchors.handR.add(crunch); crunch.rotation.x = Math.PI / 2; crunch.position.y = -0.15;
 const plunge = buildPlunger(); B.add(plunge);
 const idea = buildBulb(); B.add(idea);
-const mayor = buildSash('MAYOR'); you.anchors.hips.add(mayor); mayor.position.set(0, 0.55, 0.49);
+const mayor = buildSash('MAYOR'); you.anchors.hips.add(mayor); mayor.position.set(0, 0.55, 0.68);
 const steam = [-1, 1].map(s => { const sm = smoke({ n: 4, size: 0.5, seed: s + 5, color: '#ffffff' }); dad.anchors.head.add(sm); sm.position.set(s * 0.65, 0.2, 0); return sm; });
 const blobs = Array.from({ length: 22 }, (_, i) => { const d = poopDrop(0.18 + (i % 3) * 0.08); d.traverse(o => o.material && (o.material = brownM)); B.add(d);
   d.userData = { x: Math.cos(i * 2.4) * (1.5 + (i % 5)), z: Math.sin(i * 2.4) * (1.2 + (i % 4)) - 0.5, y: 1 + (i % 6) * 0.9 }; return d; });
@@ -87,7 +88,7 @@ function stage(t) {
   Y.position.set(1.5, 0, -2.9); Y.rotation.y = -Math.PI / 2 - 0.35;
   if (t < 7.5) Object.assign(yp, { hold: Math.abs(t - T.press1) < 0.4 || Math.abs(t - T.press2) < 0.4 ? 1 : 0, mood: t > 1.5 ? -1 : 0.2 });
   else if (t < 14) Object.assign(yp, { swingUp: 1, swing: Math.abs(Math.sin(t * 3)) * 0.4, mood: -0.8, look: t > T.bangs[0] ? 1.1 : 0 });
-  else if (t < 20.5) Object.assign(yp, { swing: t > T.plunge - 0.3 && t < T.suck[1] ? 1 : 0, swingUp: t < T.suck[0] ? 1 : 0, mood: t > T.suck[0] && t < T.bulb ? -1 : t > T.bulb ? 1 : 0, laugh: t > T.suck[0] && t < 17.5 ? 0.7 : 0 });
+  else if (t < 20.5) { if (t > 17.5) Y.rotation.y = 0.5; Object.assign(yp, { swing: t > T.plunge - 0.3 && t < T.suck[1] ? 1 : 0, swingUp: t < T.suck[0] ? 1 : 0, mood: t > T.suck[0] && t < T.bulb ? -1 : t > T.bulb ? 1 : 0, laugh: t > T.suck[0] && t < 17.5 ? 0.7 : 0 }); }
   else if (t < 29) { const sh = seg(t, T.shove, T.shove + 0.6); Y.position.set(lerp(1.5, 3.6, easeOut(sh)), 0, lerp(-2.9, -1.6, sh)); Y.rotation.y = -1.0;
     Object.assign(yp, { mood: -1, wave: t > T.rage && t < T.shove ? 1 : 0, double: sh * 0.3 }); }
   else { Y.position.set(t < 37 ? 2.6 : 2.4, 0, t < 37 ? -0.6 : 0.2); Y.rotation.y = t < 37 ? -0.2 : -1.0;
@@ -108,7 +109,8 @@ function stage(t) {
     Object.assign(dp, { walk: w < 1 ? 1 : 0, wave: t > T.rage ? 1 : 0, laugh: t > T.rage ? 1 : 0 });
     steam.forEach(s => { s.set(t > T.rage ? (t * 1.4) % 1 : 0); }); }
   else if (t < 29) { const s = seg(t, ...T.sit), w = seg(t, T.crunch, T.sit[0]);
-    D.position.set(lerp(-3.0, 0.2, smooth(w)), s > 0 ? lerp(0, 0.35, s) : 0, lerp(-0.2, -3.45, smooth(w))); D.rotation.y = w < 1 ? Math.PI / 2 + 0.6 : 0;
+    const wx = smooth(Math.min(1, w * 2)), wz = smooth(Math.max(0, w * 2 - 1)); // along the room first, then to the toilet (around the tub)
+    D.position.set(lerp(-3.0, 0.2, wx), s > 0 ? lerp(0, 0.35, s) : 0, lerp(-0.2, -3.45, wz)); D.rotation.y = w < 0.5 ? Math.PI / 2 : w < 1 ? Math.PI : 0;
     Object.assign(dp, { walk: w > 0 && w < 1 ? 1 : 0, sit: s, double: t < T.sit[0] ? 0.4 : 0, hold: t > T.crunch && t < T.sit[0] ? 1 : 0, mood: -1 }); }
   else { D.position.set(-1.0, 0, -2.6); D.rotation.y = 0.5; Object.assign(dp, { goo: 1, sit: t < 49.5 ? 1 : 0, mood: t > T.flushFinal ? 0.4 : -1, tilt: Math.sin(t * 2) * 0.1 }); }
   show(crunch, t > T.crunch && t < T.sit[1]);
@@ -119,15 +121,15 @@ function stage(t) {
   else { G.position.set(-2.6, 0, -0.6); G.rotation.y = 0.9; Object.assign(gp, { goo: 0.35, mood: -0.6 }); }
   gf.pose(gp);
   // --- street: the launch
-  const L = seg(t, T.launch, T.launch + 2.6);
-  show(rocket, t > T.launch && t < 33); rocket.position.set(0, 5 + easeIn(L) * 30, -8); rocket.rotation.set(L * 3, L * 6, 0); rocket.set({ t, dirty: 1, level: 1 });
+  const L = seg(t, T.launch, T.launch + 3.6);
+  show(rocket, t > T.launch && t < 33); rocket.position.set(0, 5 + easeOut(L) * 13, -8); rocket.rotation.set(L * 3, L * 6, 0); rocket.set({ t, dirty: 1, level: 1 });
   jet.forEach((s, i) => { s.position.set(0, rocket.position.y - 2 - i * 2.2, -8); s.set(t > T.launch && t < 33 ? 0.3 + (i / 8) * 0.5 : 0); });
   // --- tornado over town, then over the map to Detroit
   const grow = smooth(seg(t, ...T.tornado));
   tornado.set({ t, size: t > T.tornado[0] && t < 45.5 ? grow : 0, rain: t > T.rain ? 1 : 0 });
   const dk = smooth(seg(t, ...T.detroit));
   miniT.position.set(lerp(-2.0, 3.0, dk), 0.6, lerp(1.4, -3.6, dk)); miniT.set({ t, size: t > 45.5 && t < 49.5 ? 1 : 0, rain: 1 });
-  show(detroit, t > 45.5); P(detroit, Math.min(1, pop(t, T.detroit[1] - 0.6, 7, 13)));
+  show(detroit, t > 45.5); P(detroit, Math.min(1, pop(t, 45.8, 7, 13)));
   // --- clean sparkle at the end
   sparks.forEach((s, i) => { show(s, t > T.flushFinal + 0.4); const a = t * 2 + i; s.position.set(0.2 + Math.cos(a) * 0.9, 1.6 + (i % 3) * 0.4, -3.5 + Math.sin(a) * 0.5); });
 }
