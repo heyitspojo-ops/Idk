@@ -9,6 +9,7 @@ import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { buildCar } from '../../bucket-shared/car-toy.js';
 import { pimple as buildPimple, safetyPinCrate, handMirror, smoke, sparkle, splat } from '../../bucket-shared/props.js';
 import { DURATION, SHOTS, T, toStory } from './timeline.js';
+import { snap, hop, dynamicCamera } from '../../bucket-shared/motion-fx.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -20,6 +21,7 @@ const { key } = toyLights(scene);
 const OFF = { bath: new THREE.Vector3(), room: new THREE.Vector3(200, 0, 0), street: new THREE.Vector3(400, 0, 0), road: new THREE.Vector3(700, 0, 0) };
 const SKY = { bath: '#efe2fb', room: '#f6e7d8', street: '#bfe7f5', road: '#bfe7f5' };
 const show = (o, v) => (o.visible = v);
+const V3 = (x, y, z) => new THREE.Vector3(x, y, z);
 const P = (o, s) => o.scale.setScalar(Math.max(0.001, s));
 
 // ---------- worlds ----------
@@ -63,7 +65,7 @@ function placeZit(t) {
   if (t >= T.zit) { you.anchors.nose.add(zit); zit.position.set(0, 0, 0); zit.rotation.set(0, 0, 0); zit.set({ t, size: 0.18 * Math.min(1, pop(t, T.zit, 7, 13)) }); return show(zit, true); }
   show(zit, true);
   if (spot === 'butt') { you.anchors.hips.add(zit);
-    if (t > T.grow[0]) size = lerp(1.2, 5.2, smooth(seg(t, ...T.grow)));
+    if (t > T.grow[0]) { const n = 4, d = (T.grow[1] - T.grow[0]) / n, i = Math.min(n - 1, Math.floor((t - T.grow[0]) / d)); size = lerp(1.2, 5.2, (i + Math.min(1.1, snap(t, T.grow[0] + i * d, 0.3))) / n); }
     zit.position.set(0, 0.15 + size * 0.15, -0.25 - size * 0.42); zit.rotation.set(0, Math.PI, 0);
     const sq = t > T.land && t < T.bounce[1] ? Math.max(0, Math.cos(((t - T.land) / 1.0) * Math.PI * 2)) : 0;
     zit.scale.set(size * (1 + sq * 0.15), size * (1 - sq * 0.2), size);
@@ -80,7 +82,7 @@ const bounceAt = t => { // you bouncing on the butt pimple across the street (x)
   return h;
 };
 function stage(t) {
-  const Y = you.group; Y.rotation.set(0, 0, 0);
+  const Y = you.group; Y.rotation.set(0, 0, 0); Y.scale.setScalar(1);
   let yp = { t, mood: -0.4 };
   show(truck.group, t > T.truck[0] && t < 40.2); dust.set(0); boomPuff.set(0); goo.forEach(g => show(g, false)); sparks.forEach(s => show(s, false));
   show(mirrorProp, t > T.mirror);
@@ -91,8 +93,8 @@ function stage(t) {
   else if (t < 23) { Y.position.copy(OFF.room).add(new THREE.Vector3(1.4, 0, 0.8)); Y.rotation.y = -0.6;
     Object.assign(yp, { mood: -1, look: -1.0, tilt: Math.sin(t * 2) * 0.1 }); }
   else if (t < 31.5) { const S = OFF.street; Y.rotation.y = Math.PI / 2;
-    if (t < T.jump) { const up = smooth(seg(t, T.roof, T.roof + 1.5)); Y.position.set(S.x - 1.0 + (1 - up) * 3.6, lerp(0, 5.9, up), lerp(S.z - 4.8, S.z - 8, up)); Object.assign(yp, { mood: -1, walk: up < 1 ? 1 : 0 }); }
-    else if (t < T.land) { const f = seg(t, T.jump, T.land); Y.position.set(S.x - 1.0 + f * 3, lerp(5.7, 2.6, easeIn(f)) + Math.sin(f * Math.PI) * 2, S.z - 8 + f * 6); Y.rotation.z = -f * 0.4; Object.assign(yp, { mood: -1, wave: 1 }); }
+    if (t < T.jump) { const q = hop(t, T.roof, 0.6, V3(S.x + 2.6, 0, S.z - 4.8), V3(S.x - 1.0, 5.9, S.z - 8), 2.6); Y.position.copy(q.pos); Y.scale.set(q.squash.xz, q.squash.y, q.squash.xz); Object.assign(yp, { mood: -1, wave: t > T.roof + 0.9 ? 1 : 0 }); }
+    else if (t < T.land + 0.4) { const q = hop(t, T.jump, T.land - T.jump, V3(S.x - 1.0, 5.9, S.z - 8), V3(S.x + 2, 2.6, S.z - 2), 2.4); Y.position.copy(q.pos); Y.scale.set(q.squash.xz, q.squash.y, q.squash.xz); Y.rotation.z = -0.4 * seg(t, T.jump, T.land); Object.assign(yp, { mood: -1, wave: 1 }); }
     else { const k = t - T.land; Y.position.set(S.x + 2 + k * 9, 2.6 + bounceAt(t), S.z - 2); Y.rotation.z = Math.sin(t * 3) * 0.3; Object.assign(yp, { laugh: 1, mood: -1, wave: 1 }); } }
   else if (t < 38.7) { const R = OFF.road, k = seg(t, 31.5, 35);
     Y.position.set(R.x + 1.2, 2.6 + (t < 35 ? bounceAt(t) * (1 - k) : 0), R.z + lerp(-2, 6, k)); Y.rotation.y = Math.PI;
@@ -106,6 +108,7 @@ function stage(t) {
     Object.assign(yp, { mood: -1, laugh: 1 }); }
   else { const O = OFF.room, f = seg(t, 42.5, T.crash);
     Y.position.copy(O).add(new THREE.Vector3(-1.4, lerp(14, 0.55, easeIn(f)), -2.1)); Y.rotation.y = 0;
+    if (t > T.crash) { const k = t - T.crash, sq = 0.35 * Math.exp(-6 * k) * Math.cos(14 * k); Y.scale.set(1 + sq * 0.5, 1 - sq, 1 + sq * 0.5); }
     dust.position.copy(O).add(new THREE.Vector3(-1.4, 1, -2.1)); dust.set(seg(t, T.crash, T.crash + 1.5));
     Object.assign(yp, { sit: t > T.crash ? 1 : 0, mood: t > T.crash + 0.6 ? 1 : -1, hold: t > T.mirror ? 0.55 : 0, look: t > T.mirror ? 0.25 : 0 });
     sparks.forEach((s, i) => { show(s, t > T.crash + 0.8 && t < T.mirror); const a = t * 3 + i; s.position.copy(O).add(new THREE.Vector3(-1.4 + Math.cos(a) * 1.2, 3.6, -2.1 + Math.sin(a) * 0.4)); }); }
@@ -124,13 +127,12 @@ function screen(t) {
     s.style.opacity = t < T.endCard + i * 0.05 ? 0 : 1; s.style.transform = `translateY(${(1 - Math.min(p, 1.2)) * 80}px) scale(${Math.max(0.01, p)})`; });
 }
 
+const LANDS = Array.from({ length: 8 }, (_, i) => T.land + i).filter(x => x < 35);
+const HITS = [T.title, ...POPS, T.cheek, T.chin, T.roof + 0.6, ...LANDS, T.basketball, T.hit, T.crash, T.zit];
 function shoot(t) {
-  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
+  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1];
   const base = s.track === 'zit' ? zit.getWorldPosition(new THREE.Vector3()) : s.track === 'sky' ? you.group.position.clone() : s.track === 'you' ? you.group.position.clone().setY(0) : OFF[s.world].clone();
-  const shake = t > T.hit && t < T.hit + 0.6 ? 0.25 : t > T.crash && t < T.crash + 0.4 ? 0.15 : 0;
-  camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 80) * shake; camera.position.y += Math.cos(t * 70) * shake;
-  const look = lerpV(a.l, b.l, k).add(base);
-  camera.fov = s.fov; camera.updateProjectionMatrix(); camera.lookAt(look);
+  const look = dynamicCamera(camera, t, s, base, HITS);
   scene.background = new THREE.Color(SKY[s.world]);
   key.place(look, 12);
 }
