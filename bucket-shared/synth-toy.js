@@ -8,7 +8,7 @@
 // Music styles: 'bouncy' | 'party' | 'march' | 'sad' | 'bright' | 'end'.
 // SFX: pop, chirp, slam, whoosh, scratch, splash, bubbles, squish, cheer, ding, sparkle, wahwah, steps, hit,
 //      splat, plop, fart ({ dur, wet }), gag, coo, squeak ({ dur, rate }), slap, rev, clang, rumble ({ dur }),
-//      engine ({ dur, from, to } Hz), hiss ({ dur }), boing ({ pitch }).
+//      engine ({ dur, from, to } Hz), hiss ({ dur }), boing ({ pitch }), flush ({ dur }), bang.
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
@@ -132,6 +132,11 @@ export const SFX = {
   boing: ({ pitch = 1 } = {}) => { const b = buf(0.6); let ph = 0;
     for (let i = 0; i < b.length; i++) { const t = i / SR; ph += TAU * (180 * pitch * (1 + 0.6 * Math.exp(-t * 6) * Math.sin(TAU * 9 * t))) / SR;
       b[i] = Math.sin(ph) * Math.exp(-t * 5) * 0.8 * Math.min(1, t / 0.004); } return b; },
+  flush: ({ dur = 2.2 } = {}) => { const b = buf(dur); let lp = 0, lp2 = 0;
+    for (let i = 0; i < b.length; i++) { const t = i / SR, x = t / dur; lp += (0.05 + 0.25 * (1 - x)) * (noise() - lp); lp2 += 0.03 * (noise() - lp2);
+      b[i] = (lp * 0.9 + lp2 * 2) * Math.min(1, t / 0.05) * (1 - x) ** 0.6 * (0.8 + 0.2 * Math.sin(TAU * 7 * t)); }
+    return mixInto(b, sweep(500, 140, 0.9, 3), 0.25, dur * 0.55); },
+  bang: () => mixInto(sweep(110, 60, 0.35, 12), noiseBurst(0.2, 0.3, 30), 0.7),
   coo: () => { const b = buf(0.5); for (let i = 0; i < b.length; i++) { const t = i / SR;
     b[i] = Math.sin(TAU * (420 + 60 * Math.sin(TAU * 6 * t)) * t) * Math.sin(Math.PI * t / 0.5) * 0.5; } return b; },
   steps: ({ dur = 3, rate = 8 } = {}) => { const b = buf(dur);

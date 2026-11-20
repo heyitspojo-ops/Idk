@@ -1,0 +1,183 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.15,
+ "cache": "audio/takes/fuck-you-just-took",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 3.2,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[shouting] FUCK! [panicked] You just took a shit at your girlfriend's house... and it won't go down."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 3.8,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[frustrated] So you flush it again, and now it's flooding the fucking floor with shit. [angry] Goddamn Taco Bell gordita."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 2.8,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[determined] So you grab the plunger to fix this unholy mess."
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[nervous] Her dad is banging on the door. Probably to commit manslaughter on this toilet himself. [sarcastic] Fucking great."
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 3.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[annoyed] So you use the plunger and the toilet fucking sucks it up. [disbelief] How the fuck does that work?"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 3.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[panicked] You gotta clean this up before her dad walks in... [excited] and you get a genius idea\u2014"
+    }
+   ],
+   "seed": 13
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[deadpan] Nope. Too late. Her dad barges in and loses.",
+     "pause": 0.2
+    },
+    {
+     "t": "[shouting] His. Fucking. Motherfucking. Mind.",
+     "exaggeration": 1
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 4.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[disbelief] But he also had a Taco Bell Crunchwrap Supreme, so he takes a shit anyway."
+    }
+   ],
+   "seed": 13
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[panicked] It's too much for this toilet. [screaming] It shoots out the fucking roof!"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[disgusted] Now there's shit everywhere. [deadpan] Diarrhea city, and you're the fucking mayor."
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 3.0,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[nervous] Your girlfriend walks in to this fucking fiasco."
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 4.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[amazed] This literal shit storm becomes a shit tornado and starts raining all over town. [disgusted] EUGH!"
+    }
+   ],
+   "seed": 52
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[deadpan] It takes its ass all the way to Detroit. They wouldn't even notice."
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[relieved] Then the toilet lands back in the house... and it finally flushes."
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "at": 0,
+   "min": 2.4,
+   "tempo": 1.05,
+   "parts": [
+    {
+     "t": "[excited] Sweet!"
+    }
+   ]
+  }
+ ]
+}

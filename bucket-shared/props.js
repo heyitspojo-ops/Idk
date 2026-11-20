@@ -429,3 +429,73 @@ export function safetyPinCrate() {
   g.anchors = { tip: at(new THREE.Object3D(), 0.3, 1.1, -7.8, g) };
   return g;
 }
+
+// ---------- toilet gags ----------
+const brown = () => mat('#7a4a2a', { roughness: 0.35 });
+/** Toilet facing +z, floor at y = 0. toilet.set({ t, level 0..1 (water rising to the rim), dirty 0..1, swirl, overflow 0..1, lidUp })
+ *  anchors: seat (sit point), bowl (water centre), handle */
+export function toilet() {
+  const g = new THREE.Group(), white = mat('#fbfbf8', { roughness: 0.25 });
+  at(mesh(cyl(0.38, 0.32, 0.7, 12), white), 0, 0.35, 0.1, g);
+  const bowl = at(mesh(new THREE.CylinderGeometry(0.62, 0.45, 0.5, 16, 1, true), mat('#fbfbf8', { roughness: 0.25, side: THREE.DoubleSide })), 0, 0.95, 0.25, g);
+  bowl.scale.z = 1.25;
+  at(mesh(new THREE.TorusGeometry(0.6, 0.08, 6, 18), white), 0, 1.2, 0.25, g).rotation.x = Math.PI / 2;
+  g.children[g.children.length - 1].scale.set(1, 1.25, 1);
+  at(mesh(rbox(1.2, 1.0, 0.45, 0.12), white), 0, 1.6, -0.55, g);
+  at(mesh(rbox(1.3, 0.12, 0.55, 0.05), white), 0, 2.15, -0.55, g);
+  const handle = at(mesh(rbox(0.3, 0.07, 0.07, 0.03), '#c9ced6'), -0.45, 1.95, -0.3, g);
+  const waterM = new THREE.MeshStandardMaterial({ color: '#bfe6f5', roughness: 0.2, flatShading: true });
+  const water = at(new THREE.Mesh(new THREE.CircleGeometry(0.55, 16), waterM), 0, 0.85, 0.25, g); water.rotation.x = -Math.PI / 2; water.scale.y = 1.25;
+  const swirl = at(new THREE.Group(), 0, 0.87, 0.25, g);
+  for (let i = 0; i < 3; i++) at(mesh(ball(0.07, 0), '#ffffff'), Math.cos(i * 2.1) * 0.3, 0, Math.sin(i * 2.1) * 0.3, swirl);
+  const spill = at(new THREE.Group(), 0, 1.2, 0.25, g);
+  for (let i = 0; i < 8; i++) { const a = (i / 8) * Math.PI * 2; const s = at(mesh(rbox(0.22, 1.1, 0.12, 0.06), brown()), Math.cos(a) * 0.68, -0.55, Math.sin(a) * 0.8, spill); s.rotation.y = -a; }
+  const clean = new THREE.Color('#bfe6f5'), dirtyC = new THREE.Color('#7a4a2a');
+  g.anchors = { seat: at(new THREE.Object3D(), 0, 1.2, 0.2, g), bowl: at(new THREE.Object3D(), 0, 0.9, 0.25, g), handle };
+  g.set = ({ t = 0, level = 0, dirty = 0, swirl: sw = 0, overflow = 0, press = 0 } = {}) => {
+    water.position.y = 0.85 + level * 0.35; waterM.color.copy(clean).lerp(dirtyC, dirty);
+    swirl.visible = sw > 0; swirl.rotation.y = t * 9; swirl.position.y = water.position.y + 0.02;
+    spill.visible = overflow > 0.02; spill.scale.y = Math.max(0.01, overflow);
+    handle.rotation.z = -press * 0.5;
+  };
+  g.set();
+  return g;
+}
+/** Plunger held at the grip (origin), cup at -y. */
+export function plunger() {
+  const g = new THREE.Group();
+  at(mesh(cyl(0.05, 0.05, 1.3, 6), '#c98f5f'), 0, -0.6, 0, g);
+  at(mesh(new THREE.SphereGeometry(0.28, 10, 6, 0, Math.PI * 2, 0, Math.PI / 2), mat('#e2574a', { side: THREE.DoubleSide })), 0, -1.35, 0, g).rotation.x = Math.PI;
+  return g;
+}
+/** Fast-food wrapper (generic purple + yellow, no logos) with a short label. Folded packet, ~0.6 wide. */
+export function wrapper(label = 'GORDITA') {
+  const g = new THREE.Group();
+  at(mesh(rbox(0.7, 0.12, 0.5, 0.05), '#7b3fa0'), 0, 0, 0, g);
+  at(mesh(rbox(0.72, 0.13, 0.12, 0.04), '#ffd166'), 0, 0, 0, g);
+  at(textCard(label, 0.6, { w: 1024, h: 300, color: '#fffaf0', size: 210 }), 0, 0.07, 0.12, g).rotation.x = -Math.PI / 2;
+  return g;
+}
+/** Brown tornado funnel of puffs + falling drops. tornado.set({ t, size 0..1 }) */
+export function shitTornado({ h = 14, seed = 3 } = {}) {
+  const r = rng(seed), g = new THREE.Group(), m = mat('#7a4a2a', { roughness: 0.6 }), m2 = mat('#5e3820', { roughness: 0.6 });
+  const puffs = Array.from({ length: 70 }, (_, i) => { const y = (i / 70) * h, rad = 0.4 + (y / h) ** 1.4 * 4.5;
+    const p = at(mesh(ball(0.5 + (y / h) * 0.9, 1), i % 3 ? m : m2), 0, y, 0, g); p.userData = { y, rad, a: r() * 6.28, sp: 2 + r() * 2 }; return p; });
+  const drops = Array.from({ length: 40 }, () => { const d = poopDrop(0.18); d.traverse(o => o.material && (o.material = m)); g.add(d); d.userData = { x: (r() - 0.5) * 18, z: (r() - 0.5) * 18, o: r() }; return d; });
+  g.set = ({ t = 0, size = 1, rain = 1 } = {}) => {
+    g.visible = size > 0.01;
+    puffs.forEach(p => { const { y, rad, a, sp } = p.userData, ang = a + t * sp;
+      p.position.set(Math.cos(ang) * rad * size, y * size, Math.sin(ang) * rad * size); p.scale.setScalar(Math.max(0.01, size)); });
+    drops.forEach(d => { const k = (t * 0.8 + d.userData.o) % 1; d.visible = rain > 0.01;
+      d.position.set(d.userData.x * size, h * size * (1 - k), d.userData.z * size); d.rotation.x = Math.PI; });
+  };
+  g.set();
+  return g;
+}
+/** Shoulder sash with text (worn across the chest): attach to a person's torso. */
+export function sash(text = 'MAYOR') {
+  const g = new THREE.Group();
+  const band = at(mesh(rbox(0.22, 1.5, 0.06, 0.03), '#e2574a'), 0, 0, 0, g); band.rotation.z = 0.75;
+  at(textCard(text, 0.62, { w: 1024, h: 300, bg: '#fffaf0', color: '#e2574a', size: 210, radius: 30 }), 0, 0, 0.05, g).rotation.z = 0.75;
+  return g;
+}

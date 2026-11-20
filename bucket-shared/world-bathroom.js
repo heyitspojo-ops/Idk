@@ -1,13 +1,14 @@
 // Bathroom diorama on a rounded base: tiled floor, two walls, tub, counter with sink and mirror, towel, mat.
-// buildBathroom({ seed, floor, wall, tub, accent, w, d })
-//   -> { group, anchors: { stand, tubEdge, counterTop, mirror, wallLeft }, size }
+// buildBathroom({ seed, floor, wall, tub, accent, w, d, door })
+//   door: a hinged door in the left wall (z ~ -0.2); door.open(0..1) swings it in, door.shake(amount)
+//   -> { group, anchors: { stand, tubEdge, counterTop, mirror, wallLeft, door, toiletSpot }, size, door }
 // Units: a toy person is ~3 tall. Base is w x d, floor top at y = 0, origin at floor centre.
 import * as THREE from 'three';
 import { mesh, rbox, cyl, ball, at, rng, mat } from './toy-kit.js';
 
 export function buildBathroom(o = {}) {
   const { seed = 11, floor = '#9fd8c3', floor2 = '#b8e6d4', wall = '#fbe3d6', tile = '#f6cfc0', tub = '#ffd77a',
-    accent = '#ef7b6c', w = 12, d = 9 } = o;
+    accent = '#ef7b6c', w = 12, d = 9, door: withDoor = false } = o;
   const r = rng(seed), g = new THREE.Group();
   at(mesh(rbox(w + 0.6, 0.9, d + 0.6, 0.3), '#e9b7a2'), 0, -0.55, 0, g);
   for (let i = 0; i < w; i++) for (let j = 0; j < d; j++) {
@@ -39,9 +40,20 @@ export function buildBathroom(o = {}) {
   at(mesh(cyl(0.06, 0.06, 2.0, 6), '#c9ced6'), -w / 2 + 0.1, 4.4, 1.6, g).rotation.x = Math.PI / 2;
   at(mesh(rbox(0.12, 2.0, 1.6, 0.05), accent), -w / 2 + 0.15, 3.4, 1.6, g);
   at(mesh(rbox(2.6, 0.06, 1.6, 0.05), '#f4a3b5'), 0.4, 0.03, 1.4, g);
+  let door = null;
+  if (withDoor) {
+    const frame = at(new THREE.Group(), -w / 2 + 0.05, 0, -0.2, g);
+    at(mesh(rbox(0.3, 4.4, 0.18, 0.05), '#ffffff'), 0, 2.2, 0.95, frame); at(mesh(rbox(0.3, 4.4, 0.18, 0.05), '#ffffff'), 0, 2.2, -0.95, frame);
+    at(mesh(rbox(0.3, 0.18, 2.1, 0.05), '#ffffff'), 0, 4.4, 0, frame);
+    const hinge = at(new THREE.Group(), 0.18, 0, 0.85, frame);
+    const panel = at(mesh(rbox(0.12, 4.2, 1.7, 0.05), '#c98f5f'), 0, 2.1, -0.85, hinge);
+    at(mesh(ball(0.09, 0), '#ffd166'), 0.12, 2.0, -1.5, hinge);
+    door = { hinge, open: k => (hinge.rotation.y = -k * 1.5), shake: (t, a) => (hinge.rotation.y = Math.sin(t * 60) * 0.04 * a) };
+  }
   const anchors = {};
   const A = (n, x, y, z) => { anchors[n] = at(new THREE.Object3D(), x, y, z, g); };
+  A('door', -w / 2 + 0.6, 0, -0.2); A('toiletSpot', 0.2, 0, -d / 2 + 0.75);
   A('stand', 0.4, 0, 1.4); A('tubEdge', -w / 2 + 3.2, 1.62, -d / 2 + 3.1); A('counterTop', w / 2 - 2.4 + 1.0, 2.8, -d / 2 + 1.1);
   A('mirror', w / 2 - 2.7, 4.9, -d / 2 + 0.3); A('wallLeft', -w / 2, 3.5, 0);
-  return { group: g, anchors, size: { w, d, H } };
+  return { group: g, anchors, size: { w, d, H }, door };
 }

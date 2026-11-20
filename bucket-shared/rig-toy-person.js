@@ -1,5 +1,6 @@
 // Peg-doll toy person, ~3 units tall, faces +z.
-// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses })
+// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses, mustache, bald, big })
+//   mustache: thick mustache · bald: no hair on top (side tufts only) · big: broader torso
 //   mirrored: flips left/right (a reflection of the same person) · longHair: shoulder-length hair + bun.
 //   -> { group, anchors: { head, headTop, handL, handR, hips, butt, nose, cheek, chin, leg, back }, foam, shades, pose({...}) }
 //   nose/cheek/chin/leg/back: surface spots facing outward (for stickers, pimples, splats)
@@ -19,7 +20,7 @@ import * as THREE from 'three';
 import { mesh, ball, cyl, rbox, at, rng, mat } from './toy-kit.js';
 
 export function buildToyPerson(o = {}) {
-  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false } = o;
+  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false, mustache = false, bald = false, big = false } = o;
   const r = rng(seed);
   const g = new THREE.Group(), hips = at(new THREE.Group(), 0, 0.85, 0, g), torso = at(new THREE.Group(), 0, 0, 0, hips);
   const legs = [-1, 1].map(s => {
@@ -56,6 +57,9 @@ export function buildToyPerson(o = {}) {
     at(mesh(ball(0.26, 1), hair), 0, 0.55, -0.35, hairG);
   }
   if (glasses) for (const s of [-1, 1]) { const f = at(mesh(new THREE.TorusGeometry(0.13, 0.025, 4, 10), '#3b2f4a'), s * 0.21, 0.03, 0.6, head); }
+  if (mustache) for (const s of [-1, 1]) { const m = at(mesh(rbox(0.3, 0.12, 0.12, 0.05), hair), s * 0.14, -0.15, 0.6, head); m.rotation.z = s * -0.25; }
+  if (bald) { cap.visible = false; tufts.forEach(t => (t.visible = false)); for (const s of [-1, 1]) at(mesh(ball(0.2, 1), hair), s * 0.55, 0.05, -0.1, head).scale.set(0.6, 1, 1.2); }
+  if (big) { torso.scale.set(1.35, 1.05, 1.3); }
   const buttBall = at(mesh(ball(0.32, 2), pants), 0, 0.05, -0.32, hips);
   const bEyes = at(new THREE.Group(), 0, 0.15, -0.3, buttBall);
   for (const s of [-1, 1]) at(new THREE.Mesh(ball(0.06, 1), mat('#fff27a', { emissive: '#ffe600', emissiveIntensity: 2 })), s * 0.1, 0, -0.02, bEyes);
