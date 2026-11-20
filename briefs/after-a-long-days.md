@@ -5,7 +5,7 @@
 - **Look:** soft 3D low-poly toy diorama · bouncy, snappy motion · dynamic punchy camera (`motion-fx`)
 - **Voice:** `audio/after-a-long-days-vo.wav` — narrator ElevenLabs v3 "Chris"; the creep's whisper = a second, soft, creepy voice
 - **Reuses from `bucket-shared/`:** `toy-kit`, `motion-fx`, `rig-toy-person` (you + the creep), `world-house` (bedroom), `world-street`, `props` (bed, smoke), `synth-toy`, `vo-warp`, `voice/`. New: ceiling + cut-out hole on `world-house`, window + bolts prop, door lock prop, rig `hug` pose + `grin`, synth `snore` + `saw`.
-- **Script note:** "this NIGGA" → "this FREAK" (platform audio-detection mutes/demotes the word).
+- **Delivery:** narrator genuinely, humanly furious throughout (not cartoon-yelling) — gritted teeth, real anger, voice cracking on the shouts.
 
 ## Hook (0–3 s)
 
@@ -16,7 +16,7 @@ Your bedroom at night, lamp off, you snoring under the blanket. The blanket on t
 | # | Time | Shot | Action | VO (script) | On-screen text |
 |---|------|------|--------|----|----------------|
 | 1 | 0.0–3.5 | Bed, close | You snore; the blanket lifts, a grinning stranger slides in; your eyes snap open | "After a long day's work, you try to hit the hay…" | **WHO'S IN MY BED** |
-| 2 | 3.5–6.0 | Two-shot in bed | Snap-zoom on his grin, inches from your face | "But this FREAK climbs in bed with you." | — |
+| 2 | 3.5–6.0 | Two-shot in bed | Snap-zoom on his grin, inches from your face | "But this NIGGA climbs in bed with you." | — |
 | 3 | 6.0–8.5 | Bed → door | You point at the door, screaming | "GET THE FUCK OUT!" | — |
 | 4 | 8.5–12.0 | Doorway | He climbs out of bed, backs out the door slowly, smiling and waving the whole time | "He climbs out of your bed and smiles at you as he leaves. Fucking creep." | — |
 | 5 | 12.0–16.0 | Door, close | Next night: you slam three deadbolts shut, click click click; hop into bed | "So the next night, you lock your door and fall asleep…" | **NIGHT 2** |
