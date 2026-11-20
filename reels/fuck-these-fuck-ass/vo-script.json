@@ -1,0 +1,166 @@
+{
+ "engine": "elevenlabs",
+ "voice_id": "iP95p4xoKVk53GoZ742B",
+ "model": "eleven_v3",
+ "stability": 0.0,
+ "gap": 0.12,
+ "cache": "audio/takes/fuck-these-fuck-ass",
+ "lines": [
+  {
+   "id": 1,
+   "at": 0.15,
+   "min": 3.0,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[shouting] FUCK! [annoyed] These fuck ass nuns keep fucking meowing."
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "at": 0,
+   "min": 2.8,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[suspicious] I think their ass is fucking possessed. [sarcastic] Fucking fantastic."
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[storytelling] It all started when Mother Gertrude walked into Sunday service. Another day at church, right? [deadpan] Wrong."
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "at": 0,
+   "min": 3.2,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[mocking] She decides: you know what? How about I ruin a fucking good morning."
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "at": 0,
+   "min": 3.2,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[disbelief] So she meows, like a fucking...",
+     "pause": 0.25
+    },
+    {
+     "t": "[shouting] motherfucking Maine Coon!",
+     "exaggeration": 1
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "at": 0,
+   "min": 3.6,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[annoyed] She's only doing this 'cause she gets no attention at home. [angry] Stupid... stupid fucking bitch."
+    }
+   ],
+   "seed": 52
+  },
+  {
+   "id": 7,
+   "at": 0,
+   "min": 2.4,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[relieved] Well, you'd think it'd be over after that, right?"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "at": 0,
+   "min": 5.5,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[screaming] FUCKING WRONG! [panicked] The nun next to her starts meowing along, then the next, then the next. Now the whole church is meowing like it's possessed by a fucking humane society."
+    }
+   ],
+   "seed": 26
+  },
+  {
+   "id": 9,
+   "at": 0,
+   "min": 4.4,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[exhausted] Now they do this shit every day. Never mind that it's six o'clock in the",
+     "pause": 0.1
+    },
+    {
+     "t": "[screaming] GODDAMN MORNING! FUCK!",
+     "exaggeration": 1
+    }
+   ],
+   "seed": 26
+  },
+  {
+   "id": 10,
+   "at": 0,
+   "min": 4.4,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[determined] So now I gotta call an army of soldiers to beat the shit out of these nuns, [shouting] 'cause they won't shut the FUCK up."
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "at": 0,
+   "min": 4.6,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[furious] I'd rather rot in hell for pummeling the worshippers of God himself than deal with these nuns meowing at each other like holy hell."
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "at": 0,
+   "min": 2.8,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[calm] Anyways... they stopped. [content] So that's nice."
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "at": 0,
+   "min": 2.2,
+   "tempo": 1.06,
+   "parts": [
+    {
+     "t": "[excited] Sweet!"
+    }
+   ]
+  }
+ ]
+}

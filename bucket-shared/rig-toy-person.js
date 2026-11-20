@@ -1,5 +1,7 @@
 // Peg-doll toy person, ~3 units tall, faces +z.
-// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses, mustache, bald, big, gooColor })
+// buildToyPerson({ skin, shirt, pants, hair, seed, mirrored, longHair, glasses, mustache, bald, big, gooColor, habit, helmet })
+//   habit: nun's veil + white coif + long robe · helmet: round soldier helmet
+//   pose extras: cat 0..1 (cat ears pop up + glowing eyes) · hurt 0..1 (bandaid + dizzy tilt) · meow 0..1 (head back, mouth wide)
 //   mustache: thick mustache · bald: no hair on top (side tufts only) · big: broader torso
 //   mirrored: flips left/right (a reflection of the same person) · longHair: shoulder-length hair + bun.
 //   -> { group, anchors: { head, headTop, handL, handR, hips, butt, nose, cheek, chin, leg, back }, foam, shades, pose({...}) }
@@ -20,7 +22,7 @@ import * as THREE from 'three';
 import { mesh, ball, cyl, rbox, at, rng, mat } from './toy-kit.js';
 
 export function buildToyPerson(o = {}) {
-  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false, mustache = false, bald = false, big = false, gooColor = '#f6f4ee' } = o;
+  const { skin = '#f2c6a0', shirt = '#5fa8d3', pants = '#3d4f7a', hair = '#6b4226', seed = 3, mirrored = false, longHair = false, glasses = false, mustache = false, bald = false, big = false, gooColor = '#f6f4ee', habit = false, helmet = false } = o;
   const r = rng(seed);
   const g = new THREE.Group(), hips = at(new THREE.Group(), 0, 0.85, 0, g), torso = at(new THREE.Group(), 0, 0, 0, hips);
   const legs = [-1, 1].map(s => {
@@ -60,6 +62,18 @@ export function buildToyPerson(o = {}) {
   if (mustache) for (const s of [-1, 1]) { const m = at(mesh(rbox(0.3, 0.12, 0.12, 0.05), hair), s * 0.14, -0.15, 0.6, head); m.rotation.z = s * -0.25; }
   if (bald) { cap.visible = false; tufts.forEach(t => (t.visible = false)); for (const s of [-1, 1]) at(mesh(ball(0.2, 1), hair), s * 0.55, 0.05, -0.1, head).scale.set(0.6, 1, 1.2); }
   if (big) { torso.scale.set(1.35, 1.05, 1.3); }
+  if (habit) { cap.visible = false; tufts.forEach(t => (t.visible = false));
+    const veil = at(mesh(new THREE.SphereGeometry(0.72, 10, 7, 0, Math.PI * 2, 0, Math.PI * 0.62), '#1f1b2b'), 0, 0.05, -0.08, head); veil.rotation.x = -0.35;
+    at(mesh(rbox(1.05, 1.1, 0.5, 0.2), '#1f1b2b'), 0, -0.55, -0.42, head);
+    at(mesh(new THREE.TorusGeometry(0.6, 0.07, 6, 18), '#fbfbf8'), 0, 0.02, 0.06, head).rotation.y = 0;
+    at(mesh(rbox(1.0, 0.14, 0.2, 0.06), '#fbfbf8'), 0, 0.42, 0.35, head);
+    at(mesh(cyl(0.48, 0.62, 0.9, 10), shirt), 0, -0.45, 0, hips); }
+  if (helmet) { at(mesh(new THREE.SphereGeometry(0.72, 10, 6, 0, Math.PI * 2, 0, Math.PI * 0.5), '#5b6b3a'), 0, 0.12, 0, head);
+    at(mesh(new THREE.TorusGeometry(0.72, 0.06, 4, 16), '#4a5830'), 0, 0.12, 0, head).rotation.x = Math.PI / 2; }
+  const catEars = [-1, 1].map(s => { const e = at(mesh(new THREE.ConeGeometry(0.17, 0.4, 4), habit ? '#1f1b2b' : hair), s * 0.32, 0.62, 0, head); e.rotation.z = -s * 0.3; return e; });
+  const glow = [-1, 1].map(s => at(new THREE.Mesh(ball(0.1, 1), mat('#fff27a', { emissive: '#ffe600', emissiveIntensity: 2 })), s * 0.21, 0.02, 0.6, head));
+  const bandaid = at(mesh(rbox(0.42, 0.13, 0.05, 0.04), '#f2c6a0'), 0.25, 0.32, 0.55, head); bandaid.rotation.z = 0.6;
+  at(mesh(rbox(0.14, 0.11, 0.06, 0.02), '#e8b48f'), 0, 0, 0.01, bandaid);
   const buttBall = at(mesh(ball(0.32, 2), pants), 0, 0.05, -0.32, hips);
   const bEyes = at(new THREE.Group(), 0, 0.15, -0.3, buttBall);
   for (const s of [-1, 1]) at(new THREE.Mesh(ball(0.06, 1), mat('#fff27a', { emissive: '#ffe600', emissiveIntensity: 2 })), s * 0.1, 0, -0.02, bEyes);
@@ -93,7 +107,7 @@ export function buildToyPerson(o = {}) {
   for (const a of arms) { addGoo(a.sh, 0, -0.4, 0, 0.22); goos[goos.length - 1].scale.set(0.8, 1.9, 0.8); }
   if (mirrored) g.scale.x = -1;
   function pose({ t = 0, scratch = 0, scratchRate = 4, sit = 0, slump = 0, point = 0, lather = 0, look = 0, tilt = 0, mood = 0,
-    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0, goo = 0, walk = 0, walkRate = 2, push = 0, butt = 0, buttEyes = 0 } = {}) {
+    wave = 0, fold = 0, kick = 0, kickReach = 1, double = 0, swing = 0, swingUp = 0, hold = 0, laugh = 0, smug = 0, lean = 0, shades: sh = 0, goo = 0, walk = 0, walkRate = 2, push = 0, butt = 0, buttEyes = 0, cat = 0, hurt = 0, meow = 0 } = {}) {
     hips.position.y = 0.85 - sit * 0.18;
     legs.forEach(l => (l.rotation.x = -sit * 1.45));
     torso.rotation.x = slump * 0.35;
@@ -131,6 +145,10 @@ export function buildToyPerson(o = {}) {
     head.position.y = Math.sin(t * 30) * 0.03 * laugh;
     shades.visible = sh > 0.5;
     goos.forEach((b, i) => (b.visible = goo > (i + 0.5) / goos.length));
+    catEars.forEach(e => { e.visible = cat > 0.02; e.scale.setScalar(Math.max(0.01, cat)); });
+    glow.forEach(g => (g.visible = cat > 0.5)); bandaid.visible = hurt > 0.5;
+    if (hurt) { head.rotation.z += Math.sin(t * 3) * 0.12 * hurt; }
+    if (meow) { neck.rotation.x -= 0.45 * meow; mouth.scale.set(1.3, 1.1 * meow + 0.3, 0.5); }
     if (push) for (const a of arms) { a.sh.rotation.x = lerp(a.sh.rotation.x, -1.35, push); a.sh.rotation.z = lerp(a.sh.rotation.z, -a.s * 0.12, push); }
     const bs = 1 + butt * 2.6; buttBall.scale.setScalar(bs); buttBall.position.set(0, 0.05 + butt * 0.25, -0.32 - butt * 0.75);
     buttBall.visible = butt > 0.02; bEyes.visible = buttEyes > 0.01; bEyes.scale.set(1, Math.max(0.01, buttEyes), 1);

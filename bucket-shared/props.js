@@ -501,3 +501,41 @@ export function sash(text = 'MAYOR') {
   at(textCard(text, 0.62, { w: 1024, h: 300, bg: '#fffaf0', color: '#e2574a', size: 210, radius: 30 }), 0, 0, 0.05, g).rotation.z = 0.75;
   return g;
 }
+
+// ---------- church gags ----------
+/** Classic cartoon fight cloud: churning dust ball with stars + limbs poking out. cloud.set({ t, size 0..1 }) */
+export function fightCloud({ seed = 4 } = {}) {
+  const r = rng(seed), g = new THREE.Group(), dust = mat('#e9dccb', { roughness: 0.9 });
+  const balls = Array.from({ length: 18 }, () => { const b = at(mesh(ball(0.9 + r() * 0.6, 1), dust), 0, 0, 0, g); b.userData = { a: r() * 6.28, e: r() * 3, rad: 1.2 + r() * 1.2, sp: 3 + r() * 4 }; return b; });
+  const limbs = Array.from({ length: 8 }, (_, i) => { const l = at(mesh(rbox(0.22, 1.1, 0.22, 0.08), i % 2 ? '#1f1b2b' : '#5b6b3a'), 0, 0, 0, g);
+    at(mesh(ball(0.18, 1), '#f2c6a0'), 0, 0.6, 0, l); l.userData = { a: r() * 6.28, sp: 5 + r() * 5 }; return l; });
+  const stars = Array.from({ length: 6 }, () => { const s = sparkle(0.35); g.add(s); s.userData = { a: r() * 6.28 }; return s; });
+  g.set = ({ t = 0, size = 1 } = {}) => {
+    g.visible = size > 0.01; g.scale.setScalar(Math.max(0.01, size));
+    balls.forEach(b => { const { a, e, rad, sp } = b.userData; b.position.set(Math.cos(a + t * sp) * rad, 1.6 + Math.sin(e + t * sp * 0.7) * 1.0, Math.sin(a + t * sp) * rad * 0.7); });
+    limbs.forEach(l => { const { a, sp } = l.userData, ang = a + Math.floor(t * sp) * 1.3; l.position.set(Math.cos(ang) * 2.4, 1.6 + Math.sin(ang * 1.7) * 1.4, Math.sin(ang) * 1.5); l.rotation.set(0, 0, ang + Math.PI / 2); });
+    stars.forEach((s, i) => { const a = s.userData.a + t * 4; s.position.set(Math.cos(a) * 2.8, 2.6 + Math.sin(a * 2) * 1.2, Math.sin(a) * 1.8); s.rotation.z = t * 6; });
+  };
+  g.set();
+  return g;
+}
+/** Bedside alarm clock showing a time; clock.set({ t, ring 0..1 }) jiggles it. */
+export function alarmClock(text = '6:00') {
+  const g = new THREE.Group(), body = at(new THREE.Group(), 0, 0, 0, g);
+  at(mesh(cyl(0.45, 0.45, 0.3, 14), '#ef7b6c'), 0, 0.5, 0, body).rotation.x = Math.PI / 2;
+  at(textCard(text, 0.62, { w: 1024, h: 520, bg: '#fffaf0', color: '#2b2233', size: 330, radius: 200 }), 0, 0.5, 0.16, body);
+  for (const s of [-1, 1]) { at(mesh(ball(0.16, 1), '#ffd166'), s * 0.3, 0.98, 0, body); at(mesh(cyl(0.03, 0.03, 0.25, 4), '#3b2f4a'), s * 0.3, 0.12, 0, body).rotation.z = s * 0.4; }
+  g.set = ({ t = 0, ring = 0 } = {}) => { body.rotation.z = Math.sin(t * 60) * 0.15 * ring; body.position.y = Math.abs(Math.sin(t * 45)) * 0.08 * ring; };
+  return g;
+}
+/** Simple bed (headboard at -z), mattress top ~0.9. anchors.pillow */
+export function bed({ blanket = '#5fa8d3' } = {}) {
+  const g = new THREE.Group();
+  at(mesh(rbox(2.6, 0.5, 4.4, 0.1), '#a8754a'), 0, 0.35, 0, g);
+  at(mesh(rbox(2.4, 0.3, 4.2, 0.12), '#fffaf0'), 0, 0.75, 0, g);
+  at(mesh(rbox(2.5, 0.2, 2.8, 0.1), blanket), 0, 0.95, 0.6, g);
+  at(mesh(rbox(1.6, 0.3, 0.8, 0.14), '#ffffff'), 0, 1.0, -1.6, g);
+  at(mesh(rbox(2.7, 1.8, 0.2, 0.1), '#8a5a44'), 0, 0.9, -2.2, g);
+  g.anchors = { pillow: at(new THREE.Object3D(), 0, 1.15, -1.5, g) };
+  return g;
+}
