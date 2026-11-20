@@ -92,7 +92,7 @@ function stage(t) {
   else if (t < 29) { const sh = seg(t, T.shove, T.shove + 0.6); Y.position.set(lerp(1.5, 3.6, easeOut(sh)), 0, lerp(-2.9, -1.6, sh)); Y.rotation.y = -1.0;
     Object.assign(yp, { mood: -1, wave: t > T.rage && t < T.shove ? 1 : 0, double: sh * 0.3 }); }
   else { Y.position.set(t < 37 ? 2.6 : 2.4, 0, t < 37 ? -0.6 : 0.2); Y.rotation.y = t < 37 ? -0.2 : -1.0;
-    Object.assign(yp, { goo: 1, mood: t > T.flushFinal ? 1 : -0.6, smug: t > 33 && t < 37 ? 1 : 0, wave: t > 33 && t < 37 ? 1 : 0 }); }
+    Object.assign(yp, { goo: 0.7, mood: t > T.flushFinal ? 1 : -0.6, smug: t > 33 && t < 37 ? 1 : 0, wave: t > 33 && t < 37 ? 1 : 0 }); }
   if (t > 49.5) { Y.position.set(1.9, 0, -1.4); Y.rotation.y = -0.6; }
   you.pose(yp); show(mayor, t > T.mayor - 0.3);
   // plunger: in your hands, then sucked into the bowl
@@ -112,7 +112,7 @@ function stage(t) {
     const wx = smooth(Math.min(1, w * 2)), wz = smooth(Math.max(0, w * 2 - 1)); // along the room first, then to the toilet (around the tub)
     D.position.set(lerp(-3.0, 0.2, wx), s > 0 ? lerp(0, 0.35, s) : 0, lerp(-0.2, -3.45, wz)); D.rotation.y = w < 0.5 ? Math.PI / 2 : w < 1 ? Math.PI : 0;
     Object.assign(dp, { walk: w > 0 && w < 1 ? 1 : 0, sit: s, double: t < T.sit[0] ? 0.4 : 0, hold: t > T.crunch && t < T.sit[0] ? 1 : 0, mood: -1 }); }
-  else { D.position.set(-1.0, 0, -2.6); D.rotation.y = 0.5; Object.assign(dp, { goo: 1, sit: t < 49.5 ? 1 : 0, mood: t > T.flushFinal ? 0.4 : -1, tilt: Math.sin(t * 2) * 0.1 }); }
+  else { D.position.set(-1.0, 0, -2.6); D.rotation.y = 0.5; Object.assign(dp, { goo: 0.7, sit: t < 49.5 ? 1 : 0, mood: t > T.flushFinal ? 0.4 : -1, tilt: Math.sin(t * 2) * 0.1 }); }
   show(crunch, t > T.crunch && t < T.sit[1]);
   dad.pose(dp);
   // --- girlfriend
