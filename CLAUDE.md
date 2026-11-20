@@ -8,3 +8,4 @@ Before writing any code, post a manifest: files you will REUSE from `bucket-shar
 - Film style library: ~/lemo-opuscar (read only; read a style's STYLE.md before using it)
 - Pacing: actions and effects happen fast and dynamic — snappy pops, quick floods and fills, fast entrances and launches; no slow drifts or long fades.
 - Movement: bouncy and sharp, never floaty. Characters jump, hop and land with squash-and-stretch and a little overshoot (e.g. jump onto a toilet, leap onto a roof in one quick arc) instead of gliding or sliding into place. Prefer fast ease-out moves, anticipation before big actions, and hard cuts over slow smooth lerps.
+- Camera: dynamic and punchy too — quick push-ins and whip-pans between beats, small handheld bounce, a kick of shake/zoom on every impact or punchline, snap-zooms on reactions; no long static or slowly drifting shots.
