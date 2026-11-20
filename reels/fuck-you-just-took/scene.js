@@ -8,6 +8,7 @@ import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { toilet as buildToilet, plunger as buildPlunger, wrapper, shitTornado, sash as buildSash, bulb as buildBulb, smoke, sparkle, poopDrop } from '../../bucket-shared/props.js';
 import { textCard } from '../../bucket-shared/toy-kit.js';
 import { DURATION, SHOTS, T, toStory } from './timeline.js';
+import { snap, hop, dynamicCamera } from '../../bucket-shared/motion-fx.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -77,7 +78,7 @@ function stage(t) {
   show(loo, !away);
   const level = t < T.press1 ? 0 : t < 3.4 ? smooth(seg(t, T.press1, 2.6)) : 1;
   const drained = seg(t, ...T.drain);
-  loo.position.y = t > T.drop[0] && t < T.drop[1] ? lerp(14, 0, easeIn(seg(t, ...T.drop))) : 0;
+  loo.position.y = t > T.drop[0] && t < T.drop[1] ? lerp(14, 0, easeIn(seg(t, ...T.drop))) : t >= T.drop[1] && t < T.drop[1] + 0.8 ? Math.abs(Math.sin((t - T.drop[1]) * 11)) * 0.7 * Math.exp(-6 * (t - T.drop[1])) : 0;
   loo.set({ t, level: backHome ? 1 - drained : level, dirty: backHome ? 1 - drained : Math.min(1, level * 1.5),
     swirl: (t > T.press1 && t < 2.4) || (t > T.flushFinal && t < T.flushFinal + 1.4), overflow: t > T.overflow[0] && t < T.launch ? smooth(seg(t, ...T.overflow)) : 0,
     press: Math.abs(t - T.press1) < 0.3 || Math.abs(t - T.press2) < 0.3 || Math.abs(t - T.flushFinal) < 0.3 ? 1 : 0 });
@@ -97,7 +98,7 @@ function stage(t) {
   if (t < 7.5) Object.assign(yp, { hold: Math.abs(t - T.press1) < 0.4 || Math.abs(t - T.press2) < 0.4 ? 1 : 0, mood: t > 1.5 ? -1 : 0.2 });
   else if (t < 14) Object.assign(yp, { swingUp: 1, swing: Math.abs(Math.sin(t * 3)) * 0.4, mood: -0.8, look: t > T.bangs[0] ? 1.1 : 0 });
   else if (t < 20.5) { if (t > 17.5) { Y.position.set(0.9, 0, -1.5); Y.rotation.y = 0.5; } Object.assign(yp, { swing: t > T.plunge - 0.3 && t < T.suck[1] ? 1 : 0, swingUp: t < T.suck[0] ? 1 : 0, mood: t > T.suck[0] && t < T.bulb ? -1 : t > T.bulb ? 1 : 0, laugh: t > T.suck[0] && t < 17.5 ? 0.7 : 0 }); }
-  else if (t < 29) { const sh = seg(t, T.shove, T.shove + 0.6); Y.position.set(lerp(1.5, 3.6, easeOut(sh)), 0, lerp(-2.9, -1.6, sh)); Y.rotation.y = -1.0;
+  else if (t < 29) { const sh = Math.min(1.1, snap(t, T.shove, 0.3)); Y.position.set(lerp(1.5, 3.6, sh), Math.sin(Math.min(1, sh) * Math.PI) * 0.6, lerp(-2.9, -1.6, sh)); Y.rotation.z = -Math.sin(Math.min(1, sh) * Math.PI) * 0.4; Y.rotation.y = -1.0;
     Object.assign(yp, { mood: -1, wave: t > T.rage && t < T.shove ? 1 : 0, double: sh * 0.3 }); }
   else { Y.position.set(t < 37 ? 2.6 : 2.4, 0, t < 37 ? -0.6 : 0.2); Y.rotation.y = t < 37 ? -0.2 : -1.0;
     Object.assign(yp, { goo: 0.7, mood: t > T.flushFinal ? 1 : -0.6, smug: t > 33 && t < 37 ? 1 : 0, wave: t > 33 && t < 37 ? 1 : 0 }); }
@@ -113,21 +114,25 @@ function stage(t) {
   if (t > T.bangs[0] && t < T.door) door.shake(t, T.bangs.some(b => Math.abs(t - b) < 0.12) ? 3 : 0.4); else door.open(t > T.door ? easeOut(seg(t, T.door, T.door + 0.4)) : 0);
   // --- dad
   show(D, t > T.door && t < 29 || t > 33);
-  if (t < 24.5) { const w = seg(t, ...T.dadIn); D.position.set(lerp(-5.6, -3.0, w), 0, -0.2); D.rotation.y = Math.PI / 2;
-    Object.assign(dp, { walk: w < 1 ? 1 : 0, wave: t > T.rage ? 1 : 0, laugh: t > T.rage ? 1 : 0, double: t > T.rage ? 0.25 : 0, mood: -1 });
+  if (t < 24.5) { const w = Math.min(1.15, snap(t, T.door + 0.05, 0.35)); D.position.set(lerp(-5.6, -3.0, w), 0, -0.2); D.rotation.y = Math.PI / 2; D.rotation.z = -Math.sin(Math.min(1, w) * Math.PI) * 0.25;
+    Object.assign(dp, { walk: t < T.door + 0.4 ? 1 : 0, wave: t > T.rage ? 1 : 0, laugh: t > T.rage ? 1 : 0, double: t > T.rage ? 0.25 : 0, mood: -1 });
     steam.forEach(s => { s.set(t > T.rage ? (t * 2.2) % 1 : 0); }); }
-  else if (t < 29) { const s = seg(t, ...T.sit), w = seg(t, T.crunch, T.sit[0]);
-    const wx = smooth(Math.min(1, w * 2)), wz = smooth(Math.max(0, w * 2 - 1)); // along the room first, then to the toilet (around the tub)
-    D.position.set(lerp(-3.0, 0.2, wx), s > 0 ? lerp(0, 0.62, s) : 0, lerp(-0.2, -3.15, wz)); D.rotation.y = w < 0.5 ? Math.PI / 2 : w < 1 ? Math.PI : 0;
-    Object.assign(dp, { walk: w > 0 && w < 1 ? 1 : 0, sit: s, double: t < T.sit[0] ? 0.4 : 0, mood: -1 }); }
-  else { D.position.set(-1.0, 0, -2.6); D.rotation.y = 0.5; Object.assign(dp, { goo: 0.7, sit: t < 49.5 ? 1 : 0, mood: t > T.flushFinal ? 0.4 : -1, tilt: Math.sin(t * 2) * 0.1 }); }
+  else if (t < 29) { const w = seg(t, T.crunch, T.sit[0]);
+    const wx = easeOut(Math.min(1, w * 2)), wz = easeOut(Math.max(0, w * 2 - 1)); // quick scurry around the tub
+    D.position.set(lerp(-3.0, 0.2, wx), 0, lerp(-0.2, -2.2, wz)); D.rotation.y = w < 0.5 ? Math.PI / 2 : Math.PI;
+    let sitW = 0;
+    if (t >= T.sit[0]) { const h = hop(t, T.sit[0], 0.7, new THREE.Vector3(0.2, 0, -2.2), new THREE.Vector3(0.2, 0.62, -3.15), 1.4);
+      D.position.copy(h.pos); D.scale.set(h.squash.xz, h.squash.y, h.squash.xz); D.rotation.y = t < T.sit[0] + 0.3 ? Math.PI : 0; sitW = t > T.sit[0] + 0.5 ? 1 : 0; }
+    else D.scale.set(1, 1, 1);
+    Object.assign(dp, { walk: w > 0 && w < 1 ? 1 : 0, walkRate: 4, sit: sitW, double: t < T.sit[0] ? 0.4 : 0, mood: -1 }); }
+  else { D.scale.set(1, 1, 1); D.position.set(-1.0, 0, -2.6); D.rotation.y = 0.5; Object.assign(dp, { goo: 0.7, sit: t < 49.5 ? 1 : 0, mood: t > T.flushFinal ? 0.4 : -1, tilt: Math.sin(t * 2) * 0.1 }); }
   const red = t > T.rage && t < 33 ? Math.min(1, seg(t, T.rage, T.rage + 0.4)) : 0; // turns red with rage
   dadSkin.forEach(m => m.material.color.copy(SKIN).lerp(RAGE, red));
   if (red) D.position.x += Math.sin(t * 50) * 0.03 * red;
   dad.pose(dp);
   // --- girlfriend
   show(G, t > T.gf);
-  if (t < 49.5) { const w = seg(t, T.gf, T.gf + 0.8); G.position.set(lerp(-5.6, -4.2, w), 0, -0.2); G.rotation.y = Math.PI / 2; Object.assign(gp, { walk: w < 1 ? 1 : 0, mood: -1, slump: t > T.dots ? 0 : 0 }); }
+  if (t < 49.5) { const w = Math.min(1.1, snap(t, T.gf, 0.3)); G.position.set(lerp(-5.6, -4.2, w), 0, -0.2); G.rotation.y = Math.PI / 2; Object.assign(gp, { walk: w < 1 ? 1 : 0, mood: -1, slump: t > T.dots ? 0 : 0 }); }
   else { G.position.set(-2.6, 0, -0.6); G.rotation.y = 0.9; Object.assign(gp, { goo: 0.35, mood: -0.6 }); }
   gf.pose(gp);
   // --- street: the launch
@@ -153,13 +158,10 @@ function screen(t) {
     s.style.opacity = t < T.endCard + i * 0.05 ? 0 : 1; s.style.transform = `translateY(${(1 - Math.min(p, 1.2)) * 80}px) scale(${Math.max(0.01, p)})`; });
 }
 
+const HITS = [...T.bangs, T.door, T.suck[1], T.rage, T.sit[0] + 0.56, T.boom, T.mayor, T.tornado[0], T.rain, T.drop[1], T.flushFinal];
 function shoot(t) {
-  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
-  const base = OFF[s.world].clone();
-  const shake = (t > T.boom && t < T.boom + 0.7) ? 0.25 : t > T.drop[1] && t < T.drop[1] + 0.4 ? 0.15 : 0;
-  camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 80) * shake; camera.position.y += Math.cos(t * 70) * shake;
-  const look = lerpV(a.l, b.l, k).add(base);
-  camera.fov = s.fov; camera.updateProjectionMatrix(); camera.lookAt(look);
+  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1];
+  const look = dynamicCamera(camera, t, s, OFF[s.world].clone(), HITS);
   scene.background = new THREE.Color(SKY[s.world]);
   key.place(look, s.world === 'map' ? 16 : 12);
 }
