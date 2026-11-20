@@ -8,6 +8,7 @@ import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { buildCat } from '../../bucket-shared/rig-cat.js';
 import { hammer, wrench, wobblyTable, mug, giantNail, steelBeam, giantBolt, chain, paper, sparkle } from '../../bucket-shared/props.js';
 import { DURATION, SHOTS, T, toStory } from './timeline.js';
+import { snap, dynamicCamera } from '../../bucket-shared/motion-fx.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -53,6 +54,8 @@ const end = ui.add(`<div>${[...'TECHNICALLY FIXED.'].map(c => `<span style="disp
 const endL = [...end.querySelectorAll('span')];
 
 // ---------- per-frame ----------
+// the cat drags the table out in three sharp yanks (0..1)
+const yank = t => { if (t < T.drag[0]) return 0; const d = (T.drag[1] - T.drag[0]) / 3, i = Math.min(2, Math.floor((t - T.drag[0]) / d)); return (i + Math.min(1.08, snap(t, T.drag[0] + i * d, 0.22))) / 3; };
 function stage(t) {
   const Y = you.group, C = cat.group;
   Y.rotation.set(0, 0, 0); C.rotation.set(0, 0, 0); RG.rotation.set(0, 0, 0); home.rotation.set(0, 0, 0); cosmos.planet.rotation.set(0, 0, 0); cosmos.group.rotation.set(0, 0, 0);
@@ -97,20 +100,20 @@ function stage(t) {
   let cp = { t, unimpressed: 1 };
   if (t < 43) { RG.add(C); C.position.set(-1.4, 1.0, -2.3); C.rotation.y = 0.15;
     Object.assign(cp, { blink: t > T.blink && t < T.blink + 0.9 ? Math.sin(seg(t, T.blink, T.blink + 0.9) * Math.PI) : 0,
-      pissed: t > 33.5 && t < 43 ? 1 : 0, look: t > 33.5 && t < 38 ? lerp(0.9, 0, smooth(seg(t, ...T.turn))) : 0, tail: t > 33.5 ? 1 : 0.3 }); }
+      pissed: t > 33.5 && t < 43 ? 1 : 0, look: t > 33.5 && t < 38 ? lerp(0.9, 0, Math.min(1.1, snap(t, T.turn[1] - 0.4, 0.25))) : 0, tail: t > 33.5 ? 1 : 0.3 }); }
   else { const d = seg(t, ...T.drag), door = new THREE.Vector3(5.0, 0, 1.5);
     const at0 = t < T.drag[0];
-    C.position.copy(at0 ? new THREE.Vector3(1.9, 0, 1.9) : new THREE.Vector3(lerp(2.7, 6.8, smooth(d)), 0, 1.7));
+    C.position.copy(at0 ? new THREE.Vector3(1.9, 0, 1.9) : new THREE.Vector3(lerp(2.7, 6.8, yank(t)), 0, 1.7));
     C.rotation.y = at0 ? -0.9 : Math.PI / 2;
     Object.assign(cp, { paw: t > T.paper - 0.3 && t < T.paper + 0.5 ? 1 : 0, bob: at0 ? 0 : 1, blink: t > T.lookBack ? Math.sin(seg(t, T.lookBack, T.lookBack + 0.6) * Math.PI) : 0,
       look: t > T.lookBack - 0.3 ? -1.2 : 0, tail: 1 }); }
   cat.pose(cp);
   // table leaves with the cat
-  if (t > T.drag[0]) { const d = smooth(seg(t, ...T.drag)); table.position.set(lerp(0.6, 4.6, d), 0, lerp(1.0, 1.5, d)); }
+  if (t > T.drag[0]) { const d = yank(t); table.position.set(lerp(0.6, 4.6, d), 0, lerp(1.0, 1.5, d)); }
   else table.position.set(0.6, 0, 1.0);
   show(dustMark, t > T.drag[0] + 0.3);
   show(divorce, t > T.paper - 0.4 && t < T.drag[0] + 0.1);
-  divorce.position.set(lerp(1.3, 0.1, smooth(seg(t, T.paper - 0.3, T.paper + 0.5))), 1.4, 1.1);
+  divorce.position.set(lerp(1.3, 0.1, Math.min(1.08, snap(t, T.paper - 0.3, 0.3))), 1.4, 1.1);
 }
 
 function screen(t) {
@@ -121,13 +124,12 @@ function screen(t) {
     s.style.opacity = t < T.endCard + i * 0.05 ? 0 : 1; s.style.transform = `translateY(${(1 - Math.min(p, 1.2)) * 80}px) scale(${Math.max(0.01, p)})`; });
 }
 
+const HITS = [T.title, ...T.nails, T.genius, T.seesaw[0], ...T.beams, T.thumbs, T.blink, ...T.bolts, T.quake, T.moonBump, T.turn[1] - 0.4, T.chainSun, T.chainGalaxy, T.paper, T.drag[0], T.drag[0] + 0.6, T.drag[0] + 1.2, T.endCard];
 function shoot(t) {
-  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
-  const base = OFF[s.world];
+  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1];
+  const look = dynamicCamera(camera, t, s, OFF[s.world].clone(), HITS, s.world === 'space' ? { shake: 0.8 } : {});
   const quake = (t > T.quake && t < 29) ? 0.12 : (t > 29 && t < 38) ? 0.05 : 0;
-  camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 70) * quake; camera.position.y += Math.cos(t * 63) * quake;
-  const look = lerpV(a.l, b.l, k).add(base);
-  camera.fov = s.fov; camera.updateProjectionMatrix(); camera.lookAt(look);
+  camera.position.x += Math.sin(t * 70) * quake; camera.position.y += Math.cos(t * 63) * quake;
   scene.background = SKY[s.world];
   hemi.intensity = s.world === 'space' ? 1.0 : 1.5; key.intensity = s.world === 'space' ? 3.0 : 2.6;
   key.place(look, s.world === 'space' ? 30 : 10);
