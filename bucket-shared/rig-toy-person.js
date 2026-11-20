@@ -63,7 +63,7 @@ export function buildToyPerson(o = {}) {
   if (bald) { cap.visible = false; tufts.forEach(t => (t.visible = false)); for (const s of [-1, 1]) at(mesh(ball(0.2, 1), hair), s * 0.55, 0.05, -0.1, head).scale.set(0.6, 1, 1.2); }
   if (big) { torso.scale.set(1.35, 1.05, 1.3); }
   if (habit) { cap.visible = false; tufts.forEach(t => (t.visible = false));
-    const veil = at(mesh(new THREE.SphereGeometry(0.72, 10, 7, 0, Math.PI * 2, 0, Math.PI * 0.62), '#1f1b2b'), 0, 0.05, -0.08, head); veil.rotation.x = -0.35;
+    const veil = at(mesh(new THREE.SphereGeometry(0.72, 10, 7, 0, Math.PI * 2, 0, Math.PI * 0.55), '#1f1b2b'), 0, 0.02, -0.14, head); veil.rotation.x = 0.55; // tipped back: face shows
     at(mesh(rbox(1.05, 1.1, 0.5, 0.2), '#1f1b2b'), 0, -0.55, -0.42, head);
     at(mesh(new THREE.TorusGeometry(0.6, 0.07, 6, 18), '#fbfbf8'), 0, 0.02, 0.06, head).rotation.y = 0;
     at(mesh(rbox(1.0, 0.14, 0.2, 0.06), '#fbfbf8'), 0, 0.42, 0.35, head);
