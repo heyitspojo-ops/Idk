@@ -9,11 +9,11 @@
    {
     "w": "After",
     "start": 0.0,
-    "end": 0.6
+    "end": 0.62
    },
    {
     "w": "a",
-    "start": 0.6,
+    "start": 0.62,
     "end": 0.8
    },
    {
@@ -24,16 +24,16 @@
    {
     "w": "day's",
     "start": 1.0,
-    "end": 1.32
+    "end": 1.3
    },
    {
     "w": "work,",
-    "start": 1.32,
-    "end": 1.52
+    "start": 1.3,
+    "end": 1.5
    },
    {
     "w": "you",
-    "start": 1.64,
+    "start": 1.62,
     "end": 1.68
    },
    {
@@ -49,11 +49,11 @@
    {
     "w": "hit",
     "start": 1.96,
-    "end": 2.1
+    "end": 2.08
    },
    {
     "w": "the",
-    "start": 2.1,
+    "start": 2.08,
     "end": 2.24
    },
    {
@@ -67,949 +67,949 @@
  {
   "id": 2,
   "start": 3.2,
-  "end": 5.94,
+  "end": 5.26,
   "min": 2.6,
-  "text": "But this NIGGA climbs in bed with you.",
+  "text": "But this NIGGA climbs in bed with you!",
   "words": [
    {
     "w": "but",
     "start": 3.2,
-    "end": 3.24
+    "end": 3.26
    },
    {
     "w": "this",
-    "start": 3.24,
-    "end": 3.62
+    "start": 3.26,
+    "end": 3.5
    },
    {
     "w": "nigga",
-    "start": 3.62,
-    "end": 4.5
+    "start": 3.5,
+    "end": 3.88
    },
    {
     "w": "climbs",
-    "start": 4.5,
-    "end": 5.06
+    "start": 3.88,
+    "end": 4.22
    },
    {
     "w": "in",
-    "start": 5.06,
-    "end": 5.3
+    "start": 4.22,
+    "end": 4.46
    },
    {
     "w": "bed",
-    "start": 5.3,
-    "end": 5.5
+    "start": 4.46,
+    "end": 4.72
    },
    {
     "w": "with",
-    "start": 5.5,
-    "end": 5.68
+    "start": 4.72,
+    "end": 4.96
    },
    {
     "w": "you.",
-    "start": 5.68,
-    "end": 5.94
+    "start": 4.96,
+    "end": 5.26
    }
   ],
   "heard": "but this nigga climbs in bed with you."
  },
  {
   "id": 3,
-  "start": 6.16,
-  "end": 7.44,
+  "start": 5.84,
+  "end": 7.16,
   "min": 2.4,
   "text": "GET THE FUCK OUT!",
   "words": [
    {
     "w": "Get",
-    "start": 6.16,
-    "end": 6.24
+    "start": 5.84,
+    "end": 5.98
    },
    {
     "w": "the",
-    "start": 6.24,
-    "end": 6.56
+    "start": 5.98,
+    "end": 6.28
    },
    {
     "w": "fuck",
-    "start": 6.56,
-    "end": 6.98
+    "start": 6.28,
+    "end": 6.72
    },
    {
     "w": "out!",
-    "start": 6.98,
-    "end": 7.44
+    "start": 6.72,
+    "end": 7.16
    }
   ],
   "heard": "Get the fuck out!"
  },
  {
   "id": 4,
-  "start": 8.26,
-  "end": 12.6,
+  "start": 7.88,
+  "end": 12.32,
   "min": 3.4,
   "text": "He climbs out of your bed and smiles at you as he leaves. Fucking creep.",
   "words": [
    {
     "w": "He",
-    "start": 8.26,
-    "end": 8.54
+    "start": 7.88,
+    "end": 8.28
    },
    {
     "w": "climbs",
-    "start": 8.54,
-    "end": 8.88
+    "start": 8.28,
+    "end": 8.62
    },
    {
     "w": "out",
-    "start": 8.88,
-    "end": 9.14
+    "start": 8.62,
+    "end": 8.86
    },
    {
     "w": "of",
-    "start": 9.14,
-    "end": 9.22
+    "start": 8.86,
+    "end": 8.94
    },
    {
     "w": "your",
-    "start": 9.22,
-    "end": 9.34
+    "start": 8.94,
+    "end": 9.06
    },
    {
     "w": "bed",
-    "start": 9.34,
-    "end": 9.54
+    "start": 9.06,
+    "end": 9.26
    },
    {
     "w": "and",
-    "start": 9.54,
-    "end": 9.7
+    "start": 9.26,
+    "end": 9.44
    },
    {
     "w": "smiles",
-    "start": 9.7,
-    "end": 10.14
+    "start": 9.44,
+    "end": 9.86
    },
    {
     "w": "at",
-    "start": 10.14,
-    "end": 10.4
+    "start": 9.86,
+    "end": 10.14
    },
    {
     "w": "you",
-    "start": 10.4,
-    "end": 10.54
+    "start": 10.14,
+    "end": 10.26
    },
    {
     "w": "as",
-    "start": 10.54,
-    "end": 10.64
+    "start": 10.26,
+    "end": 10.36
    },
    {
     "w": "he",
-    "start": 10.64,
-    "end": 10.76
+    "start": 10.36,
+    "end": 10.48
    },
    {
     "w": "leaves.",
-    "start": 10.76,
-    "end": 11.06
+    "start": 10.48,
+    "end": 10.8
    },
    {
     "w": "Fucking",
-    "start": 11.82,
-    "end": 12.2
+    "start": 11.56,
+    "end": 11.92
    },
    {
     "w": "creep.",
-    "start": 12.2,
-    "end": 12.6
+    "start": 11.92,
+    "end": 12.32
    }
   ],
   "heard": "He climbs out of your bed and smiles at you as he leaves. Fucking creep."
  },
  {
   "id": 5,
-  "start": 12.94,
-  "end": 15.28,
+  "start": 12.64,
+  "end": 15.02,
   "min": 3.2,
   "text": "So the next night, you lock your door and fall asleep...",
   "words": [
    {
     "w": "So",
-    "start": 12.94,
-    "end": 13.06
+    "start": 12.64,
+    "end": 12.8
    },
    {
     "w": "the",
-    "start": 13.06,
-    "end": 13.22
+    "start": 12.8,
+    "end": 12.94
    },
    {
     "w": "next",
-    "start": 13.22,
-    "end": 13.38
+    "start": 12.94,
+    "end": 13.1
    },
    {
     "w": "night,",
-    "start": 13.38,
-    "end": 13.62
+    "start": 13.1,
+    "end": 13.34
    },
    {
     "w": "you",
-    "start": 13.74,
-    "end": 13.9
+    "start": 13.42,
+    "end": 13.62
    },
    {
     "w": "lock",
-    "start": 13.9,
-    "end": 14.06
+    "start": 13.62,
+    "end": 13.78
    },
    {
     "w": "your",
-    "start": 14.06,
-    "end": 14.22
+    "start": 13.78,
+    "end": 13.92
    },
    {
     "w": "door",
-    "start": 14.22,
-    "end": 14.42
+    "start": 13.92,
+    "end": 14.14
    },
    {
     "w": "and",
-    "start": 14.42,
-    "end": 14.66
+    "start": 14.14,
+    "end": 14.38
    },
    {
     "w": "fall",
-    "start": 14.66,
-    "end": 14.96
+    "start": 14.38,
+    "end": 14.7
    },
    {
     "w": "asleep.",
-    "start": 14.96,
-    "end": 15.28
+    "start": 14.7,
+    "end": 15.02
    }
   ],
   "heard": "So the next night, you lock your door and fall asleep."
  },
  {
   "id": 6,
-  "start": 16.04,
-  "end": 22.12,
+  "start": 15.72,
+  "end": 21.86,
   "min": 4.6,
   "text": "But this fucking PRICK climbs through your window and he's back in your bed, holding you like he's the fucking big spoon.",
   "words": [
    {
     "w": "But",
-    "start": 16.04,
-    "end": 16.2
+    "start": 15.72,
+    "end": 15.92
    },
    {
     "w": "this",
-    "start": 16.2,
-    "end": 16.4
+    "start": 15.92,
+    "end": 16.12
    },
    {
     "w": "fucking",
-    "start": 16.4,
-    "end": 16.84
+    "start": 16.12,
+    "end": 16.58
    },
    {
     "w": "prick",
-    "start": 16.84,
-    "end": 17.4
+    "start": 16.58,
+    "end": 17.12
    },
    {
     "w": "climbs",
-    "start": 17.4,
-    "end": 18.08
+    "start": 17.12,
+    "end": 17.8
    },
    {
     "w": "through",
-    "start": 18.08,
-    "end": 18.34
+    "start": 17.8,
+    "end": 18.06
    },
    {
     "w": "your",
-    "start": 18.34,
-    "end": 18.46
+    "start": 18.06,
+    "end": 18.18
    },
    {
     "w": "window",
-    "start": 18.46,
-    "end": 18.72
+    "start": 18.18,
+    "end": 18.44
    },
    {
     "w": "and",
-    "start": 18.72,
-    "end": 18.86
+    "start": 18.44,
+    "end": 18.58
    },
    {
     "w": "he's",
-    "start": 18.86,
-    "end": 19.04
+    "start": 18.58,
+    "end": 18.78
    },
    {
     "w": "back",
-    "start": 19.04,
-    "end": 19.28
+    "start": 18.78,
+    "end": 19.0
    },
    {
     "w": "in",
-    "start": 19.28,
-    "end": 19.42
+    "start": 19.0,
+    "end": 19.16
    },
    {
     "w": "your",
-    "start": 19.42,
-    "end": 19.56
+    "start": 19.16,
+    "end": 19.28
    },
    {
     "w": "bed,",
-    "start": 19.56,
-    "end": 19.84
+    "start": 19.28,
+    "end": 19.6
    },
    {
     "w": "holding",
-    "start": 20.2,
-    "end": 20.44
+    "start": 19.92,
+    "end": 20.16
    },
    {
     "w": "you",
-    "start": 20.44,
-    "end": 20.68
+    "start": 20.16,
+    "end": 20.42
    },
    {
     "w": "like",
-    "start": 20.68,
-    "end": 20.78
+    "start": 20.42,
+    "end": 20.52
    },
    {
     "w": "he's",
-    "start": 20.78,
-    "end": 20.96
+    "start": 20.52,
+    "end": 20.68
    },
    {
     "w": "the",
-    "start": 20.96,
-    "end": 21.12
+    "start": 20.68,
+    "end": 20.84
    },
    {
     "w": "fucking",
+    "start": 20.84,
+    "end": 21.12
+   },
+   {
+    "w": "big",
     "start": 21.12,
     "end": 21.4
    },
    {
-    "w": "big",
-    "start": 21.4,
-    "end": 21.68
-   },
-   {
     "w": "spoon.",
-    "start": 21.68,
-    "end": 22.12
+    "start": 21.4,
+    "end": 21.86
    }
   ],
   "heard": "But this fucking prick climbs through your window and he's back in your bed, holding you like he's the fucking big spoon."
  },
  {
   "id": 7,
-  "start": 22.6,
-  "end": 26.5,
+  "start": 22.32,
+  "end": 26.24,
   "min": 3.4,
   "text": "Motherfucker, I swear to God. You kick him the fuck out of the house!",
   "words": [
    {
     "w": "Motherfucker,",
-    "start": 22.6,
-    "end": 23.08
+    "start": 22.32,
+    "end": 22.8
    },
    {
     "w": "I",
-    "start": 23.22,
-    "end": 23.26
+    "start": 22.94,
+    "end": 22.98
    },
    {
     "w": "swear",
-    "start": 23.26,
-    "end": 23.6
+    "start": 22.98,
+    "end": 23.34
    },
    {
     "w": "to",
-    "start": 23.6,
-    "end": 23.78
+    "start": 23.34,
+    "end": 23.5
    },
    {
     "w": "God.",
-    "start": 23.78,
-    "end": 23.94
+    "start": 23.5,
+    "end": 23.66
    },
    {
     "w": "You",
+    "start": 24.52,
+    "end": 24.78
+   },
+   {
+    "w": "kick",
     "start": 24.78,
     "end": 25.06
    },
    {
-    "w": "kick",
-    "start": 25.06,
-    "end": 25.32
-   },
-   {
     "w": "him",
-    "start": 25.32,
-    "end": 25.46
+    "start": 25.06,
+    "end": 25.18
    },
    {
     "w": "the",
-    "start": 25.46,
-    "end": 25.64
+    "start": 25.18,
+    "end": 25.38
    },
    {
     "w": "fuck",
-    "start": 25.64,
-    "end": 25.92
+    "start": 25.38,
+    "end": 25.64
    },
    {
     "w": "out",
-    "start": 25.92,
-    "end": 26.08
+    "start": 25.64,
+    "end": 25.82
    },
    {
     "w": "of",
-    "start": 26.08,
-    "end": 26.16
+    "start": 25.82,
+    "end": 25.88
    },
    {
     "w": "the",
-    "start": 26.16,
-    "end": 26.26
+    "start": 25.88,
+    "end": 25.98
    },
    {
     "w": "house.",
-    "start": 26.26,
-    "end": 26.5
+    "start": 25.98,
+    "end": 26.24
    }
   ],
   "heard": "Motherfucker, I swear to God. You kick him the fuck out of the house."
  },
  {
   "id": 8,
-  "start": 26.5,
-  "end": 30.18,
+  "start": 26.24,
+  "end": 29.92,
   "min": 3.4,
   "text": "The next night you bolt the fucking windows down and go back to sleep...",
   "words": [
    {
     "w": "The",
-    "start": 26.5,
-    "end": 26.86
+    "start": 26.24,
+    "end": 26.6
    },
    {
     "w": "next",
-    "start": 26.86,
-    "end": 27.06
+    "start": 26.6,
+    "end": 26.78
    },
    {
     "w": "night,",
-    "start": 27.06,
-    "end": 27.24
+    "start": 26.78,
+    "end": 26.96
    },
    {
     "w": "you",
-    "start": 27.34,
-    "end": 27.4
+    "start": 27.04,
+    "end": 27.12
    },
    {
     "w": "bolt",
-    "start": 27.4,
-    "end": 27.72
+    "start": 27.12,
+    "end": 27.46
    },
    {
     "w": "the",
-    "start": 27.72,
-    "end": 28.0
+    "start": 27.46,
+    "end": 27.74
    },
    {
     "w": "fucking",
-    "start": 28.0,
-    "end": 28.38
+    "start": 27.74,
+    "end": 28.12
    },
    {
     "w": "windows",
-    "start": 28.38,
-    "end": 28.8
+    "start": 28.12,
+    "end": 28.52
    },
    {
     "w": "down",
-    "start": 28.8,
-    "end": 29.1
+    "start": 28.52,
+    "end": 28.84
    },
    {
     "w": "and",
-    "start": 29.1,
-    "end": 29.26
+    "start": 28.84,
+    "end": 29.0
    },
    {
     "w": "go",
-    "start": 29.26,
-    "end": 29.42
+    "start": 29.0,
+    "end": 29.14
    },
    {
     "w": "back",
-    "start": 29.42,
-    "end": 29.64
+    "start": 29.14,
+    "end": 29.38
    },
    {
     "w": "to",
-    "start": 29.64,
-    "end": 29.86
+    "start": 29.38,
+    "end": 29.58
    },
    {
     "w": "sleep.",
-    "start": 29.86,
-    "end": 30.18
+    "start": 29.58,
+    "end": 29.92
    }
   ],
   "heard": "The next night, you bolt the fucking windows down and go back to sleep."
  },
  {
   "id": 9,
-  "start": 30.56,
-  "end": 37.56,
+  "start": 30.3,
+  "end": 37.3,
   "min": 4.0,
   "text": "You feel ceiling dust on your face. Fucking CHRIST ALMIGHTY! He's cutting a Looney Tunes ass hole in your ceiling.",
   "words": [
    {
     "w": "You",
-    "start": 30.56,
-    "end": 30.64
+    "start": 30.3,
+    "end": 30.36
    },
    {
     "w": "feel",
-    "start": 30.64,
-    "end": 31.02
+    "start": 30.36,
+    "end": 30.74
    },
    {
     "w": "ceiling",
-    "start": 31.02,
-    "end": 31.6
+    "start": 30.74,
+    "end": 31.3
    },
    {
     "w": "dust",
-    "start": 31.6,
-    "end": 31.94
+    "start": 31.3,
+    "end": 31.66
    },
    {
     "w": "on",
-    "start": 31.94,
-    "end": 32.16
+    "start": 31.66,
+    "end": 31.88
    },
    {
     "w": "your",
-    "start": 32.16,
-    "end": 32.32
+    "start": 31.88,
+    "end": 32.02
    },
    {
     "w": "face.",
-    "start": 32.32,
-    "end": 32.6
+    "start": 32.02,
+    "end": 32.32
    },
    {
     "w": "Fucking",
-    "start": 33.1,
-    "end": 33.4
+    "start": 32.82,
+    "end": 33.12
    },
    {
     "w": "Christ",
-    "start": 33.4,
-    "end": 33.86
+    "start": 33.12,
+    "end": 33.6
    },
    {
     "w": "almighty!",
-    "start": 33.86,
-    "end": 34.62
+    "start": 33.6,
+    "end": 34.34
    },
    {
     "w": "He's",
-    "start": 34.84,
-    "end": 35.14
+    "start": 34.58,
+    "end": 34.86
    },
    {
     "w": "cutting",
-    "start": 35.14,
-    "end": 35.34
+    "start": 34.86,
+    "end": 35.06
    },
    {
     "w": "a",
-    "start": 35.34,
-    "end": 35.6
+    "start": 35.06,
+    "end": 35.32
    },
    {
     "w": "Looney",
-    "start": 35.6,
-    "end": 35.92
+    "start": 35.32,
+    "end": 35.64
    },
    {
     "w": "Tunes",
-    "start": 35.92,
-    "end": 36.2
+    "start": 35.64,
+    "end": 35.92
    },
    {
     "w": "asshole",
-    "start": 36.2,
-    "end": 36.58
+    "start": 35.92,
+    "end": 36.32
    },
    {
     "w": "in",
-    "start": 36.58,
-    "end": 37.02
+    "start": 36.32,
+    "end": 36.76
    },
    {
     "w": "your",
-    "start": 37.02,
-    "end": 37.14
+    "start": 36.76,
+    "end": 36.86
    },
    {
     "w": "ceiling.",
-    "start": 37.14,
-    "end": 37.56
+    "start": 36.86,
+    "end": 37.3
    }
   ],
   "heard": "You feel ceiling dust on your face. Fucking Christ almighty! He's cutting a Looney Tunes asshole in your ceiling."
  },
  {
   "id": 10,
-  "start": 37.76,
-  "end": 42.92,
+  "start": 37.48,
+  "end": 42.64,
   "min": 4.0,
   "text": "You've had just about enough of his bullshit, so once again you kick his freaky ass to the curb!",
   "words": [
    {
     "w": "You've",
-    "start": 37.76,
-    "end": 37.92
+    "start": 37.48,
+    "end": 37.64
    },
    {
     "w": "had",
-    "start": 37.92,
-    "end": 38.1
+    "start": 37.64,
+    "end": 37.82
    },
    {
     "w": "just",
-    "start": 38.1,
-    "end": 38.58
+    "start": 37.82,
+    "end": 38.3
    },
    {
     "w": "about",
-    "start": 38.58,
-    "end": 38.86
+    "start": 38.3,
+    "end": 38.58
    },
    {
     "w": "enough",
-    "start": 38.86,
-    "end": 39.08
+    "start": 38.58,
+    "end": 38.82
    },
    {
     "w": "of",
-    "start": 39.08,
-    "end": 39.24
+    "start": 38.82,
+    "end": 38.96
    },
    {
     "w": "his",
-    "start": 39.24,
-    "end": 39.4
+    "start": 38.96,
+    "end": 39.14
    },
    {
     "w": "bullshit.",
-    "start": 39.4,
-    "end": 39.82
+    "start": 39.14,
+    "end": 39.54
    },
    {
     "w": "So",
-    "start": 40.26,
-    "end": 40.52
+    "start": 40.0,
+    "end": 40.24
    },
    {
     "w": "once",
-    "start": 40.52,
-    "end": 40.68
+    "start": 40.24,
+    "end": 40.42
    },
    {
     "w": "again,",
-    "start": 40.68,
-    "end": 40.92
+    "start": 40.42,
+    "end": 40.64
    },
    {
     "w": "you",
-    "start": 41.02,
-    "end": 41.08
+    "start": 40.76,
+    "end": 40.8
    },
    {
     "w": "kick",
-    "start": 41.08,
-    "end": 41.28
+    "start": 40.8,
+    "end": 41.0
    },
    {
     "w": "his",
-    "start": 41.28,
-    "end": 41.46
+    "start": 41.0,
+    "end": 41.18
    },
    {
     "w": "freaky",
-    "start": 41.46,
-    "end": 42.02
+    "start": 41.18,
+    "end": 41.76
    },
    {
     "w": "ass",
-    "start": 42.02,
-    "end": 42.26
+    "start": 41.76,
+    "end": 41.98
    },
    {
     "w": "to",
-    "start": 42.26,
-    "end": 42.48
+    "start": 41.98,
+    "end": 42.2
    },
    {
     "w": "the",
-    "start": 42.48,
-    "end": 42.62
+    "start": 42.2,
+    "end": 42.36
    },
    {
     "w": "curb.",
-    "start": 42.62,
-    "end": 42.92
+    "start": 42.36,
+    "end": 42.64
    }
   ],
   "heard": "You've had just about enough of his bullshit. So once again, you kick his freaky ass to the curb."
  },
  {
   "id": 11,
-  "start": 43.18,
-  "end": 49.12,
+  "start": 42.9,
+  "end": 48.86,
   "min": 4.0,
   "text": "You patch the hole, lay down in your bed and\u2014 goddammit, he's back in the house! He jumps into your bed.",
   "words": [
    {
     "w": "You",
-    "start": 43.18,
-    "end": 43.32
+    "start": 42.9,
+    "end": 43.06
    },
    {
     "w": "patch",
-    "start": 43.32,
-    "end": 43.54
+    "start": 43.06,
+    "end": 43.28
    },
    {
     "w": "the",
-    "start": 43.54,
-    "end": 43.76
+    "start": 43.28,
+    "end": 43.48
    },
    {
     "w": "hole,",
-    "start": 43.76,
-    "end": 44.08
+    "start": 43.48,
+    "end": 43.8
    },
    {
     "w": "lay",
-    "start": 44.28,
-    "end": 44.4
+    "start": 44.02,
+    "end": 44.12
    },
    {
     "w": "down",
-    "start": 44.4,
-    "end": 44.56
+    "start": 44.12,
+    "end": 44.3
    },
    {
     "w": "in",
-    "start": 44.56,
-    "end": 44.7
+    "start": 44.3,
+    "end": 44.42
    },
    {
     "w": "your",
-    "start": 44.7,
-    "end": 44.8
+    "start": 44.42,
+    "end": 44.52
    },
    {
     "w": "bed,",
-    "start": 44.8,
-    "end": 45.04
+    "start": 44.52,
+    "end": 44.78
    },
    {
     "w": "and...",
-    "start": 45.16,
-    "end": 45.56
+    "start": 44.9,
+    "end": 45.3
    },
    {
     "w": "God",
-    "start": 45.56,
-    "end": 45.72
+    "start": 45.3,
+    "end": 45.44
    },
    {
     "w": "damn",
-    "start": 45.72,
-    "end": 46.16
+    "start": 45.44,
+    "end": 45.88
    },
    {
     "w": "it,",
-    "start": 46.16,
-    "end": 46.28
+    "start": 45.88,
+    "end": 46.0
    },
    {
     "w": "he's",
-    "start": 46.28,
-    "end": 46.46
+    "start": 46.0,
+    "end": 46.22
    },
    {
     "w": "back",
-    "start": 46.46,
-    "end": 46.78
+    "start": 46.22,
+    "end": 46.5
    },
    {
     "w": "in",
-    "start": 46.78,
-    "end": 46.94
+    "start": 46.5,
+    "end": 46.66
    },
    {
     "w": "the",
-    "start": 46.94,
-    "end": 47.04
+    "start": 46.66,
+    "end": 46.76
    },
    {
     "w": "house.",
-    "start": 47.04,
-    "end": 47.32
+    "start": 46.76,
+    "end": 47.02
    },
    {
     "w": "He",
-    "start": 47.9,
-    "end": 48.08
+    "start": 47.64,
+    "end": 47.82
    },
    {
     "w": "jumps",
-    "start": 48.08,
-    "end": 48.4
+    "start": 47.82,
+    "end": 48.12
    },
    {
     "w": "into",
-    "start": 48.4,
-    "end": 48.62
+    "start": 48.12,
+    "end": 48.34
    },
    {
     "w": "your",
-    "start": 48.62,
-    "end": 48.8
+    "start": 48.34,
+    "end": 48.52
    },
    {
     "w": "bed.",
-    "start": 48.8,
-    "end": 49.12
+    "start": 48.52,
+    "end": 48.86
    }
   ],
   "heard": "You patch the hole, lay down in your bed, and... God damn it, he's back in the house. He jumps into your bed."
  },
  {
   "id": 12,
-  "start": 49.82,
-  "end": 52.58,
+  "start": 49.54,
+  "end": 52.3,
   "min": 4.0,
   "text": "Hold me baby... and don't let go...",
   "words": [
    {
     "w": "Hold",
-    "start": 49.82,
-    "end": 50.04
+    "start": 49.54,
+    "end": 49.76
    },
    {
     "w": "me,",
-    "start": 50.04,
-    "end": 50.3
+    "start": 49.76,
+    "end": 50.04
    },
    {
     "w": "baby.",
-    "start": 50.48,
-    "end": 50.56
+    "start": 50.1,
+    "end": 50.28
    },
    {
     "w": "And",
-    "start": 51.34,
-    "end": 51.56
+    "start": 51.04,
+    "end": 51.28
    },
    {
     "w": "don't",
-    "start": 51.56,
-    "end": 51.94
+    "start": 51.28,
+    "end": 51.66
    },
    {
     "w": "let",
-    "start": 51.94,
-    "end": 52.16
+    "start": 51.66,
+    "end": 51.88
    },
    {
     "w": "go.",
-    "start": 52.16,
-    "end": 52.58
+    "start": 51.88,
+    "end": 52.3
    }
   ],
   "heard": "Hold me, baby. And don't let go."
  },
  {
   "id": 13,
-  "start": 53.4,
-  "end": 55.06,
+  "start": 53.14,
+  "end": 54.78,
   "min": 3.4,
   "text": "He caresses you all night.",
   "words": [
    {
     "w": "He",
-    "start": 53.4,
-    "end": 53.8
+    "start": 53.14,
+    "end": 53.54
    },
    {
     "w": "caresses",
-    "start": 53.8,
-    "end": 54.18
+    "start": 53.54,
+    "end": 53.9
    },
    {
     "w": "you",
-    "start": 54.18,
-    "end": 54.44
+    "start": 53.9,
+    "end": 54.16
    },
    {
     "w": "all",
-    "start": 54.44,
-    "end": 54.72
+    "start": 54.16,
+    "end": 54.46
    },
    {
     "w": "night.",
-    "start": 54.72,
-    "end": 55.06
+    "start": 54.46,
+    "end": 54.78
    }
   ],
   "heard": "He caresses you all night."
  },
  {
   "id": 14,
-  "start": 56.94,
-  "end": 58.84,
+  "start": 56.68,
+  "end": 58.56,
   "min": 2.2,
   "text": "Not sweet... fuck.",
   "words": [
    {
     "w": "Not",
-    "start": 56.94,
-    "end": 57.3
+    "start": 56.68,
+    "end": 57.02
    },
    {
     "w": "sweet.",
-    "start": 57.3,
-    "end": 57.7
+    "start": 57.02,
+    "end": 57.44
    },
    {
     "w": "Fuck!",
-    "start": 58.44,
-    "end": 58.84
+    "start": 58.16,
+    "end": 58.56
    }
   ],
   "heard": "Not sweet. Fuck!"

@@ -24,9 +24,12 @@
    "tempo": 1.05,
    "parts": [
     {
-     "t": "[furious] [through gritted teeth] But this NIGGA climbs in bed with you."
+     "t": "[through gritted teeth] [shouting] [furious] But this NIGGA climbs in bed with you!",
+     "exaggeration": 1,
+     "gain": 2
     }
-   ]
+   ],
+   "seed": 13
   },
   {
    "id": 3,
