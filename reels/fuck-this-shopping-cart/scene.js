@@ -5,6 +5,7 @@ import { buildStore } from '../../bucket-shared/world-store.js';
 import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { cart as buildCart, ghost as buildGhost, tpPyramid, sparkle } from '../../bucket-shared/props.js';
 import { DURATION, SHOTS, T, toStory } from './timeline.js';
+import { snap, hop, dynamicCamera } from '../../bucket-shared/motion-fx.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -71,26 +72,30 @@ function cartAt(t) {
   return path(t, [[T.rollAway[0], 0, -17.0, 0], [43.4, 0.9, -18.8, -0.5], [45, 2.0, -20.6, -0.9]]);
 }
 
+// n quick overshooting pops spread over [a, b] (0..1) instead of one slow swell
+const pulses = (t, a, b, n) => { const d = (b - a) / n, i = Math.min(n - 1, Math.floor((t - a) / d)); return Math.min(1.05, (i + Math.min(1.1, snap(t, a + i * d, 0.25))) / n); };
+const CHASE = [[0, 6.4], [0.35, 5.4], [0.7, 4.4], [1.0, 3.4]].map(([x, z]) => new THREE.Vector3(x, 0, z));
 function stage(t) {
   const Y = you.group, L = lady.group, C = cartG;
-  [Y, L].forEach(o => { o.rotation.set(0, 0, 0); o.position.set(0, 0, 0); });
+  [Y, L].forEach(o => { o.rotation.set(0, 0, 0); o.position.set(0, 0, 0); o.scale.setScalar(1); });
   const [cx, cz, cry] = cartAt(t); C.position.set(cx, 0, cz); C.rotation.set(0, cry, 0);
   const running = t >= T.launch && t < T.boom;
   C.set({ t, wobble: t < T.ghostIn[1] ? 1 : 0, eyes: (t > T.eyes && t < T.ghostOut[0]) ? Math.min(1, pop(t, T.eyes, 7, 13)) : 0,
     squint: (t > T.squint && t < 29) ? 0.6 : t > T.huss - 0.2 && t < 33.5 ? 1 : 0, spin: running ? t * 40 : -cz * 4 });
   const behind = () => { Y.position.set(cx - Math.sin(cry) * 1.75, 0, cz + Math.cos(cry) * 1.75); Y.rotation.y = Math.PI + cry; };
-  let yp = { t, butt: t > T.inflate[0] ? smooth(seg(t, ...T.inflate)) * (1 + Math.sin(t * 12) * 0.03 * (1 - seg(t, 23.6, 24.4))) : 0 };
+  let yp = { t, butt: t > T.inflate[0] ? pulses(t, T.inflate[0], T.inflate[1], 3) * (1 + Math.sin(t * 12) * 0.03 * (1 - seg(t, 23.6, 24.4))) : 0 };
   let lp = { t, mood: -0.6 };
   // --- you
   if (t < 6.5) { behind(); Object.assign(yp, { push: 1, walk: t < T.yank[1] ? 1 : 0, mood: t > T.swerve ? -0.6 : 0.3 }); }
-  else if (t < 10.5) { Y.position.set(lerp(0, 1.0, seg(t, 6.5, 10)), 0, lerp(6.4, 3.4, seg(t, 6.5, 10))); Y.rotation.y = Math.PI; Object.assign(yp, { walk: t < 10 ? 1 : 0, mood: 0 }); }
+  else if (t < 10.5) { const i = Math.max(0, Math.min(2, Math.floor((t - 7.0) / 1.0))), q = hop(t, 7.0 + i, 0.5, CHASE[i], CHASE[i + 1], 0.8);
+    Y.position.copy(t < 7.0 ? CHASE[0] : q.pos); Y.scale.set(q.squash.xz, q.squash.y, q.squash.xz); Y.rotation.y = Math.PI; Object.assign(yp, { mood: 0 }); }
   else if (t < 13.5) { Y.position.set(0.9, 0, 1.6); Y.rotation.y = -Math.PI / 2;
     Object.assign(yp, { look: t > T.slap ? seg(t, T.slap, T.slap + 0.45) * Math.PI * 2 : 0, mood: t > T.slap ? -1 : 0.2, tilt: t > T.slap + 0.5 ? Math.sin(t * 5) * 0.15 : 0 }); }
   else if (t < 17 || (t >= 26 && t < T.launch)) { behind(); Object.assign(yp, { push: 1, mood: -1, smug: t > T.squint ? 0 : 0.5 }); }
   else if (t < 21) { const hit = seg(t, T.ram, T.ram + 0.35); Y.position.set(0, 0, 3.0 + easeOut(hit) * 0.9); Y.rotation.y = 0;
     Object.assign(yp, { double: hit, mood: t > T.ram ? -1 : -0.3, look: t < T.ram ? -0.6 : 0 }); }
   else if (t < 26) { Y.position.set(0, 0, 3.9); Y.rotation.y = 0.2;
-    Object.assign(yp, { look: t > T.lookBack[0] && t < T.proud ? -1.2 * smooth(seg(t, ...T.lookBack)) : 0, mood: t > T.proud ? 1 : -0.4, smug: t > T.proud ? 1 : 0 }); }
+    Object.assign(yp, { look: t > T.lookBack[0] && t < T.proud ? -1.2 * Math.min(1.1, snap(t, T.lookBack[0], 0.25)) : 0, mood: t > T.proud ? 1 : -0.4, smug: t > T.proud ? 1 : 0 }); }
   else if (running) { Y.rotation.set(1.15 + Math.sin(t * 9) * 0.08, Math.PI + cry, Math.sin(t * 13) * 0.1, 'YXZ');
     Y.position.set(cx, 0.55 + Math.sin(t * 11) * 0.12, cz + 1.2 + 2.45); Object.assign(yp, { push: 1, laugh: 1, mood: -1 }); }
   else if (t < 41) { const fly = seg(t, T.boom, T.boom + 0.8); Y.position.set(lerp(0, -1.5, fly), Math.sin(fly * Math.PI) * 2.2, lerp(-15.2, -16.2, fly)); Y.rotation.y = Math.PI - 0.6;
@@ -102,7 +107,7 @@ function stage(t) {
   // --- old lady
   show(L, t < 13.5 || t > 33.5);
   if (t < 13.5) { const jolt = seg(t, T.bump, T.bump + 0.3);
-    L.position.set(-1.75, Math.sin(jolt * Math.PI) * 0.35, 1.5); L.rotation.y = lerp(-Math.PI / 2, Math.PI / 2, smooth(seg(t, ...T.turn)));
+    L.position.set(-1.75, Math.sin(jolt * Math.PI) * 0.35, 1.5); L.rotation.y = lerp(-Math.PI / 2, Math.PI / 2, Math.min(1.08, snap(t, T.turn[0], 0.3)));
     Object.assign(lp, { wave: t < T.bump ? 0.7 : t > T.slap - 0.25 && t < T.slap + 0.2 ? 1 : 0, mood: t > T.bump ? -1 : 0.3, laugh: t > T.turn[1] && t < T.slap ? 1 : 0 }); }
   else { const fly = seg(t, T.boom, T.landPile);
     L.position.set(0.4, t > T.boom ? Math.sin(fly * Math.PI) * 2 + fly * 0.6 : 0, lerp(-18.4, -20.0, easeOut(fly))); L.rotation.y = 0;
@@ -141,13 +146,12 @@ function screen(t) {
     s.style.opacity = t < T.endCard + i * 0.04 ? 0 : 1; s.style.transform = `translateY(${(1 - Math.min(p, 1.2)) * 80}px) scale(${Math.max(0.01, p)})`; });
 }
 
+const HITS = [T.title, T.swerve, T.yank[1], T.tumble, T.bump, T.slap, T.grip, T.eyes, T.ram, T.inflate[1], T.proud, T.squint, T.launch, T.huss, T.boom, T.landPile, T.ghostIn[1], T.endCard, T.buttEyes];
 function shoot(t) {
-  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1], k = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
+  const s = SHOTS.find(x => t < x.to) ?? SHOTS[SHOTS.length - 1];
   const base = s.track === 'cart' ? cartG.position.clone() : new THREE.Vector3();
-  const shake = t > T.boom && t < T.boom + 0.6 ? (1 - seg(t, T.boom, T.boom + 0.6)) * 0.2 : t > T.launch && t < T.boom ? 0.03 : 0;
-  camera.position.copy(lerpV(a.p, b.p, k)).add(base); camera.position.x += Math.sin(t * 80) * shake; camera.position.y += Math.cos(t * 70) * shake;
-  const look = lerpV(a.l, b.l, k).add(base);
-  camera.fov = s.fov; camera.updateProjectionMatrix(); camera.lookAt(look);
+  const look = dynamicCamera(camera, t, s, base, HITS);
+  if (t > T.launch && t < T.boom) camera.position.add(new THREE.Vector3(Math.sin(t * 80), Math.cos(t * 70), 0).multiplyScalar(0.04));
   key.place(look, 10);
 }
 
