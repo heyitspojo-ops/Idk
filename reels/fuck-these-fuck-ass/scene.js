@@ -42,7 +42,7 @@ const bedP = at(buildBed(), 2.6, 0, 0.2, H); bedP.rotation.y = -0.2;
 const clock = at(alarmClock('6:00'), 4.4, 0.9, -1.4, H); clock.rotation.y = -0.5;
 at(mesh(new THREE.BoxGeometry(0.9, 0.9, 0.9), '#a8754a'), 4.4, 0.45, -1.4, H);
 const winNun = nunAt(97); H.add(winNun.group);
-const cloud = fightCloud(); C.add(cloud); cloud.position.set(0, 0, -1.0);
+const cloud = fightCloud(); C.add(cloud); cloud.position.set(0, 0, 1.0);
 const dizzy = Array.from({ length: 10 }, () => { const s = sparkle(0.18); C.add(s); return s; });
 
 // ---------- screen text ----------
@@ -89,7 +89,7 @@ function stage(t) {
   // --- you: back pew (flashback relief), bedroom, street with the army, bed at the end
   show(Y, (t >= 21.5 && t < 24) || (t >= 30 && t < 40) || t >= 48);
   let yp = { t };
-  if (t < 24) { C.add(Y); Y.position.set(2.0, 0, 3.7); Y.rotation.set(0, Math.PI, 0); yp = { t, sit: 1, mood: t > T.relief ? 0.8 : 0, slump: t > T.relief ? 0.4 : 0 }; }
+  if (t < 24) { C.add(Y); Y.position.set(2.0, 0, 5.9); Y.rotation.set(0, Math.PI, 0); yp = { t, sit: 1, mood: t > T.relief ? 0.8 : 0, slump: t > T.relief ? 0.4 : 0 }; }
   else if (t < 35 || t >= 48) { H.add(Y); const up = t < 35 ? Math.min(1, snap(t, T.bolt, 0.18)) : 1 - Math.min(1, snap(t, T.flop, 0.25));
     Y.position.set(2.6, 1.1, 0.4); Y.rotation.set(-Math.PI / 2 * (1 - up), -0.2, 0);
     yp = { t, sit: up, mood: t < 35 ? (t > T.bolt ? -1 : 0) : 1, laugh: t < 35 && t > T.bolt ? 1 : 0, wave: t < 35 && t > T.bolt + 0.6 ? 1 : 0 }; }
@@ -104,7 +104,7 @@ function stage(t) {
   outside.doors.open(t > T.kick ? Math.min(1.1, snap(t, T.kick, 0.2)) : 0);
   outside.bell.rotation.z = t > 30 && t < 35 ? Math.sin(t * 9) * 0.5 : 0;
   // --- the fight cloud, then the dazed aftermath
-  cloud.set({ t, size: t > T.cloud[0] && t < T.cloud[1] ? Math.min(1, snap(t, T.cloud[0], 0.3)) * 2.2 * (1 - seg(t, T.cloud[1] - 0.25, T.cloud[1])) : 0 });
+  cloud.set({ t, size: t > T.cloud[0] && t < T.cloud[1] ? Math.min(1, snap(t, T.cloud[0], 0.3)) * 0.95 * (1 - seg(t, T.cloud[1] - 0.25, T.cloud[1])) : 0 });
   dizzy.forEach((d, i) => { show(d, t >= T.aftermath && t < 48); const s = SEATS[(i * 3 + 1) % SEATS.length], a = t * 5 + i;
     d.position.set(s.x + Math.cos(a) * 0.5, 2.65, s.z + Math.sin(a) * 0.4); d.rotation.z = t * 6; });
   // --- the window nun at the very end

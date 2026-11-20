@@ -75,8 +75,7 @@
     {
      "t": "[annoyed] She's only doing this 'cause she gets no attention at home. [angry] Stupid... stupid fucking bitch."
     }
-   ],
-   "seed": 52
+   ]
   },
   {
    "id": 7,
@@ -115,8 +114,7 @@
      "t": "[screaming] GODDAMN MORNING! FUCK!",
      "exaggeration": 1
     }
-   ],
-   "seed": 52
+   ]
   },
   {
    "id": 10,
@@ -138,7 +136,8 @@
     {
      "t": "[furious] I'd rather rot in hell for pummeling the worshippers of God himself than deal with these nuns meowing at each other like holy hell."
     }
-   ]
+   ],
+   "seed": 13
   },
   {
    "id": 12,

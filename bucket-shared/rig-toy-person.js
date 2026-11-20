@@ -148,7 +148,7 @@ export function buildToyPerson(o = {}) {
     catEars.forEach(e => { e.visible = cat > 0.02; e.scale.setScalar(Math.max(0.01, cat)); });
     glow.forEach(g => (g.visible = cat > 0.5)); bandaid.visible = hurt > 0.5;
     if (hurt) { head.rotation.z += Math.sin(t * 3) * 0.12 * hurt; }
-    if (meow) { neck.rotation.x -= 0.45 * meow; mouth.scale.set(1.3, 1.1 * meow + 0.3, 0.5); }
+    if (meow) { neck.rotation.x -= 0.18 * meow; mouth.scale.set(1.4, 1.4 * meow + 0.3, 0.5); }
     if (push) for (const a of arms) { a.sh.rotation.x = lerp(a.sh.rotation.x, -1.35, push); a.sh.rotation.z = lerp(a.sh.rotation.z, -a.s * 0.12, push); }
     const bs = 1 + butt * 2.6; buttBall.scale.setScalar(bs); buttBall.position.set(0, 0.05 + butt * 0.25, -0.32 - butt * 0.75);
     buttBall.visible = butt > 0.02; bEyes.visible = buttEyes > 0.01; bEyes.scale.set(1, Math.max(0.01, buttEyes), 1);

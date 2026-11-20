@@ -32,7 +32,7 @@ export function buildChurch(o = {}) {
   // pews: rows on both sides of the aisle; 3 seats each
   const seats = [], wood = '#a8754a';
   for (let row = 0; row < 6; row++) for (const s of [-1, 1]) {
-    const z = z0 + 4.2 + row * 1.9, x = s * 3.1;
+    const z = z0 + 6.4 + row * 1.9, x = s * 3.1; // pews start well back from the altar (room for a front camera)
     at(mesh(rbox(3.6, 0.15, 0.7, 0.05), wood), x, 0.75, z, g);
     at(mesh(rbox(3.6, 1.0, 0.14, 0.05), wood), x, 1.2, z + 0.4, g);
     for (const e of [-1, 1]) at(mesh(rbox(0.14, 1.3, 0.8, 0.05), '#8a5a44'), x + e * 1.8, 0.65, z + 0.1, g);
