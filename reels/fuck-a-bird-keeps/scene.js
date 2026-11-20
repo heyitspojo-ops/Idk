@@ -8,6 +8,7 @@ import { buildToyPerson } from '../../bucket-shared/rig-toy-person.js';
 import { buildBird } from '../../bucket-shared/rig-bird.js';
 import { poopDrop, shovel, laxative, birdBowl, lawnChair, smoke, sparkle } from '../../bucket-shared/props.js';
 import { DURATION, SHOTS, T, toStory } from './timeline.js';
+import { snap, hop, dynamicCamera } from '../../bucket-shared/motion-fx.js';
 
 export const duration = DURATION;
 await loadFont();
@@ -70,10 +71,12 @@ function youGoo(t) {
 }
 
 // ---------- per-frame ----------
+// n quick overshooting pops spread over [a, b] (0..1) instead of one slow swell
+const pulses = (t, a, b, n) => { if (t < a) return 0; const d = (b - a) / n, i = Math.min(n - 1, Math.floor((t - a) / d)); return Math.min(1.05, (i + Math.min(1.1, snap(t, a + i * d, 0.25))) / n); };
 function stage(t) {
   const Y = you.group, W = wife.group, Bd = bird.group;
   let you_ = {}, wife_ = {}, bird_ = {};
-  [Y, W, Bd].forEach(o => o.rotation.set(0, 0, 0)); Bd.scale.setScalar(1); poof.set(0);
+  [Y, W, Bd].forEach(o => o.rotation.set(0, 0, 0)); Bd.scale.setScalar(1); Y.scale.setScalar(1); W.scale.setScalar(1); poof.set(0);
   show(spade, t > T.dig[0] && t < T.dig[1]); show(bottle, t > 31 && t < T.peck[0]);
   dirt.forEach(d => show(d, false)); drops.forEach(d => show(d, false)); blast.forEach(d => show(d, false));
   trail.forEach(s => s.set(0)); show(lensDrop, false);
@@ -87,24 +90,25 @@ function stage(t) {
     bird_ = { flap: 1, smug: 1 };
   } else if (t < 21) { // --- house
     const o = OFF.house;
-    const walkIn = seg(t, T.enter, T.enter + 1.2);
-    Y.position.copy(o).add(new THREE.Vector3(lerp(4.0, 0.6, smooth(walkIn)), 0, lerp(1.5, 0.6, walkIn)));
-    Y.rotation.y = t < T.enter + 1.2 ? -Math.PI / 2 : t < 13.5 ? 0.3 : 1.0;
-    you_ = { walk: walkIn < 1 ? 1 : 0, mood: t < T.couch ? 0.6 : -0.9, double: t > 13.5 && t < 19.5 ? 0.25 : 0 };
+    const walkIn = seg(t, T.enter + 0.3, T.enter + 0.9), q = hop(t, T.enter + 0.3, 0.6, new THREE.Vector3(4.0, 0, 1.5), new THREE.Vector3(0.6, 0, 0.6), 1.4);
+    Y.position.copy(o).add(q.pos); Y.scale.set(q.squash.xz, q.squash.y, q.squash.xz);
+    Y.rotation.y = t < T.enter + 0.9 ? -Math.PI / 2 : t < 13.5 ? 0.3 : 1.0;
+    you_ = { walk: 0, mood: t < T.couch ? 0.6 : -0.9, double: t > 13.5 && t < 19.5 ? 0.25 : 0 };
     // the bird appears out of nowhere above your head (poof), splats you, then flies to the lamp
     const onLamp = t > 11.2, toLamp = seg(t, 10.6, 11.2), above = new THREE.Vector3(0.75, 3.95 + Math.sin(t * 3) * 0.08, 0.6);
-    Bd.position.copy(o).add(onLamp ? new THREE.Vector3(2.6, 3.25, -2.6) : above.lerp(new THREE.Vector3(2.6, 3.25, -2.6), smooth(toLamp)));
+    Bd.position.copy(o).add(onLamp ? new THREE.Vector3(2.6, 3.25, -2.6) : above.lerp(new THREE.Vector3(2.6, 3.25, -2.6), easeOut(toLamp)));
     show(Bd, t > T.couch); if (!onLamp) P(Bd, pop(t, T.couch, 7, 13));
     poof.position.copy(o).add(new THREE.Vector3(0.75, 3.7, 0.6)); poof.set(seg(t, T.couch - 0.05, T.couch + 0.7));
     Bd.rotation.set(0, onLamp ? -0.8 : toLamp > 0 ? -0.9 : 0.4, 0);
     bird_ = { smug: 1, flap: !onLamp ? 1 : 0, shrug: onLamp ? seg(t, T.shrug, T.shrug + 0.3) * (1 - seg(t, 12.8, 13.1)) : 0 };
-    const wIn = seg(t, T.wifeIn, T.wifeIn + 1.4);
-    W.position.copy(o).add(new THREE.Vector3(lerp(4.6, 2.0, smooth(wIn)), 0, lerp(1.5, 1.5, wIn))); W.rotation.y = wIn < 1 ? -Math.PI / 2 : -2.1;
-    wife_ = { walk: wIn < 1 ? 1 : 0, laugh: wIn >= 1 ? 1 : 0, mood: -1, wave: wIn >= 1 ? 1 : 0, scratch: t > 19.5 ? 1 : 0, scratchRate: 6 };
+    const wIn = seg(t, T.wifeIn, T.wifeIn + 0.6), wq = hop(t, T.wifeIn, 0.6, new THREE.Vector3(4.6, 0, 1.5), new THREE.Vector3(2.0, 0, 1.5), 1.2);
+    W.position.copy(o).add(wq.pos); W.scale.set(wq.squash.xz, wq.squash.y, wq.squash.xz); W.rotation.y = wIn < 1 ? -Math.PI / 2 : -2.1;
+    wife_ = { walk: 0, laugh: wIn >= 1 ? 1 : 0, mood: -1, wave: wIn >= 1 ? 1 : 0, scratch: t > 19.5 ? 1 : 0, scratchRate: 6 };
   } else if (t < 31 && t >= 23) { // --- bunker
     const o = OFF.bunker;
     if (t < 25.5) { const c = seg(t, ...T.climb);
-      Y.position.copy(o).add(new THREE.Vector3(2.7, lerp(5.2, 0.1, c), 0.7)); Y.rotation.y = c < 1 ? Math.PI : 0;
+      const q = hop(t, T.climb[1] - 0.6, 0.6, new THREE.Vector3(2.7, 5.2, 0.7), new THREE.Vector3(2.7, 0.1, 0.7), 0.6);
+      Y.position.copy(o).add(q.pos); Y.scale.set(q.squash.xz, q.squash.y, q.squash.xz); Y.rotation.y = c < 1 ? Math.PI : 0;
       you_ = { mood: -1, wave: t > T.fistUp ? 1 : 0, swingUp: c > 0 && c < 1 ? 1 : 0 };
     } else if (t < 29.5) { Y.position.copy(o).add(new THREE.Vector3(0.3, 1.3, -0.8)); Y.rotation.set(0, 0, Math.PI / 2);
       you_ = { laugh: 1, mood: 0.2 };
@@ -120,19 +124,19 @@ function stage(t) {
     if (t < 23) { Y.position.set(3.0, 0, -2.6); Y.rotation.y = 2.2;
       const k = (t * 3) % 1; you_ = { swingUp: 1, swing: k < 0.5 ? k * 2 : 2 - k * 2, mood: -1 };
       dirt.forEach((d, i) => { const p = ((t * 3 + i / 8) % 1); show(d, true); d.position.set(3.6 + p * 1.4, 0.2 + Math.sin(p * Math.PI) * 2, -3.2 - p * 1.0); });
-    } else if (t < 44) { Y.position.set(t < 35.5 ? 3.1 : 3.5, 0, t < 35.5 ? -2.2 : -2.5); Y.rotation.y = lerp(2.35, 0.6, smooth(seg(t, T.boom + 1.0, T.boom + 1.8)));
+    } else if (t < 44) { Y.position.set(t < 35.5 ? 3.1 : 3.5, 0, t < 35.5 ? -2.2 : -2.5); Y.rotation.y = lerp(2.35, 0.6, Math.min(1.1, snap(t, T.boom + 1.0, 0.3)));
       you_ = { hold: t < T.peck[0] ? 1 : 0, fold: t > T.rub && t < 35.5 ? 1 : 0, smug: t > T.rub && t < 35.5 ? 1 : 0, slump: t > 35.5 && t < T.boom ? 0.5 : 0,
         mood: t > T.boom ? -1 : 0.5 };
       bottle.rotation.z = t > T.pour[0] && t < T.pour[1] ? -1.6 : 0;
       const land = seg(t, 32.6, 33.3), food = V(4.6, 1.4, -3.3);
-      Bd.position.lerpVectors(V(7, 6, -5), food, smooth(land)); Bd.rotation.set(0, -2.2, 0);
-      const bl = smooth(seg(t, ...T.bloat));
+      Bd.position.copy(hop(t, 32.6, 0.6, V(7, 6, -5), food, 1.2).pos); Bd.rotation.set(0, -2.2, 0);
+      const bl = pulses(t, T.bloat[0], T.bloat[1], 5);
       bird_ = { flap: land < 1 ? 1 : 0, peck: t > T.peck[0] && t < T.peck[1] ? 1 : 0, bloat: t < T.boom ? bl : 0, shake: bl, smug: t < 35.5 ? 1 : 0 };
       if (t > T.launch) { const l = seg(t, T.launch, T.launch + 0.8); Bd.position.copy(food).add(new THREE.Vector3(0, easeIn(l) * 14, 0)); }
       blast.forEach(d => { const p = seg(t, T.boom, T.boom + 0.9); show(d, p > 0 && p < 1);
         d.position.copy(food).addScaledVector(d.userData.v, p * 1.6).add(new THREE.Vector3(-p * 1.5, -4.9 * p * p, 0)); });
     } else if (t < 48) { // sky -> wife
-      const f = seg(t, ...T.fly), wifeHead = V(-3.2, 3.15, -2.6);
+      const f = easeOut(seg(t, T.fly[0] + 0.7, T.fly[1])), wifeHead = V(-3.2, 3.15, -2.6);
       W.position.set(-3.2, 0, -2.6); W.rotation.y = 0.3;
       if (t < T.land) { Bd.position.lerpVectors(V(9, 12, -3), wifeHead, smooth(f)); Bd.rotation.set(0, -Math.PI / 2, 0.4);
         trail.forEach((s, i) => { s.position.lerpVectors(V(9, 12, -3), wifeHead, Math.max(0, smooth(f) - 0.1 - i * 0.05)); s.set(0.3 + i * 0.05); }); }
@@ -170,13 +174,11 @@ function screen(t) {
     s.style.opacity = t < T.sweet + i * 0.07 ? 0 : 1; s.style.transform = `translateY(${(1 - Math.min(p, 1.2)) * 80}px) scale(${Math.max(0.01, p)})`; });
 }
 
+const HITS = [T.title, T.splat1, ...T.drops.map(x => x + 0.45), T.fist, T.couch, T.splatHouse, T.shrug, T.dropLamp + 0.6, T.wifeIn + 0.6, T.bubble, T.hatch, T.ventOut, T.mouth, T.gag, T.peck[0], T.boom, T.land, ...T.wifeSplats, T.chair, T.sweet, T.finalDrop + 0.4];
 function shoot(t) {
-  const s = shotAt(t), x = smooth(seg(t, s.from, s.to)), [a, b] = s.cam;
+  const s = shotAt(t);
   const base = s.followBird ? bird.group.position.clone() : s.follow ? new THREE.Vector3(you.group.position.x, 0, 0) : OFF[s.world].clone();
-  const shake = t > T.boom && t < T.boom + 0.6 ? (1 - seg(t, T.boom, T.boom + 0.6)) * 0.2 : 0;
-  camera.position.copy(lerpV(a.p, b.p, x)).add(base); camera.position.y += Math.sin(t * 90) * shake;
-  const look = lerpV(a.l, b.l, x).add(base);
-  camera.fov = s.fov; camera.updateProjectionMatrix(); camera.lookAt(look);
+  const look = dynamicCamera(camera, t, s, base, HITS);
   scene.background = SKY[s.world]; scene.fog = null;
   hemi.intensity = s.world === 'bunker' ? 0.9 : 1.5; key.intensity = s.world === 'bunker' ? 1.2 : 2.6;
   key.place(look, 10);
