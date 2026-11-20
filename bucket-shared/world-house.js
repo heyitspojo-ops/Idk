@@ -1,10 +1,11 @@
 // Cosy toy living room: floor, three walls (open to +z), couch, lamp, rug, window, TV, a door on the right wall.
-// buildHouse({ seed, w, d }) -> { group, anchors: { door, couch, lamp, center } }   floor top at y = 0
+// buildHouse({ seed, w, d, ceiling }) -> { group, anchors: { door, couch, lamp, center }, ceiling }   floor top at y = 0
+//   ceiling: adds a ceiling at y = 7 with a round cut-out hole: ceiling.hole({ x, z, r, cut 0..1 (saw progress), patched })
 import * as THREE from 'three';
 import { mesh, mat, rbox, cyl, ball, at } from './toy-kit.js';
 
 export function buildHouse(o = {}) {
-  const { w = 11, d = 8, wall = '#f7e3c8', floor = '#d9a873', accent = '#e2577a' } = o;
+  const { w = 11, d = 8, wall = '#f7e3c8', floor = '#d9a873', accent = '#e2577a' , ceiling: withCeiling = false } = o;
   const g = new THREE.Group(), H = 7;
   at(mesh(rbox(w + 0.6, 0.6, d + 0.6, 0.25), '#c98f5f'), 0, -0.32, 0, g);
   for (let i = 0; i < 9; i++) at(mesh(rbox(w / 9 - 0.05, 0.06, d, 0.02, 1), i % 2 ? floor : '#e2b483'), -w / 2 + (i + 0.5) * (w / 9), 0, 0, g);
@@ -36,5 +37,22 @@ export function buildHouse(o = {}) {
   const anchors = {};
   const A = (n, x, y, z) => { anchors[n] = at(new THREE.Object3D(), x, y, z, g); };
   A('door', w / 2 - 1.0, 0, 1.5); A('couch', -1.4, 1.0, -2.3); A('lamp', 2.6, 3.25, -2.6); A('center', 0.4, 0, 0.8);
-  return { group: g, anchors };
+  let ceiling = null;
+  if (withCeiling) {
+    const cg = at(new THREE.Group(), 0, H, 0, g);
+    const slab = at(mesh(rbox(w + 0.6, 0.3, d + 0.6, 0.08), '#f4ead9'), 0, 0.15, 0, cg);
+    const disc = at(mesh(new THREE.CylinderGeometry(1, 1, 0.34, 20), '#2b2233'), 0, 0.15, 0, cg);   // the dark hole
+    const plug = at(mesh(new THREE.CylinderGeometry(1, 1, 0.36, 20), '#f4ead9'), 0, 0.15, 0, cg);   // the cut-out circle
+    const patch = at(mesh(rbox(1, 0.08, 1, 0.04), '#d9a873'), 0, -0.02, 0, cg);
+    const ring = at(mesh(new THREE.TorusGeometry(1, 0.05, 4, 24, 1), '#c9ced6'), 0, -0.01, 0, cg); ring.rotation.x = Math.PI / 2;
+    ceiling = { group: cg, hole: ({ x = 0, z = 0, r = 1, cut = 0, open = 0, patched = false } = {}) => {
+      [disc, plug, ring].forEach(o => { o.position.x = x; o.position.z = z; });
+      disc.scale.set(r, 1, r); plug.scale.set(r, 1, r); disc.visible = open > 0 && !patched;
+      plug.visible = !patched && open < 1; plug.position.y = 0.15 - open * 3; plug.rotation.z = open * 0.8;
+      ring.visible = cut > 0 && cut < 1; ring.scale.set(r, r, 1); ring.geometry.dispose(); ring.geometry = new THREE.TorusGeometry(1, 0.05, 4, 24, Math.max(0.01, cut) * Math.PI * 2);
+      patch.visible = patched; patch.position.set(x, -0.02, z); patch.scale.set(r * 2.3, 1, r * 2.3);
+    } };
+    ceiling.hole({});
+  }
+  return { group: g, anchors, ceiling };
 }

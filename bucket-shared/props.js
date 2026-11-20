@@ -539,3 +539,49 @@ export function bed({ blanket = '#5fa8d3' } = {}) {
   g.anchors = { pillow: at(new THREE.Object3D(), 0, 1.15, -1.5, g) };
   return g;
 }
+
+// ---------- bed-creep gags ----------
+/** Bedroom window facing +z: frame + a sash that slides up. win.set({ open 0..1, bolts 0..1 }) ; ~2.2 wide, sill at y 0 */
+export function slidingWindow() {
+  const g = new THREE.Group(), white = mat('#fbfbf8');
+  for (const s of [-1, 1]) at(mesh(rbox(0.16, 2.6, 0.2, 0.05), white), s * 1.1, 1.3, 0, g);
+  for (const y of [0, 2.6]) at(mesh(rbox(2.4, 0.16, 0.24, 0.05), white), 0, y, 0, g);
+  at(mesh(rbox(2.1, 2.4, 0.04, 0.04), mat('#20305a', { emissive: '#152040', emissiveIntensity: 0.6 })), 0, 1.3, -0.08, g); // night outside
+  const moon = at(new THREE.Mesh(ball(0.22, 1), mat('#fff3c4', { emissive: '#ffe9a8', emissiveIntensity: 1.6 })), -0.5, 1.9, -0.06, g);
+  const sash = at(new THREE.Group(), 0, 0, 0.05, g);
+  at(mesh(rbox(2.1, 1.25, 0.06, 0.04), mat('#bfe6f5', { transparent: true, opacity: 0.45, roughness: 0.1 })), 0, 0.65, 0, sash);
+  at(mesh(rbox(2.15, 0.1, 0.1, 0.03), white), 0, 1.27, 0, sash);
+  const bolts = Array.from({ length: 4 }, (_, i) => { const b = at(new THREE.Group(), (i % 2 ? 1 : -1) * 1.1, i < 2 ? 0.5 : 2.0, 0.15, g);
+    at(mesh(new THREE.CylinderGeometry(0.16, 0.16, 0.1, 6), '#9aa3ad'), 0, 0, 0.05, b).rotation.x = Math.PI / 2;
+    at(mesh(rbox(0.5, 0.12, 0.12, 0.03), '#9aa3ad'), 0, 0, 0.02, b); return b; });
+  g.set = ({ open = 0, bolts: nb = 0, moonX = -0.5 } = {}) => { sash.position.y = open * 1.2; bolts.forEach((b, i) => { b.visible = nb > i / 4; b.scale.setScalar(nb > i / 4 ? Math.min(1, (nb - i / 4) * 6) : 0.01); }); moon.position.x = moonX; };
+  g.set();
+  return g;
+}
+/** Bedroom door facing +z, hinged on the left: door.set({ open 0..1, locks 0..3 }) ; ~1.6 wide, 3.6 tall */
+export function lockDoor() {
+  const g = new THREE.Group(), hinge = at(new THREE.Group(), -0.8, 0, 0, g);
+  at(mesh(rbox(1.6, 3.6, 0.14, 0.05), '#a8754a'), 0.8, 1.8, 0, hinge);
+  at(mesh(ball(0.09, 0), '#ffd166'), 1.4, 1.7, 0.1, hinge);
+  for (const s of [-1, 1]) at(mesh(rbox(0.14, 3.8, 0.2, 0.04), '#fbfbf8'), s * 0.86, 1.9, -0.02, g);
+  const locks = [2.6, 2.1, 1.3].map(y => { const l = at(new THREE.Group(), 1.4, y, 0.12, hinge);
+    at(mesh(rbox(0.3, 0.16, 0.08, 0.03), '#9aa3ad'), 0, 0, 0, l); const bolt = at(mesh(rbox(0.3, 0.07, 0.07, 0.02), '#c9ced6'), 0.1, 0, 0.03, l); l.bolt = bolt; return l; });
+  g.set = ({ open = 0, locks: nl = 0 } = {}) => { hinge.rotation.y = open * 1.6; locks.forEach((l, i) => { l.visible = nl > i; l.bolt.position.x = nl > i + 0.5 ? 0.3 : 0.1; }); };
+  g.set();
+  return g;
+}
+/** Circular saw blade (spinning disc with teeth), axis along y. saw.set({ t }) spins it. */
+export function sawBlade(r = 0.45) {
+  const g = new THREE.Group(), steel = mat('#c9ced6', { metalness: 0.5, roughness: 0.3 });
+  const disc = at(mesh(new THREE.CylinderGeometry(r, r, 0.04, 16), steel), 0, 0, 0, g);
+  for (let i = 0; i < 12; i++) { const a = (i / 12) * Math.PI * 2; at(mesh(new THREE.ConeGeometry(0.06, 0.12, 3), steel), Math.cos(a) * r, 0, Math.sin(a) * r, disc).rotation.set(Math.PI / 2, 0, -a); }
+  g.set = ({ t = 0 } = {}) => (disc.rotation.y = t * 40);
+  return g;
+}
+/** Metal trash can, base at y = 0. */
+export function trashCan() {
+  const g = new THREE.Group();
+  at(mesh(new THREE.CylinderGeometry(0.7, 0.6, 1.5, 12), '#9aa3ad'), 0, 0.75, 0, g);
+  at(mesh(new THREE.CylinderGeometry(0.78, 0.78, 0.1, 12), '#b9c0ca'), 0, 1.55, 0, g);
+  return g;
+}
