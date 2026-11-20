@@ -6,3 +6,4 @@ Before writing any code, post a manifest: files you will REUSE from `bucket-shar
 - Iterate with stills, not reasoning about geometry. Order: `node render.js sheet reels/<name>` (one small labeled sheet; view only changed beats), then `--draft --from a --to b` for motion, then the final render.
 - Final: `node render.js reels/<name>` (builds and masters audio when stale, writes build/<name>.mp4).
 - Film style library: ~/lemo-opuscar (read only; read a style's STYLE.md before using it)
+- Pacing: actions and effects happen fast and dynamic — snappy pops, quick floods and fills, fast entrances and launches; no slow drifts or long fades.

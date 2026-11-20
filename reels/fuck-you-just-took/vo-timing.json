@@ -7,13 +7,13 @@
   "text": "FUCK! You just took a shit at your girlfriend's house... and it won't go down.",
   "words": [
    {
-    "w": "Fuck.",
+    "w": "Fuck!",
     "start": 0.0,
-    "end": 0.38
+    "end": 0.36
    },
    {
     "w": "You",
-    "start": 1.26,
+    "start": 1.4,
     "end": 1.48
    },
    {
@@ -29,11 +29,11 @@
    {
     "w": "a",
     "start": 1.84,
-    "end": 1.98
+    "end": 2.0
    },
    {
     "w": "shit",
-    "start": 1.98,
+    "start": 2.0,
     "end": 2.22
    },
    {
@@ -49,21 +49,21 @@
    {
     "w": "girlfriend's",
     "start": 2.46,
-    "end": 2.92
+    "end": 2.96
    },
    {
-    "w": "house",
-    "start": 2.92,
+    "w": "house,",
+    "start": 2.96,
     "end": 3.16
    },
    {
     "w": "and",
-    "start": 3.16,
-    "end": 3.88
+    "start": 3.74,
+    "end": 3.9
    },
    {
     "w": "it",
-    "start": 3.88,
+    "start": 3.9,
     "end": 4.0
    },
    {
@@ -77,23 +77,23 @@
     "end": 4.34
    },
    {
-    "w": "down",
+    "w": "down.",
     "start": 4.34,
     "end": 4.68
    }
   ],
-  "heard": "Fuck. You just took a shit at your girlfriend's house and it won't go down"
+  "heard": "Fuck! You just took a shit at your girlfriend's house, and it won't go down."
  },
  {
   "id": 2,
-  "start": 4.68,
+  "start": 5.02,
   "end": 11.36,
   "min": 3.8,
   "text": "So you flush it again, and now it's flooding the fucking floor with shit. Goddamn Taco Bell gordita.",
   "words": [
    {
-    "w": "so",
-    "start": 4.68,
+    "w": "So",
+    "start": 5.02,
     "end": 5.04
    },
    {
@@ -109,46 +109,46 @@
    {
     "w": "it",
     "start": 5.38,
-    "end": 5.56
+    "end": 5.58
    },
    {
-    "w": "again",
-    "start": 5.56,
+    "w": "again,",
+    "start": 5.58,
     "end": 5.82
    },
    {
     "w": "and",
-    "start": 5.82,
+    "start": 6.26,
     "end": 6.46
    },
    {
     "w": "now",
     "start": 6.46,
-    "end": 6.62
+    "end": 6.64
    },
    {
     "w": "it's",
-    "start": 6.62,
-    "end": 6.84
+    "start": 6.64,
+    "end": 6.86
    },
    {
     "w": "flooding",
-    "start": 6.84,
-    "end": 7.2
+    "start": 6.86,
+    "end": 7.22
    },
    {
     "w": "the",
-    "start": 7.2,
-    "end": 7.48
+    "start": 7.22,
+    "end": 7.44
    },
    {
     "w": "fucking",
-    "start": 7.48,
-    "end": 7.72
+    "start": 7.44,
+    "end": 7.74
    },
    {
     "w": "floor",
-    "start": 7.72,
+    "start": 7.74,
     "end": 8.1
    },
    {
@@ -163,17 +163,17 @@
    },
    {
     "w": "Goddamn",
-    "start": 9.66,
-    "end": 10.1
+    "start": 9.68,
+    "end": 10.12
    },
    {
     "w": "Taco",
-    "start": 10.1,
-    "end": 10.54
+    "start": 10.12,
+    "end": 10.56
    },
    {
     "w": "Bell",
-    "start": 10.54,
+    "start": 10.56,
     "end": 10.84
    },
    {
@@ -182,38 +182,38 @@
     "end": 11.36
    }
   ],
-  "heard": "so you flush it again and now it's flooding the fucking floor with shit. Goddamn Taco Bell Gordita."
+  "heard": "So you flush it again, and now it's flooding the fucking floor with shit. Goddamn Taco Bell Gordita."
  },
  {
   "id": 3,
-  "start": 11.76,
+  "start": 11.82,
   "end": 14.28,
   "min": 2.8,
   "text": "So you grab the plunger to fix this unholy mess.",
   "words": [
    {
     "w": "So",
-    "start": 11.76,
-    "end": 11.84
+    "start": 11.82,
+    "end": 11.82
    },
    {
     "w": "you",
-    "start": 11.84,
-    "end": 12.0
+    "start": 11.82,
+    "end": 11.98
    },
    {
     "w": "grab",
-    "start": 12.0,
+    "start": 11.98,
     "end": 12.22
    },
    {
     "w": "the",
     "start": 12.22,
-    "end": 12.5
+    "end": 12.54
    },
    {
     "w": "plunger",
-    "start": 12.5,
+    "start": 12.54,
     "end": 12.78
    },
    {
@@ -224,21 +224,21 @@
    {
     "w": "fix",
     "start": 12.94,
-    "end": 13.1
+    "end": 13.12
    },
    {
     "w": "this",
-    "start": 13.1,
+    "start": 13.12,
     "end": 13.38
    },
    {
     "w": "unholy",
     "start": 13.38,
-    "end": 13.88
+    "end": 13.9
    },
    {
     "w": "mess.",
-    "start": 13.88,
+    "start": 13.9,
     "end": 14.28
    }
   ],
@@ -246,24 +246,24 @@
  },
  {
   "id": 4,
-  "start": 14.72,
+  "start": 14.74,
   "end": 20.12,
   "min": 3.6,
   "text": "Her dad is banging on the door. Probably to commit manslaughter on this toilet himself. Fucking great.",
   "words": [
    {
     "w": "Her",
-    "start": 14.72,
+    "start": 14.74,
     "end": 14.82
    },
    {
     "w": "dad",
     "start": 14.82,
-    "end": 15.04
+    "end": 15.02
    },
    {
     "w": "is",
-    "start": 15.04,
+    "start": 15.02,
     "end": 15.2
    },
    {
@@ -284,16 +284,16 @@
    {
     "w": "door,",
     "start": 15.74,
-    "end": 16.0
+    "end": 15.98
    },
    {
     "w": "probably",
-    "start": 16.3,
-    "end": 16.62
+    "start": 16.38,
+    "end": 16.6
    },
    {
     "w": "to",
-    "start": 16.62,
+    "start": 16.6,
     "end": 16.8
    },
    {
@@ -309,31 +309,31 @@
    {
     "w": "on",
     "start": 17.54,
-    "end": 17.74
+    "end": 17.76
    },
    {
     "w": "this",
-    "start": 17.74,
-    "end": 17.92
+    "start": 17.76,
+    "end": 17.94
    },
    {
     "w": "toilet",
-    "start": 17.92,
+    "start": 17.94,
     "end": 18.24
    },
    {
     "w": "himself.",
     "start": 18.24,
-    "end": 18.72
+    "end": 18.7
    },
    {
     "w": "Fucking",
     "start": 19.58,
-    "end": 19.76
+    "end": 19.78
    },
    {
     "w": "great.",
-    "start": 19.76,
+    "start": 19.78,
     "end": 20.12
    }
   ],
@@ -342,776 +342,776 @@
  {
   "id": 5,
   "start": 21.02,
-  "end": 25.82,
+  "end": 26.68,
   "min": 3.4,
-  "text": "So you use the plunger and the toilet fucking sucks it up. How the fuck does that work?",
+  "text": "So you use the plunger and the toilet fucking sucks it up. How the fuck... does that work?",
   "words": [
    {
     "w": "So",
     "start": 21.02,
-    "end": 21.28
+    "end": 21.22
    },
    {
     "w": "you",
-    "start": 21.28,
+    "start": 21.22,
     "end": 21.44
    },
    {
     "w": "use",
     "start": 21.44,
-    "end": 21.68
+    "end": 21.74
    },
    {
     "w": "the",
-    "start": 21.68,
-    "end": 21.88
+    "start": 21.74,
+    "end": 21.94
    },
    {
     "w": "plunger",
-    "start": 21.88,
-    "end": 22.38
+    "start": 21.94,
+    "end": 22.36
    },
    {
     "w": "and",
-    "start": 22.38,
+    "start": 22.36,
     "end": 22.52
    },
    {
     "w": "the",
     "start": 22.52,
-    "end": 22.62
+    "end": 22.66
    },
    {
     "w": "toilet",
-    "start": 22.62,
-    "end": 22.9
+    "start": 22.66,
+    "end": 23.02
    },
    {
     "w": "fucking",
-    "start": 22.9,
-    "end": 23.34
+    "start": 23.02,
+    "end": 23.6
    },
    {
     "w": "sucks",
-    "start": 23.34,
-    "end": 23.64
+    "start": 23.6,
+    "end": 23.88
    },
    {
     "w": "it",
-    "start": 23.64,
-    "end": 23.86
-   },
-   {
-    "w": "up.",
-    "start": 23.86,
+    "start": 23.88,
     "end": 24.08
    },
    {
+    "w": "up.",
+    "start": 24.08,
+    "end": 24.28
+   },
+   {
     "w": "How",
-    "start": 24.58,
-    "end": 24.72
+    "start": 24.94,
+    "end": 25.12
    },
    {
     "w": "the",
-    "start": 24.72,
-    "end": 24.86
+    "start": 25.12,
+    "end": 25.28
    },
    {
     "w": "fuck",
-    "start": 24.86,
-    "end": 25.14
+    "start": 25.28,
+    "end": 25.68
    },
    {
     "w": "does",
-    "start": 25.14,
-    "end": 25.34
+    "start": 25.68,
+    "end": 26.12
    },
    {
     "w": "that",
-    "start": 25.34,
-    "end": 25.52
+    "start": 26.12,
+    "end": 26.34
    },
    {
     "w": "work?",
-    "start": 25.52,
-    "end": 25.82
+    "start": 26.34,
+    "end": 26.68
    }
   ],
   "heard": "So you use the plunger and the toilet fucking sucks it up. How the fuck does that work?"
  },
  {
   "id": 6,
-  "start": 26.08,
-  "end": 29.8,
+  "start": 26.68,
+  "end": 30.7,
   "min": 3.0,
   "text": "You gotta clean this up before her dad walks in... and you get a genius idea\u2014",
   "words": [
    {
     "w": "You",
-    "start": 26.08,
-    "end": 26.22
+    "start": 26.68,
+    "end": 27.08
    },
    {
     "w": "gotta",
-    "start": 26.22,
-    "end": 26.34
+    "start": 27.08,
+    "end": 27.24
    },
    {
     "w": "clean",
-    "start": 26.34,
-    "end": 26.56
+    "start": 27.24,
+    "end": 27.46
    },
    {
     "w": "this",
-    "start": 26.56,
-    "end": 26.72
+    "start": 27.46,
+    "end": 27.62
    },
    {
     "w": "up",
-    "start": 26.72,
-    "end": 26.86
+    "start": 27.62,
+    "end": 27.76
    },
    {
     "w": "before",
-    "start": 26.86,
-    "end": 27.06
+    "start": 27.76,
+    "end": 27.96
    },
    {
     "w": "her",
-    "start": 27.06,
-    "end": 27.18
+    "start": 27.96,
+    "end": 28.1
    },
    {
     "w": "dad",
-    "start": 27.18,
-    "end": 27.38
+    "start": 28.1,
+    "end": 28.28
    },
    {
     "w": "walks",
-    "start": 27.38,
-    "end": 27.6
+    "start": 28.28,
+    "end": 28.5
    },
    {
-    "w": "in",
-    "start": 27.6,
-    "end": 27.86
+    "w": "in,",
+    "start": 28.5,
+    "end": 28.76
    },
    {
     "w": "and",
-    "start": 27.86,
-    "end": 28.4
+    "start": 29.06,
+    "end": 29.3
    },
    {
     "w": "you",
-    "start": 28.4,
-    "end": 28.52
+    "start": 29.3,
+    "end": 29.42
    },
    {
     "w": "get",
-    "start": 28.52,
-    "end": 28.64
+    "start": 29.42,
+    "end": 29.54
    },
    {
     "w": "a",
-    "start": 28.64,
-    "end": 28.94
+    "start": 29.54,
+    "end": 29.82
    },
    {
     "w": "genius",
-    "start": 28.94,
-    "end": 29.26
+    "start": 29.82,
+    "end": 30.2
    },
    {
     "w": "idea.",
-    "start": 29.26,
-    "end": 29.8
+    "start": 30.2,
+    "end": 30.7
    }
   ],
-  "heard": "You gotta clean this up before her dad walks in and you get a genius idea."
+  "heard": "You gotta clean this up before her dad walks in, and you get a genius idea."
  },
  {
   "id": 7,
-  "start": 30.04,
-  "end": 35.54,
+  "start": 30.94,
+  "end": 36.44,
   "min": 4.0,
   "text": "Nope. Too late. Her dad barges in and loses. His. Fucking. Motherfucking. Mind.",
   "words": [
    {
     "w": "Nope.",
-    "start": 30.04,
-    "end": 30.18
+    "start": 30.94,
+    "end": 31.06
    },
    {
     "w": "Too",
-    "start": 30.46,
-    "end": 30.64
+    "start": 31.4,
+    "end": 31.52
    },
    {
     "w": "late.",
-    "start": 30.64,
-    "end": 30.82
+    "start": 31.52,
+    "end": 31.7
    },
    {
     "w": "Her",
-    "start": 31.18,
-    "end": 31.28
-   },
-   {
-    "w": "dad",
-    "start": 31.28,
-    "end": 31.48
-   },
-   {
-    "w": "barges",
-    "start": 31.48,
-    "end": 32.0
-   },
-   {
-    "w": "in",
-    "start": 32.0,
+    "start": 32.1,
     "end": 32.18
    },
    {
-    "w": "and",
+    "w": "dad",
     "start": 32.18,
     "end": 32.4
    },
    {
-    "w": "loses.",
+    "w": "barges",
     "start": 32.4,
-    "end": 32.66
+    "end": 32.92
+   },
+   {
+    "w": "in",
+    "start": 32.92,
+    "end": 33.08
+   },
+   {
+    "w": "and",
+    "start": 33.08,
+    "end": 33.28
+   },
+   {
+    "w": "loses.",
+    "start": 33.28,
+    "end": 33.56
    },
    {
     "w": "His",
-    "start": 33.1,
-    "end": 33.34
+    "start": 34.02,
+    "end": 34.24
    },
    {
     "w": "fucking",
-    "start": 33.34,
-    "end": 34.0
+    "start": 34.24,
+    "end": 34.9
    },
    {
     "w": "motherfucking",
-    "start": 34.0,
-    "end": 35.06
+    "start": 34.9,
+    "end": 35.96
    },
    {
     "w": "mind.",
-    "start": 35.06,
-    "end": 35.54
+    "start": 35.96,
+    "end": 36.44
    }
   ],
   "heard": "Nope. Too late. Her dad barges in and loses. His fucking motherfucking mind."
  },
  {
   "id": 8,
-  "start": 35.84,
-  "end": 40.22,
+  "start": 36.8,
+  "end": 41.14,
   "min": 4.0,
   "text": "But he also had a Taco Bell Crunchwrap Supreme, so he takes a shit anyway.",
   "words": [
    {
     "w": "But",
-    "start": 35.84,
-    "end": 36.06
+    "start": 36.8,
+    "end": 36.96
    },
    {
     "w": "he",
-    "start": 36.06,
-    "end": 36.34
+    "start": 36.96,
+    "end": 37.24
    },
    {
     "w": "also",
-    "start": 36.34,
-    "end": 36.52
+    "start": 37.24,
+    "end": 37.4
    },
    {
     "w": "had",
-    "start": 36.52,
-    "end": 36.76
+    "start": 37.4,
+    "end": 37.66
    },
    {
     "w": "a",
-    "start": 36.76,
-    "end": 36.9
+    "start": 37.66,
+    "end": 37.84
    },
    {
     "w": "Taco",
-    "start": 36.9,
-    "end": 37.12
+    "start": 37.84,
+    "end": 38.02
    },
    {
     "w": "Bell",
-    "start": 37.12,
-    "end": 37.42
+    "start": 38.02,
+    "end": 38.32
    },
    {
     "w": "Crunchwrap",
-    "start": 37.42,
-    "end": 37.96
+    "start": 38.32,
+    "end": 38.86
    },
    {
-    "w": "Supreme.",
-    "start": 37.96,
-    "end": 38.36
+    "w": "Supreme,",
+    "start": 38.86,
+    "end": 39.26
    },
    {
-    "w": "So",
-    "start": 38.88,
-    "end": 39.14
+    "w": "so",
+    "start": 39.68,
+    "end": 40.04
    },
    {
     "w": "he",
-    "start": 39.14,
-    "end": 39.34
+    "start": 40.04,
+    "end": 40.26
    },
    {
     "w": "takes",
-    "start": 39.34,
-    "end": 39.54
+    "start": 40.26,
+    "end": 40.44
    },
    {
     "w": "a",
-    "start": 39.54,
-    "end": 39.74
+    "start": 40.44,
+    "end": 40.64
    },
    {
     "w": "shit",
-    "start": 39.74,
-    "end": 39.94
+    "start": 40.64,
+    "end": 40.84
    },
    {
     "w": "anyway.",
-    "start": 39.94,
-    "end": 40.22
+    "start": 40.84,
+    "end": 41.14
    }
   ],
-  "heard": "But he also had a Taco Bell Crunchwrap Supreme. So he takes a shit anyway."
+  "heard": "But he also had a Taco Bell Crunchwrap Supreme, so he takes a shit anyway."
  },
  {
   "id": 9,
-  "start": 40.48,
-  "end": 43.92,
+  "start": 41.42,
+  "end": 44.8,
   "min": 3.6,
   "text": "It's too much for this toilet. It shoots out the fucking roof!",
   "words": [
    {
     "w": "It's",
-    "start": 40.48,
-    "end": 40.7
+    "start": 41.42,
+    "end": 41.58
    },
    {
     "w": "too",
-    "start": 40.7,
-    "end": 40.84
+    "start": 41.58,
+    "end": 41.74
    },
    {
     "w": "much",
-    "start": 40.84,
-    "end": 41.0
+    "start": 41.74,
+    "end": 41.9
    },
    {
     "w": "for",
-    "start": 41.0,
-    "end": 41.18
+    "start": 41.9,
+    "end": 42.08
    },
    {
     "w": "this",
-    "start": 41.18,
-    "end": 41.32
+    "start": 42.08,
+    "end": 42.22
    },
    {
     "w": "toilet.",
-    "start": 41.32,
-    "end": 41.66
+    "start": 42.22,
+    "end": 42.58
    },
    {
     "w": "It",
-    "start": 42.18,
-    "end": 42.36
+    "start": 43.06,
+    "end": 43.24
    },
    {
     "w": "shoots",
-    "start": 42.36,
-    "end": 42.6
+    "start": 43.24,
+    "end": 43.5
    },
    {
     "w": "out",
-    "start": 42.6,
-    "end": 42.8
+    "start": 43.5,
+    "end": 43.7
    },
    {
     "w": "the",
-    "start": 42.8,
-    "end": 43.04
+    "start": 43.7,
+    "end": 43.86
    },
    {
     "w": "fucking",
-    "start": 43.04,
-    "end": 43.44
+    "start": 43.86,
+    "end": 44.34
    },
    {
-    "w": "roof.",
-    "start": 43.44,
-    "end": 43.92
+    "w": "roof!",
+    "start": 44.34,
+    "end": 44.8
    }
   ],
-  "heard": "It's too much for this toilet. It shoots out the fucking roof."
+  "heard": "It's too much for this toilet. It shoots out the fucking roof!"
  },
  {
   "id": 10,
-  "start": 44.28,
-  "end": 48.78,
+  "start": 45.2,
+  "end": 49.68,
   "min": 3.6,
   "text": "Now there's shit everywhere. Diarrhea city, and you're the fucking mayor.",
   "words": [
    {
     "w": "Now",
-    "start": 44.28,
-    "end": 44.46
+    "start": 45.2,
+    "end": 45.36
    },
    {
     "w": "there's",
-    "start": 44.46,
-    "end": 44.8
+    "start": 45.36,
+    "end": 45.74
    },
    {
     "w": "shit",
-    "start": 44.8,
-    "end": 44.96
+    "start": 45.74,
+    "end": 45.86
    },
    {
     "w": "everywhere.",
-    "start": 44.96,
-    "end": 45.4
+    "start": 45.86,
+    "end": 46.3
    },
    {
     "w": "Diarrhea",
-    "start": 46.48,
-    "end": 46.78
+    "start": 47.38,
+    "end": 47.7
    },
    {
     "w": "City.",
-    "start": 46.78,
-    "end": 47.1
+    "start": 47.7,
+    "end": 48.0
    },
    {
     "w": "And",
-    "start": 47.66,
-    "end": 47.74
+    "start": 48.56,
+    "end": 48.64
    },
    {
     "w": "you're",
-    "start": 47.74,
-    "end": 47.88
+    "start": 48.64,
+    "end": 48.78
    },
    {
     "w": "the",
-    "start": 47.88,
-    "end": 48.02
+    "start": 48.78,
+    "end": 48.92
    },
    {
     "w": "fucking",
-    "start": 48.02,
-    "end": 48.46
+    "start": 48.92,
+    "end": 49.36
    },
    {
     "w": "mayor.",
-    "start": 48.46,
-    "end": 48.78
+    "start": 49.36,
+    "end": 49.68
    }
   ],
   "heard": "Now there's shit everywhere. Diarrhea City. And you're the fucking mayor."
  },
  {
   "id": 11,
-  "start": 49.04,
-  "end": 51.76,
+  "start": 49.94,
+  "end": 52.68,
   "min": 3.0,
   "text": "Your girlfriend walks in to this fucking fiasco.",
   "words": [
    {
     "w": "Your",
-    "start": 49.04,
-    "end": 49.16
+    "start": 49.94,
+    "end": 50.06
    },
    {
     "w": "girlfriend",
-    "start": 49.16,
-    "end": 49.5
+    "start": 50.06,
+    "end": 50.42
    },
    {
     "w": "walks",
-    "start": 49.5,
-    "end": 49.82
+    "start": 50.42,
+    "end": 50.72
    },
    {
     "w": "in",
-    "start": 49.82,
-    "end": 50.16
+    "start": 50.72,
+    "end": 51.04
    },
    {
     "w": "to",
-    "start": 50.16,
-    "end": 50.58
+    "start": 51.04,
+    "end": 51.48
    },
    {
     "w": "this",
-    "start": 50.58,
-    "end": 50.78
+    "start": 51.48,
+    "end": 51.68
    },
    {
     "w": "fucking",
-    "start": 50.78,
-    "end": 51.28
+    "start": 51.68,
+    "end": 52.18
    },
    {
     "w": "fiasco.",
-    "start": 51.28,
-    "end": 51.76
+    "start": 52.18,
+    "end": 52.68
    }
   ],
   "heard": "Your girlfriend walks in to this fucking fiasco."
  },
  {
   "id": 12,
-  "start": 52.2,
-  "end": 56.98,
+  "start": 52.68,
+  "end": 59.16,
   "min": 4.4,
   "text": "This literal shit storm becomes a shit tornado and starts raining all over town. EUGH!",
   "words": [
    {
     "w": "This",
-    "start": 52.2,
-    "end": 52.34
+    "start": 52.68,
+    "end": 53.2
    },
    {
     "w": "literal",
-    "start": 52.34,
-    "end": 52.76
+    "start": 53.2,
+    "end": 53.66
    },
    {
-    "w": "shit",
-    "start": 52.76,
-    "end": 53.12
-   },
-   {
-    "w": "storm",
-    "start": 53.12,
-    "end": 53.46
-   },
-   {
-    "w": "becomes",
-    "start": 53.46,
-    "end": 53.82
-   },
-   {
-    "w": "a",
-    "start": 53.82,
-    "end": 54.12
-   },
-   {
-    "w": "shit",
-    "start": 54.12,
+    "w": "shitstorm",
+    "start": 53.66,
     "end": 54.34
    },
    {
-    "w": "tornado",
+    "w": "becomes",
     "start": 54.34,
-    "end": 54.84
+    "end": 54.72
+   },
+   {
+    "w": "a",
+    "start": 54.72,
+    "end": 54.92
+   },
+   {
+    "w": "shit",
+    "start": 54.92,
+    "end": 55.24
+   },
+   {
+    "w": "tornado",
+    "start": 55.24,
+    "end": 55.7
    },
    {
     "w": "and",
-    "start": 54.84,
-    "end": 55.22
+    "start": 55.7,
+    "end": 56.32
    },
    {
     "w": "starts",
-    "start": 55.22,
-    "end": 55.66
-   },
-   {
-    "w": "raining",
-    "start": 55.66,
-    "end": 56.16
-   },
-   {
-    "w": "all",
-    "start": 56.16,
-    "end": 56.42
-   },
-   {
-    "w": "over",
-    "start": 56.42,
+    "start": 56.32,
     "end": 56.6
    },
    {
-    "w": "town.",
+    "w": "raining",
     "start": 56.6,
-    "end": 56.98
+    "end": 57.04
+   },
+   {
+    "w": "all",
+    "start": 57.04,
+    "end": 57.32
+   },
+   {
+    "w": "over",
+    "start": 57.32,
+    "end": 57.52
+   },
+   {
+    "w": "town.",
+    "start": 57.52,
+    "end": 57.84
+   },
+   {
+    "w": "Ugh.",
+    "start": 58.78,
+    "end": 59.16
    }
   ],
-  "heard": "This literal shit storm becomes a shit tornado and starts raining all over town."
+  "heard": "This literal shitstorm becomes a shit tornado and starts raining all over town. Ugh."
  },
  {
   "id": 13,
-  "start": 58.34,
-  "end": 62.14,
+  "start": 59.54,
+  "end": 63.04,
   "min": 3.6,
   "text": "It takes its ass all the way to Detroit. They wouldn't even notice.",
   "words": [
    {
     "w": "It",
-    "start": 58.34,
-    "end": 58.34
+    "start": 59.54,
+    "end": 59.66
    },
    {
     "w": "takes",
-    "start": 58.34,
-    "end": 58.94
+    "start": 59.66,
+    "end": 59.84
    },
    {
     "w": "its",
-    "start": 58.94,
-    "end": 59.18
+    "start": 59.84,
+    "end": 60.08
    },
    {
     "w": "ass",
-    "start": 59.18,
-    "end": 59.48
-   },
-   {
-    "w": "all",
-    "start": 59.48,
-    "end": 59.9
-   },
-   {
-    "w": "the",
-    "start": 59.9,
-    "end": 60.1
-   },
-   {
-    "w": "way",
-    "start": 60.1,
-    "end": 60.24
-   },
-   {
-    "w": "to",
-    "start": 60.24,
+    "start": 60.08,
     "end": 60.38
    },
    {
-    "w": "Detroit.",
+    "w": "all",
     "start": 60.38,
-    "end": 60.78
+    "end": 60.8
+   },
+   {
+    "w": "the",
+    "start": 60.8,
+    "end": 61.0
+   },
+   {
+    "w": "way",
+    "start": 61.0,
+    "end": 61.14
+   },
+   {
+    "w": "to",
+    "start": 61.14,
+    "end": 61.3
+   },
+   {
+    "w": "Detroit.",
+    "start": 61.3,
+    "end": 61.66
    },
    {
     "w": "They",
-    "start": 61.38,
-    "end": 61.46
+    "start": 62.24,
+    "end": 62.36
    },
    {
     "w": "wouldn't",
-    "start": 61.46,
-    "end": 61.6
+    "start": 62.36,
+    "end": 62.52
    },
    {
     "w": "even",
-    "start": 61.6,
-    "end": 61.78
+    "start": 62.52,
+    "end": 62.7
    },
    {
     "w": "notice.",
-    "start": 61.78,
-    "end": 62.14
+    "start": 62.7,
+    "end": 63.04
    }
   ],
   "heard": "It takes its ass all the way to Detroit. They wouldn't even notice."
  },
  {
   "id": 14,
-  "start": 62.44,
-  "end": 65.66,
+  "start": 63.3,
+  "end": 66.56,
   "min": 3.6,
   "text": "Then the toilet lands back in the house... and it finally flushes.",
   "words": [
    {
     "w": "Then",
-    "start": 62.44,
-    "end": 62.52
-   },
-   {
-    "w": "the",
-    "start": 62.52,
-    "end": 62.64
-   },
-   {
-    "w": "toilet",
-    "start": 62.64,
-    "end": 62.86
-   },
-   {
-    "w": "lands",
-    "start": 62.86,
-    "end": 63.16
-   },
-   {
-    "w": "back",
-    "start": 63.16,
+    "start": 63.3,
     "end": 63.42
    },
    {
-    "w": "in",
+    "w": "the",
     "start": 63.42,
-    "end": 63.56
+    "end": 63.54
+   },
+   {
+    "w": "toilet",
+    "start": 63.54,
+    "end": 63.76
+   },
+   {
+    "w": "lands",
+    "start": 63.76,
+    "end": 64.08
+   },
+   {
+    "w": "back",
+    "start": 64.08,
+    "end": 64.32
+   },
+   {
+    "w": "in",
+    "start": 64.32,
+    "end": 64.46
    },
    {
     "w": "the",
-    "start": 63.56,
-    "end": 63.66
+    "start": 64.46,
+    "end": 64.56
    },
    {
-    "w": "house.",
-    "start": 63.66,
-    "end": 63.92
+    "w": "house,",
+    "start": 64.56,
+    "end": 64.8
    },
    {
-    "w": "And",
-    "start": 64.72,
-    "end": 64.78
+    "w": "and",
+    "start": 65.24,
+    "end": 65.68
    },
    {
     "w": "it",
-    "start": 64.78,
-    "end": 64.92
+    "start": 65.68,
+    "end": 65.78
    },
    {
     "w": "finally",
-    "start": 64.92,
-    "end": 65.24
+    "start": 65.78,
+    "end": 66.16
    },
    {
     "w": "flushes.",
-    "start": 65.24,
-    "end": 65.66
+    "start": 66.16,
+    "end": 66.56
    }
   ],
-  "heard": "Then the toilet lands back in the house. And it finally flushes."
+  "heard": "Then the toilet lands back in the house, and it finally flushes."
  },
  {
   "id": 15,
-  "start": 66.32,
-  "end": 66.44,
+  "start": 67.04,
+  "end": 67.34,
   "min": 2.4,
   "text": "Sweet!",
   "words": [
    {
-    "w": "Sweet.",
-    "start": 66.32,
-    "end": 66.44
+    "w": "Sweet!",
+    "start": 67.04,
+    "end": 67.34
    }
   ],
-  "heard": "Sweet."
+  "heard": "Sweet!"
  }
 ]
